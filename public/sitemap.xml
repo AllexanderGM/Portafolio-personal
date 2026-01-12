@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Página principal / Home -->
+  <url>
+    <loc>https://alexandergm.com/</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://alexandergm.com/share-img.png</image:loc>
+      <image:title>Alexander Gavilán - Software Developer</image:title>
+      <image:caption>Portafolio profesional de Alexander Gavilán</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Sobre Mí / About -->
+  <url>
+    <loc>https://alexandergm.com/about</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://alexandergm.com/share-img.png</image:loc>
+      <image:title>Sobre Alexander Gavilán</image:title>
+    </image:image>
+  </url>
+
+  <!-- Proyectos / Projects -->
+  <url>
+    <loc>https://alexandergm.com/project</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://alexandergm.com/share-img.png</image:loc>
+      <image:title>Proyectos de Alexander Gavilán</image:title>
+    </image:image>
+  </url>
+
+  <!-- Contacto / Contact -->
+  <url>
+    <loc>https://alexandergm.com/contact</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

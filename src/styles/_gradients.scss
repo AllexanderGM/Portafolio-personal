@@ -1,0 +1,61 @@
+@use '@styles/utils.scss' as *;
+@use '@styles/tokens.colors.scss' as *;
+
+// ---------- Boxshadow -----------
+
+$box-shadow: 0 rem(4px) rem(30px) $dark-color-transparent;
+$box-shadow-hover: 0 rem(6px) rem(20px) $dark-color-transparent-low;
+
+/* Circular Gradients in function of variables */
+
+// PRIMARY
+$primary-gradient: radial-gradient(circle, $primary-color-50, $primary-color-300);
+$primary-gradient-dark: radial-gradient(circle, $primary-color-400, $primary-color-900);
+$primary-gradient-light: radial-gradient(circle, $primary-color-100, $primary-color);
+
+// SECONDARY
+$secondary-gradient: radial-gradient(circle, $secondary-color-50, $secondary-color-300);
+$secondary-gradient-dark: radial-gradient(circle, $secondary-color-400, $secondary-color-900);
+$secondary-gradient-light: radial-gradient(circle, $secondary-color-100, $secondary-color);
+
+// LIGHT
+$light-gradient: radial-gradient(circle, $light-color-50, $light-color-300);
+$light-gradient-dark: radial-gradient(circle, $light-color-400, $light-color-900);
+$light-gradient-light: radial-gradient(circle, $light-color-100, $light-color);
+
+// DARK
+$dark-gradient: radial-gradient(circle, $dark-color-50, $dark-color-300);
+$dark-gradient-dark: radial-gradient(circle, $dark-color-800, $dark-color-950);
+$dark-gradient-light: radial-gradient(circle, $dark-color-100, $dark-color);
+
+// CONTRAST
+$contrast-gradient: radial-gradient(circle, $contrast-color-50, $contrast-color-300);
+$contrast-gradient-dark: radial-gradient(circle, $contrast-color-400, $contrast-color-900);
+$contrast-gradient-light: radial-gradient(circle, $contrast-color-100, $contrast-color);
+
+// ---------- Hover Circular Gradients -----------
+
+// PRIMARY
+$primary-gradient-hover: radial-gradient(circle, $primary-color-200, $primary-color-300);
+$primary-gradient-dark-hover: radial-gradient(circle, $primary-color-400, $primary-color-700);
+$primary-gradient-light-hover: radial-gradient(circle, $primary-color-100, $primary-color);
+
+// SECONDARY
+$secondary-gradient-hover: radial-gradient(circle, $secondary-color-600, $secondary-color-300);
+$secondary-gradient-dark-hover: radial-gradient(circle, $secondary-color-400, $secondary-color-700);
+$secondary-gradient-light-hover: radial-gradient(circle, $secondary-color-100, $secondary-color);
+
+// LIGHT
+$light-gradient-hover: radial-gradient(circle, $light-color-100, $light-color-200);
+$light-gradient-dark-hover: radial-gradient(circle, $light-color-400, $light-color-700);
+$light-gradient-light-hover: radial-gradient(circle, $light-color-50, $light-color-100);
+
+// DARK
+$dark-gradient-hover: radial-gradient(circle, $dark-color-200, $dark-color-300);
+$dark-gradient-dark-hover: radial-gradient(circle, $dark-color-400, $dark-color-700);
+$dark-gradient-light-hover: radial-gradient(circle, $dark-color-100, $dark-color);
+
+// CONTRAST
+$contrast-gradient-hover: radial-gradient(circle, $contrast-color-200, $contrast-color-300);
+$contrast-gradient-dark-hover: radial-gradient(circle, $contrast-color-400, $contrast-color-700);
+$contrast-gradient-light-hover: radial-gradient(circle, $contrast-color-100, $contrast-color);

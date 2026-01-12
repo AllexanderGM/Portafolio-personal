@@ -1,114 +1,158 @@
-@import "@styles/autoload.scss";
-@import "@styles/tailwind.scss";
+@use '@styles/autoload.scss' as *;
 
 /************ Default Css ************/
 
+:root {
+  --font-scale: 1;
+  --contrast-value: 1;
+  --saturation-value: 1;
+  --grayscale-value: 0;
+}
+
+html[data-contrast='low'] {
+  --contrast-value: 0.9;
+  --saturation-value: 0.9;
+}
+
+html[data-contrast='high'] {
+  --contrast-value: 1.15;
+  --saturation-value: 1.05;
+}
+
+html[data-grayscale='on'] {
+  --grayscale-value: 1;
+}
+
+html[data-links='underline'] a,
+html[data-links='underline'] a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: rem(2px);
+  text-underline-offset: rem(4px);
+}
+
+html[data-motion='reduced'] {
+  scroll-behavior: auto;
+}
+
+html[data-motion='reduced'] *,
+html[data-motion='reduced'] *::before,
+html[data-motion='reduced'] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
 ::selection {
-    background-color: $primary-color-600;
-    color: $dark-color;
+  background-color: $primary-color-600;
+  color: $dark-color;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: $font-family;
-    font-weight: $font-weight-medium;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font-family;
+  font-weight: $font-weight-medium;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 html {
-    scroll-behavior: smooth;
-    scroll-padding-top: rem(75px);
+  font-size: calc(16px * var(--font-scale));
+  filter: contrast(var(--contrast-value)) saturate(var(--saturation-value)) grayscale(var(--grayscale-value));
+  scroll-behavior: smooth;
+  scroll-padding-top: rem(75px);
+  height: 100%;
+
+  body {
+    position: relative;
+
+    overflow-x: hidden;
+    min-height: 100vh;
     height: 100%;
-    min-height: auto;
+    font-family: $font-family !important;
+    font-weight: 400;
 
-    body {
-        position: relative;
+    background: $dark-gradient-dark;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-        overflow-x: hidden;
-        min-height: 100vh;
-        height: 100%;
-        font-family: $font-family !important;
-        font-weight: 400;
+    #root {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
 
-        background: $dark-gradient-dark;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+      min-height: 100%;
+      width: 100%;
 
-        #root {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
+      border-radius: rem(10px);
 
-            min-height: 100%;
-            width: 100%;
-
-            border-radius: rem(10px);
-        }
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        margin: 0;
-        padding: 0;
-        line-height: normal;
-    }
-
-    p,
-    a,
-    li,
-    button,
-    ul {
-        margin: 0;
-        padding: 0;
-        line-height: normal;
-        text-decoration: none;
-    }
-
-    a:hover {
-        text-decoration: none;
-    }
-
-    img {
+      div[data-overlay-container] {
         width: 100%;
-        height: auto;
+      }
     }
+  }
 
-    button {
-        border: 0;
-        background-color: transparent;
-    }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+  }
 
-    input:focus,
-    textarea:focus,
-    select:focus {
-        outline: none;
-    }
+  p,
+  a,
+  li,
+  button,
+  ul {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    text-decoration: none;
+  }
 
-    /* * Scroll personalizado */
-    body::-webkit-scrollbar {
-        width: rem(7px);
-        background-color: $dark-color-900;
-    }
+  a:hover {
+    text-decoration: none;
+  }
 
-    body::-webkit-scrollbar-thumb {
-        background-color: $primary-color-600;
-        border-radius: rem(5px);
-        height: 40%;
-    }
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  button {
+    border: 0;
+    background-color: transparent;
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+  }
+
+  /* * Scroll personalizado */
+  body::-webkit-scrollbar {
+    width: rem(7px);
+    background-color: $dark-color-900;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: $primary-color-600;
+    border-radius: rem(5px);
+    height: 40%;
+  }
 }
 
 @include responsive {
-    html body {
-        background-attachment: scroll;
-    }
+  html body {
+    background-attachment: scroll;
+  }
 }

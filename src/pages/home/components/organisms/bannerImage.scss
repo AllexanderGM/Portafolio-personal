@@ -1,130 +1,131 @@
-@import "../../../../library/icons/socialIcon.scss";
+@use '@styles/autoload.scss' as *;
+@use '../../../../library/icons/socialIcon.scss' as *;
 
 @mixin bannerImage {
+  .banner_image {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(42px);
+
+    width: 100%;
+    max-width: rem(200px);
+    max-height: rem(200px);
+    margin: 0;
+    margin-bottom: rem(70px);
+    margin-top: rem(30px);
+    z-index: 1;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 22.5%;
+      left: -7.5%;
+
+      aspect-ratio: 1/1;
+      width: 85%;
+      border-radius: 18% 18% 18% 60%;
+      border: rem(1px) solid $dark-color-700;
+
+      z-index: -1;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 30%;
+      left: -15%;
+
+      aspect-ratio: 1/1;
+      width: 85%;
+      background-color: $dark-color-transparent;
+      border-radius: 18% 18% 18% 65%;
+      z-index: -1;
+      animation: alter 16s infinite alternate ease-in-out;
+    }
+
+    @keyframes alter {
+      0% {
+        transform: scale(1) rotate(0deg);
+      }
+      25% {
+        transform: scale(1.1) rotate(3deg);
+      }
+      50% {
+        transform: scale(0.9) rotate(0deg);
+      }
+      75% {
+        transform: scale(1.1) rotate(-3deg);
+      }
+      100% {
+        transform: scale(1) rotate(0deg);
+      }
+    }
+
+    .decoration {
+      position: absolute;
+      top: rem(-30px);
+      right: rem(20px);
+      list-style: none;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: rem(20px);
+
+      div {
+        width: rem(10px);
+        height: rem(10px);
+        border-radius: 50%;
+        background-color: $primary-color-400;
+      }
+    }
+
+    .picture {
+      object-fit: cover;
+      aspect-ratio: 1/1;
+      width: 100%;
+      min-width: rem(200px);
+      min-height: rem(200px);
+      border-radius: 50%;
+      border: rem(1px) solid $dark-color-700;
+      box-shadow: $box-shadow;
+    }
+
+    .banner_social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: rem(20px);
+      list-style: none;
+      z-index: 5;
+
+      @include socialIcon;
+    }
+  }
+
+  @include responsive {
     .banner_image {
-        position: absolute;
+      position: relative;
+      flex-direction: row;
+      align-items: flex-end;
+      gap: 0;
+      width: 40%;
+      max-width: rem(450px);
+      max-height: rem(450px);
+      margin: 0;
+
+      .decoration {
         display: flex;
+      }
+
+      .banner_social {
+        position: relative;
+        right: rem(50px);
+        bottom: rem(-50px);
         flex-direction: column;
-        align-items: center;
-        gap: rem(42px);
-
-        width: 100%;
-        max-width: rem(200px);
-        max-height: rem(200px);
-        margin: 0;
-        margin-bottom: rem(70px);
-        margin-top: rem(30px);
-        z-index: 1;
-
-        &::after {
-            content: "";
-            position: absolute;
-            top: 22.5%;
-            left: -7.5%;
-
-            aspect-ratio: 1/1;
-            width: 85%;
-            border-radius: 18% 18% 18% 60%;
-            border: rem(1px) solid $dark-color-700;
-
-            z-index: -1;
-        }
-
-        &::before {
-            content: "";
-            position: absolute;
-            top: 30%;
-            left: -15%;
-
-            aspect-ratio: 1/1;
-            width: 85%;
-            background-color: $dark-color-transparent;
-            border-radius: 18% 18% 18% 65%;
-            z-index: -1;
-            animation: alter 16s infinite alternate ease-in-out;
-        }
-
-        @keyframes alter {
-            0% {
-                transform: scale(1) rotate(0deg);
-            }
-            25% {
-                transform: scale(1.1) rotate(3deg);
-            }
-            50% {
-                transform: scale(0.9) rotate(0deg);
-            }
-            75% {
-                transform: scale(1.1) rotate(-3deg);
-            }
-            100% {
-                transform: scale(1) rotate(0deg);
-            }
-        }
-
-        .decoration {
-            position: absolute;
-            top: rem(-30px);
-            right: rem(20px);
-            list-style: none;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            gap: rem(20px);
-
-            div {
-                width: rem(10px);
-                height: rem(10px);
-                border-radius: 50%;
-                background-color: $primary-color-400;
-            }
-        }
-
-        .picture {
-            object-fit: cover;
-            aspect-ratio: 1/1;
-            width: 100%;
-            min-width: rem(200px);
-            min-height: rem(200px);
-            border-radius: 50%;
-            border: rem(1px) solid $dark-color-700;
-            box-shadow: $box-shadow;
-        }
-
-        .banner_social {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: rem(20px);
-            list-style: none;
-            z-index: 5;
-
-            @include socialIcon;
-        }
+        gap: rem(10px);
+      }
     }
-
-    @include responsive {
-        .banner_image {
-            position: relative;
-            flex-direction: row;
-            align-items: flex-end;
-            gap: 0;
-            width: 40%;
-            max-width: rem(450px);
-            max-height: rem(450px);
-            margin: 0;
-
-            .decoration {
-                display: flex;
-            }
-
-            .banner_social {
-                position: relative;
-                right: rem(50px);
-                bottom: rem(-50px);
-                flex-direction: column;
-                gap: rem(10px);
-            }
-        }
-    }
+  }
 }

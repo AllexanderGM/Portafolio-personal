@@ -1,11 +1,13 @@
+@use '@styles/tokens.vars.scss' as *;
+
 // Medidas relativas
 @function rem($pixels) {
-    @return #{calc($pixels / $base-font-size)}rem;
+  @return #{calc($pixels / $base-font-size)}rem;
 }
 
 // Responsive
 @mixin responsive {
-    @media (min-width: $brack_point) {
-        @content;
-    }
+  @media (min-width: $brack_point) {
+    @content;
+  }
 }

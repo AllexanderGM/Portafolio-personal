@@ -1,63 +1,63 @@
-@import "@styles/autoload.scss";
+@use '@styles/autoload.scss' as *;
 
 .main_notfound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: rem(20px);
+
+  width: 100%;
+  min-height: 100vh;
+  background: $primary-gradient;
+
+  padding: rem(40px);
+  padding-bottom: rem(100px);
+
+  h4 {
+    text-align: center;
+    color: $secondary-color-700;
+    font-size: $font-size-xl;
+    font-weight: 700;
+  }
+
+  p {
+    text-align: center;
+    color: $contrast-color-900;
+    font-size: $font-size-sm;
+  }
+
+  figure {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    gap: rem(20px);
 
-    width: 100%;
-    min-height: 100vh;
-    background: $primary-gradient;
+    width: 80%;
+    max-width: rem(340px);
+    overflow: hidden;
 
-    padding: rem(40px);
-    padding-bottom: rem(100px);
-
-    h4 {
-        text-align: center;
-        color: $secondary-color-700;
-        font-size: $font-size-xl;
-        font-weight: 700;
+    img {
+      height: 100%;
+      object-fit: cover;
     }
+  }
 
-    p {
-        text-align: center;
-        color: $contrast-color-900;
-        font-size: $font-size-sm;
-    }
-
-    figure {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        width: 80%;
-        max-width: rem(340px);
-        overflow: hidden;
-
-        img {
-            height: 100%;
-            object-fit: cover;
-        }
-    }
-
-    .btn_generic {
-        padding: rem(10px) rem(20px);
-    }
+  .btn_generic {
+    padding: rem(10px) rem(20px);
+  }
 }
 
 @include responsive {
-    .main_notfound {
-        padding: rem(40px);
-        padding-left: rem(80px);
+  .main_notfound {
+    padding: rem(40px);
+    padding-left: rem(80px);
 
-        figure {
-            margin: rem(40px);
-        }
-
-        .btn_generic {
-            margin: rem(20px);
-        }
+    figure {
+      margin: rem(40px);
     }
+
+    .btn_generic {
+      margin: rem(20px);
+    }
+  }
 }

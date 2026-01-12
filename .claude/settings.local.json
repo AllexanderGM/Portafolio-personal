@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm outdated:*)",
+      "Bash(npm install:*)",
+      "WebSearch",
+      "Bash(npm audit:*)",
+      "Bash(npm run dev:*)",
+      "Bash(find:*)",
+      "Bash(timeout 10 npm run dev:*)",
+      "Bash(grep:*)",
+      "Bash(xargs -0 -I {} sh -c 'grep -q \"\"@use.*@styles/autoload\"\" \"\"{}\"\" || grep -q \"\"@forward\"\" \"\"{}\"\" || \\(echo \"\"@use \\\\\"\"@styles/autoload.scss\\\\\"\" as *;\"\" | cat - \"\"{}\"\" > /tmp/temp && mv /tmp/temp \"\"{}\"\" && echo \"\"Added to {}\"\"\\)')",
+      "Bash(npm run format:*)",
+      "Bash(npx prettier:*)",
+      "WebFetch(domain:www.heroui.com)",
+      "Bash(npm run build:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(node scripts/generate-scss-tokens.mjs:*)"
+    ]
+  }
+}

@@ -1,70 +1,72 @@
+@use '@styles/autoload.scss' as *;
+
 // components
-@import "../organisms/bannerImage.scss";
-@import "../organisms/bannerText.scss";
-@import "../organisms/tecnology.scss";
+@use '../organisms/bannerImage.scss' as *;
+@use '../organisms/bannerText.scss' as *;
+@use '../organisms/technology.scss' as *;
 
 @mixin banner {
+  .banner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+    min-height: calc(100vh - rem(73px));
+    color: $light-color;
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-size: 45%;
+    background: $dark-color;
+    background: $dark-gradient-dark;
+
+    padding: rem(60px) rem(0px);
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      max-width: rem(1510px);
+      width: 100%;
+      height: 100%;
+
+      padding: 0;
+      z-index: 2;
+
+      & > a {
+        position: absolute;
+        top: rem(30px);
+        left: rem(30px);
+
+        .banner_logo {
+          width: rem(40px);
+          height: rem(40px);
+          border-radius: 50%;
+          border: rem(1px) solid $primary-color-700;
+        }
+      }
+
+      @include bannerImage;
+      @include bannerText;
+    }
+
+    @include technology;
+  }
+
+  @include responsive {
     .banner {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+      padding: rem(50px) rem(0px);
 
-        width: 100%;
-        height: 100%;
-        min-height: calc(100vh - rem(73px));
-        color: $light-color;
-        background-repeat: no-repeat;
-        background-position: right top;
-        background-size: 45%;
-        background: $dark-color;
-        background: $dark-gradient-dark;
-
-        padding: rem(60px) rem(0px);
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-around;
-            max-width: rem(1510px);
-            width: 100%;
-            height: 100%;
-
-            padding: 0;
-            z-index: 2;
-
-            & > a {
-                position: absolute;
-                top: rem(30px);
-                left: rem(30px);
-
-                .banner_logo {
-                    width: rem(40px);
-                    height: rem(40px);
-                    border-radius: 50%;
-                    border: rem(1px) solid $primary-color-700;
-                }
-            }
-
-            @include bannerImage;
-            @include bannerText;
-        }
-
-        @include tecnology;
+      .container {
+        align-items: stretch;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: rem(50px) rem(85px);
+      }
     }
-
-    @include responsive {
-        .banner {
-            padding: rem(50px) rem(0px);
-
-            .container {
-                align-items: stretch;
-                justify-content: space-between;
-                flex-direction: row;
-                padding: rem(50px) rem(85px);
-            }
-        }
-    }
+  }
 }

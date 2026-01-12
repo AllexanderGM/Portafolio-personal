@@ -1,46 +1,67 @@
 <!DOCTYPE html>
-<html lang="es-MX">
+<html lang="es" class="dark">
     <head>
-        <!-- Metadatos básicos -->
-        <meta name="language" content="Español" />
+        <!-- Script para prevenir flash de tema incorrecto -->
+        <script>
+            (function() {
+                const theme = localStorage.getItem('portfolio-theme') || 'dark';
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            })();
+        </script>
+
+        <!-- Metadatos esenciales -->
         <meta charset="UTF-8" />
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Title y descripción base (serán sobrescritos por react-helmet-async) -->
         <title>Alexander Gavilán | Software Developer</title>
-        <link rel="icon" type="image/svg+xml" href="/icon.ico" />
-        <meta name="author" content="Jeisson Alexander Gavilán Murcia" />
-        <meta name="copyright" content="Jeisson Alexander Gavilán Murcia" />
-        <meta name="publisher" content="Jeisson Alexander Gavilán Murcia" />
-        <meta name="DateCreated" content="Sun, 21 August 2022 00:00:00 GMT+1" />
         <meta
             name="description"
-            content="Licenciado en Diseño Tecnológico con experiencia en programación y diseño web. Soy capaz de trabajar con tecnologías web y resolver problemas complejos."
-        />
-        <meta
-            name="keywords"
-            content="Jeisson Alexander Gavilán Murcia, Licenciado en Diseño Tecnológico, Programación web, Diseño web, Soluciones tecnológicas personalizadas, Universidad Pedagógica Nacional, Resolución de problemas complejos, Front end, Back end, Full Stack"
+            content="Desarrollador Full Stack especializado en React, Node.js y diseño web. Licenciado en Diseño Tecnológico con experiencia en soluciones tecnológicas innovadoras."
         />
 
-        <!-- Metadatos complementarios -->
-        <meta name="robots" content="index,follow" />
-        <meta name="REPLY-TO" content="alexamarok260@gmail.com" />
-        <meta name="geo.region" content="CO" />
-        <meta name="geo.placename" content="Bogotá, Cundinamarca" />
+        <!-- Favicon y iconos -->
+        <link rel="icon" type="image/x-icon" href="/icon.ico" />
+        <link rel="apple-touch-icon" href="/icon.ico" />
 
-        <!-- Metadatos para compartir en redes -->
-        <meta name="og:url" content="http://alexandergm.com/" />
-        <meta name="og:type" content="website" />
-        <meta name="og:site_name" content="Alexander Gavilán" />
-        <meta property="og:title" content="Alexander Gavilán | Web Developer" />
-        <meta name="twitter:title" content="Alexander Gavilán | Web Developer" />
-        <meta property="og:image" content="/share-img.png" />
-        <meta
-            property="og:description"
-            content="Licenciado en Diseño Tecnológico con experiencia en programación y diseño web. Soy capaz de trabajar con tecnologías web y resolver problemas complejos."
-        />
+        <!-- Theme preference -->
+        <meta name="color-scheme" content="dark light" />
+        <meta name="msapplication-TileColor" content="#2f3238" />
+
+        <!-- Información del autor -->
+        <meta name="author" content="Jeisson Alexander Gavilán Murcia" />
+        <meta name="copyright" content="© 2022-2026 Jeisson Alexander Gavilán Murcia" />
+
+        <!-- Geo localización -->
+        <meta name="geo.region" content="CO-CUN" />
+        <meta name="geo.placename" content="Bogotá" />
+        <meta name="geo.position" content="4.60971;-74.08175" />
+        <meta name="ICBM" content="4.60971, -74.08175" />
+
+        <!-- Preferencias de indexación y renderizado -->
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="bingbot" content="index, follow" />
+
+        <!-- DNS Prefetch para mejorar performance -->
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://unpkg.com" />
+
+        <!-- Preconnect para recursos críticos -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+        <link rel="preconnect" href="https://unpkg.com" crossorigin />
+
+        <!-- Security Headers -->
+        <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+        <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
     </head>
-    <body class="dark">
+    <body>
         <noscript>Necesitas tener activado el uso de JavaScrip para esta aplicación.</noscript>
         <div id="root"></div>
         <script type="module" src="/src/main.jsx"></script>

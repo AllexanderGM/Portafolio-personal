@@ -1,0 +1,120 @@
+@use '@styles/autoload.scss' as *;
+
+@mixin ExperienceTimeline {
+  .experience-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: rem(30px);
+    width: 100%;
+    max-width: rem(500px);
+    position: relative;
+    padding-left: rem(40px);
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: rem(13px);
+      top: 0;
+      bottom: 0;
+      width: rem(2px);
+      background: linear-gradient(
+        to bottom,
+        $secondary-color-400,
+        $secondary-color-300
+      );
+    }
+
+    .timeline-item {
+      position: relative;
+      display: flex;
+      gap: rem(20px);
+      align-items: flex-start;
+
+      .timeline-icon {
+        position: absolute;
+        left: rem(-40px);
+        width: rem(28px);
+        height: rem(28px);
+        border-radius: 50%;
+        background: $dark-color;
+        border: rem(3px) solid $secondary-color-400;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+
+        svg {
+          color: $secondary-color-400;
+        }
+      }
+
+      .timeline-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: rem(8px);
+        padding: rem(15px) rem(20px);
+        background: rgba($dark-color, 0.3);
+        border-radius: rem(12px);
+        border-left: rem(3px) solid $secondary-color-400;
+        transition: $transition;
+
+        &:hover {
+          background: rgba($dark-color, 0.5);
+          transform: translateX(rem(5px));
+          transition: $transition;
+        }
+
+        .timeline-period {
+          font-size: $font-size-sm;
+          color: $secondary-color-400;
+          font-weight: $font-weight-bold;
+          letter-spacing: rem(0.5px);
+        }
+
+        .timeline-company {
+          font-size: $font-size-lg;
+          color: $contrast-color-50;
+          font-weight: $font-weight-bold;
+          margin: 0;
+        }
+
+        .timeline-role {
+          font-size: $font-size-md;
+          color: $contrast-color-400;
+          font-weight: $font-weight-medium;
+          margin: 0;
+        }
+
+        .timeline-tech {
+          display: flex;
+          flex-wrap: wrap;
+          gap: rem(8px);
+          margin-top: rem(8px);
+
+          .tech-badge {
+            font-size: $font-size-xs;
+            color: $contrast-color-600;
+            background: rgba($secondary-color-400, 0.1);
+            padding: rem(4px) rem(10px);
+            border-radius: rem(6px);
+            border: rem(1px) solid rgba($secondary-color-400, 0.3);
+            transition: $transition;
+
+            &:hover {
+              background: rgba($secondary-color-400, 0.2);
+              color: $contrast-color-200;
+              transition: $transition;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include responsive {
+    .experience-timeline {
+      max-width: 100%;
+    }
+  }
+}

@@ -1,57 +1,58 @@
+@use '@styles/autoload.scss' as *;
 @mixin categoriesComponent {
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .btn_desactive,
+    .btn_active {
+      font-size: $icon-size-sm;
+      color: $contrast-color;
+      border-right: 1px solid $primary-color;
+      padding: rem(8px) rem(10px);
+
+      transition: $transition;
+
+      &:hover {
+        color: $contrast-color-400;
+        transition: $transition;
+      }
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+
+    .btn_desactive {
+      border-bottom: 1px solid transparent;
+      transition: $transition;
+
+      &:hover {
+        transition: $transition;
+        border-bottom: 1px solid $contrast-color;
+        color: $primary-color-400;
+      }
+    }
+
+    .btn_active {
+      color: $primary-color;
+      transition: $transition;
+      border-bottom: 1px solid $contrast-color;
+
+      &:hover {
+        color: $primary-color-400;
+        border-bottom: 1px solid $contrast-color-400;
+      }
+    }
+  }
+
+  @include responsive {
     li {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        .btn_desactive,
-        .btn_active {
-            font-size: $icon-size-sm;
-            color: $contrast-color;
-            border-right: 1px solid $primary-color;
-            padding: rem(8px) rem(10px);
-
-            transition: $transition;
-
-            &:hover {
-                color: $contrast-color-400;
-                transition: $transition;
-            }
-
-            &:last-child {
-                border-right: none;
-            }
-        }
-
-        .btn_desactive {
-            border-bottom: 1px solid transparent;
-            transition: $transition;
-
-            &:hover {
-                transition: $transition;
-                border-bottom: 1px solid $contrast-color;
-                color: $primary-color-400;
-            }
-        }
-
-        .btn_active {
-            color: $primary-color;
-            transition: $transition;
-            border-bottom: 1px solid $contrast-color;
-
-            &:hover {
-                color: $primary-color-400;
-                border-bottom: 1px solid $contrast-color-400;
-            }
-        }
+      .btn_desactive,
+      .btn_active {
+        font-size: $font-size-lg;
+      }
     }
-
-    @include responsive {
-        li {
-            .btn_desactive,
-            .btn_active {
-                font-size: $font-size-lg;
-            }
-        }
-    }
+  }
 }

@@ -1,3 +1,18 @@
-User-agent: *
+# robots.txt para alexandergm.com
 
-Sitemap: http://alexandergm.com/
+# Permitir acceso a todos los bots
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /_data/
+Disallow: /api/
+
+# Crawl delay para bots específicos (opcional, ajusta según necesidad)
+User-agent: Googlebot
+Crawl-delay: 0
+
+User-agent: Bingbot
+Crawl-delay: 0
+
+# Sitemap
+Sitemap: https://alexandergm.com/sitemap.xml

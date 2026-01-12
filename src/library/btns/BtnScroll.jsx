@@ -1,72 +1,72 @@
-import { useEffect, useState, useRef } from "react";
-import PropTypes from "prop-types";
+import { useEffect, useState, useRef } from 'react'
+import PropTypes from 'prop-types'
 
-import "./btnScroll.scss";
+import './btnScroll.scss'
 
 const BtnScroll = ({ href }) => {
-    const [isVisible, setIsVisible] = useState(true);
-    const [isAnimationEnd, setAnimationEnd] = useState(false);
-    const [elementClass, setElementClass] = useState("mouse");
+  const [isVisible, setIsVisible] = useState(true)
+  const [isAnimationEnd, setIsAnimationEnd] = useState(false)
+  const [elementClass, setElementClass] = useState('mouse')
 
-    const btnRef = useRef(null);
+  const btnRef = useRef(null)
 
-    const scrollMove = () => {
-        const element = document.querySelector(href);
-        
-        if (element) {
-            window.scrollTo({
-                top: element.offsetTop,
-                behavior: "smooth",
-            });
+  const scrollMove = () => {
+    const element = document.querySelector(href)
+
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop,
+        behavior: 'smooth'
+      })
+    }
+  }
+
+  useEffect(() => {
+    const onAnimationEnd = () => {
+      setIsAnimationEnd(true)
+    }
+
+    const handleScroll = () => {
+      if (window.scrollY > 60) {
+        setIsVisible(false)
+        if (btnRef.current) {
+          btnRef.current.addEventListener('animationend', onAnimationEnd)
         }
-    };
+      } else {
+        setIsVisible(true)
+        setIsAnimationEnd(false)
+      }
+    }
 
-    useEffect(() => {
-        const onAnimationEnd = () => {
-            setAnimationEnd(true);
-        };
+    window.addEventListener('scroll', handleScroll)
 
-        const handleScroll = () => {
-            if (window.scrollY > 60) {
-                setIsVisible(false);
-                if (btnRef.current) {
-                    btnRef.current.addEventListener("animationend", onAnimationEnd);
-                }
-            } else {
-                setIsVisible(true);
-                setAnimationEnd(false);
-            }
-        };
+    let currentBtnRef = btnRef.current
 
-        window.addEventListener("scroll", handleScroll);
+    const updateElementState = () => {
+      if (isVisible) {
+        setElementClass('')
+      } else if (isAnimationEnd) {
+        setElementClass('hidden')
+      } else {
+        setElementClass('fade-out')
+      }
+    }
 
-        let currentBtnRef = btnRef.current;
+    updateElementState()
 
-        const updateElementState = () => {
-            if (!isVisible && isAnimationEnd) {
-                setElementClass("hidden");
-            } else if (!isVisible) {
-                setElementClass("fade-out");
-            } else {
-                setElementClass("");
-            }
-        };
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (currentBtnRef) {
+        currentBtnRef.removeEventListener('animationend', onAnimationEnd)
+      }
+    }
+  }, [isVisible, isAnimationEnd])
 
-        updateElementState();
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-            if (currentBtnRef) {
-                currentBtnRef.removeEventListener("animationend", onAnimationEnd);
-            }
-        };
-    }, [isVisible, isAnimationEnd]);
-
-    return <button ref={btnRef} onClick={scrollMove} className={`mouse ${elementClass} clickable`} />;
-};
+  return <button ref={btnRef} onClick={scrollMove} className={`mouse ${elementClass} clickable`} />
+}
 
 BtnScroll.propTypes = {
-    href: PropTypes.string.isRequired,
-};
+  href: PropTypes.string.isRequired
+}
 
-export default BtnScroll;
+export default BtnScroll

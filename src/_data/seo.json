@@ -1,0 +1,231 @@
+{
+  "site": {
+    "name": "Alexander Gavilán | Software Developer",
+    "shortName": "Alexander Gavilán",
+    "url": "https://alexandergm.com",
+    "domain": "alexandergm.com",
+    "author": {
+      "name": "Jeisson Alexander Gavilán Murcia",
+      "jobTitle": "Software Developer",
+      "email": "allexander.gm@gmail.com",
+      "location": {
+        "city": "Bogotá",
+        "region": "Cundinamarca",
+        "country": "Colombia",
+        "countryCode": "CO"
+      },
+      "social": {
+        "linkedin": "https://www.linkedin.com/in/jeisson-alexander",
+        "github": "https://github.com/AllexanderGM"
+      }
+    },
+    "language": "es",
+    "locale": "es",
+    "alternateLocales": ["en_US", "es_CO", "es_MX", "es_ES"],
+    "themeColor": "#2f3238",
+    "backgroundColor": "#2f3238"
+  },
+
+  "home": {
+    "title": "Alexander Gavilán | Software Developer - Portafolio Profesional",
+    "description": "Desarrollador Full Stack con +3 años de experiencia en Spring Boot, React, Node.js, Nest.js y Next.js. Actualmente en Pontificia Universidad Javeriana. Trabajo remoto con clientes internacionales. Especializado en AWS, Docker, CI/CD y arquitectura de microservicios. Transformo necesidades reales en soluciones tecnológicas de valor.",
+    "keywords": "Alexander Gavilán, Jeisson Alexander Gavilán, Software Developer, Desarrollador Full Stack, Spring Boot, Nest.js, Next.js, React Developer, Node.js, Docker, AWS, Terraform, Ansible, CI/CD, DevOps, Liferay, Microservicios, PostgreSQL, MongoDB, DynamoDB, TypeScript, Java, Pontificia Universidad Javeriana, Frontend Developer, Backend Developer, Trabajo Remoto, Remote Work, Freelance Internacional, Colombia, Licenciado Diseño Tecnológico",
+    "ogImage": "/share-img.png",
+    "ogImageAlt": "Alexander Gavilán - Software Developer Portafolio",
+    "canonical": "https://alexandergm.com/",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Jeisson Alexander Gavilán Murcia",
+      "alternateName": "Alexander Gavilán",
+      "url": "https://alexandergm.com",
+      "image": "https://alexandergm.com/share-img.png",
+      "jobTitle": "Software Developer | Frontend Developer",
+      "description": "Full Stack Developer con +3 años de experiencia especializado en Spring Boot, React, Nest.js, Next.js, Docker y AWS. Trabajo en Pontificia Universidad Javeriana y disponible para proyectos freelance internacionales.",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Pontificia Universidad Javeriana",
+        "sameAs": "https://www.javeriana.edu.co/"
+      },
+      "workLocation": {
+        "@type": "Place",
+        "name": "Remote / Colombia",
+        "description": "Trabajo remoto - Disponible internacionalmente"
+      },
+      "alumniOf": {
+        "@type": "Organization",
+        "name": "Universidad Pedagógica Nacional",
+        "sameAs": "https://www.upn.edu.co/"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bogotá",
+        "addressRegion": "Cundinamarca",
+        "addressCountry": "CO"
+      },
+      "email": "allexander.gm@gmail.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/jeisson-alexander",
+        "https://github.com/AllexanderGM"
+      ],
+      "knowsAbout": [
+        "Web Development",
+        "Full Stack Development",
+        "Frontend Development",
+        "Backend Development",
+        "Spring Boot",
+        "Java",
+        "Nest.js",
+        "Express.js",
+        "Next.js",
+        "React",
+        "Node.js",
+        "JavaScript",
+        "TypeScript",
+        "Docker",
+        "Docker Compose",
+        "AWS",
+        "Terraform",
+        "Ansible",
+        "CI/CD",
+        "GitHub Actions",
+        "GitLab CI",
+        "DevOps",
+        "Microservices Architecture",
+        "RESTful APIs",
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "DynamoDB",
+        "Redis",
+        "Sequelize",
+        "Hibernate",
+        "Tailwind CSS",
+        "SASS",
+        "CSS",
+        "HTML",
+        "Liferay",
+        "Moodle",
+        "Git",
+        "Scrum",
+        "Kanban",
+        "TDD",
+        "Jest",
+        "JUnit",
+        "Postman",
+        "Figma",
+        "UI/UX Design",
+        "Technical Documentation",
+        "Agile Methodologies"
+      ]
+    }
+  },
+
+  "about": {
+    "title": "Sobre Mí | Alexander Gavilán - Experiencia y Habilidades",
+    "description": "Conoce mi trayectoria como desarrollador Full Stack con +3 años de experiencia. Actualmente en Pontificia Universidad Javeriana desarrollando aplicativos web con Spring Boot, Nest.js, React y Docker. Experiencia docente en Organización Key. Especializado en arquitectura de microservicios, AWS, CI/CD y soluciones enterprise con Liferay.",
+    "keywords": "Sobre Alexander Gavilán, Experiencia Desarrollador, +3 años experiencia, Pontificia Universidad Javeriana, Docente Desarrollo Web, Habilidades Técnicas, Spring Boot, Nest.js, Next.js, React, Node.js, Docker, AWS, Terraform, CI/CD, Liferay, PostgreSQL, MongoDB, TypeScript, Java, Microservicios, DevOps, Full Stack, Remote Developer, Internacional, Diseño Tecnológico",
+    "ogImage": "/share-img.png",
+    "ogImageAlt": "Sobre Alexander Gavilán - Experiencia y Habilidades",
+    "canonical": "https://alexandergm.com/about",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Jeisson Alexander Gavilán Murcia",
+        "description": "Licenciado en Diseño Tecnológico con +3 años de experiencia en desarrollo Full Stack. Actualmente trabajando en Pontificia Universidad Javeriana como Desarrollador Frontend. Experiencia en arquitectura de microservicios, cloud computing y DevOps.",
+        "url": "https://alexandergm.com",
+        "knowsAbout": [
+          "Spring Boot",
+          "Java",
+          "Nest.js",
+          "Express.js",
+          "Next.js",
+          "React",
+          "Node.js",
+          "JavaScript",
+          "TypeScript",
+          "Docker",
+          "AWS",
+          "Terraform",
+          "Ansible",
+          "CI/CD",
+          "DevOps",
+          "PostgreSQL",
+          "MySQL",
+          "MongoDB",
+          "DynamoDB",
+          "Liferay",
+          "Moodle",
+          "Microservices",
+          "RESTful APIs",
+          "Git",
+          "Scrum",
+          "TDD",
+          "SASS",
+          "Tailwind CSS",
+          "Figma"
+        ],
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Software Developer | Frontend Developer | Docente",
+          "skills": "Spring Boot, Nest.js, Next.js, React, Docker, AWS, CI/CD, Microservices, Full Stack Development",
+          "occupationLocation": {
+            "@type": "City",
+            "name": "Bogotá, Colombia"
+          }
+        }
+      }
+    }
+  },
+
+  "projects": {
+    "title": "Proyectos | Alexander Gavilán - Portfolio de Desarrollo Web",
+    "description": "Explora mi portfolio de proyectos web. Aplicaciones Full Stack desarrolladas con Spring Boot, Nest.js, Next.js, React, Docker y AWS. Proyectos para Pontificia Universidad Javeriana, Universidad Pedagógica Nacional, clientes internacionales y startups. Arquitectura de microservicios, CI/CD y código escalable.",
+    "keywords": "Proyectos Web, Portfolio Desarrollador, Spring Boot Projects, Nest.js Applications, Next.js, React Projects, Docker, AWS, Microservicios, CI/CD Pipeline, Pontificia Universidad Javeriana, Universidad Pedagógica Nacional, Liferay, Moodle, E-commerce, Web Apps, Soluciones Enterprise, Casos de Estudio, Colombia",
+    "ogImage": "/share-img.png",
+    "ogImageAlt": "Proyectos de Alexander Gavilán - Portfolio",
+    "canonical": "https://alexandergm.com/project",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Proyectos de Alexander Gavilán",
+      "description": "Portfolio de proyectos de desarrollo web y aplicaciones",
+      "url": "https://alexandergm.com/project",
+      "author": {
+        "@type": "Person",
+        "name": "Jeisson Alexander Gavilán Murcia"
+      }
+    }
+  },
+
+  "contact": {
+    "title": "Contacto | Alexander Gavilán - Trabajemos Juntos",
+    "description": "¿Tienes un proyecto en mente? Contáctame para desarrollar tu próxima aplicación web con Spring Boot, Nest.js, React y AWS. +3 años de experiencia en arquitectura de microservicios y CI/CD. Disponible para proyectos freelance internacionales, trabajo remoto, consultorías y capacitaciones. Respuesta garantizada en 24 horas.",
+    "keywords": "Contactar Desarrollador, Freelance Internacional, Contratar Developer, Spring Boot Developer, Nest.js Expert, React Developer, AWS Consultant, Docker Expert, CI/CD Specialist, Desarrollo Web Remoto, Consultoría Tecnológica, Capacitación Desarrollo Web, Docente Programación, Servicios Web, Trabajo Remoto, Remote Work, Full Stack Freelance, Microservicios, DevOps, Colombia",
+    "ogImage": "/share-img.png",
+    "ogImageAlt": "Contacto Alexander Gavilán - Desarrollador Web",
+    "canonical": "https://alexandergm.com/contact",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contactar a Alexander Gavilán",
+      "description": "Página de contacto para proyectos y colaboraciones",
+      "url": "https://alexandergm.com/contact",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Jeisson Alexander Gavilán Murcia",
+        "email": "allexander.gm@gmail.com",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "Professional",
+          "email": "allexander.gm@gmail.com",
+          "availableLanguage": ["Spanish", "English"],
+          "areaServed": ["CO", "US", "MX", "ES", "LATAM", "Worldwide"],
+          "serviceType": "Remote Software Development"
+        }
+      }
+    }
+  }
+}

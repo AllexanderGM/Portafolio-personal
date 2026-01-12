@@ -1,45 +1,47 @@
-@import "@styles/autoload.scss";
+@use '@styles/autoload.scss' as *;
 
 .toTop {
-    display: flex;
-    right: rem(20px);
-    bottom: rem(90px);
-    position: fixed;
-    z-index: 9999;
-    cursor: pointer;
+  display: flex;
+  right: rem(20px);
+  bottom: rem(90px);
+  position: fixed;
+  z-index: 9999;
+  cursor: pointer;
 
-    border: rem(1px) solid $dark-color-700;
-    border-radius: rem(50px);
-    background: $dark-color-transparent;
+  border: rem(1px) solid $dark-color-700;
+  border-radius: rem(50px);
+  background: $dark-color-transparent;
+  box-shadow: $box-shadow;
+  -webkit-backdrop-filter: blur(rem(7.6px));
+  backdrop-filter: blur(rem(7.6px));
+
+  padding: rem(10px);
+  color: $contrast-color;
+
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+
+  &:hover {
     box-shadow: $box-shadow;
-    backdrop-filter: blur(rem(7.6px));
-    -webkit-backdrop-filter: blur(rem(7.6px));
+  }
 
-    padding: rem(10px);
-    color: $contrast-color;
+  &:not(.is-visible) {
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
 
-    transition: opacity 0.3s, transform 0.3s;
-
-    &:hover {
-        box-shadow: $box-shadow;
-    }
-
-    &:not(.is-visible) {
-        pointer-events: none;
-        opacity: 0;
-        transform: translateY(-2rem);
-    }
-
-    svg {
-        stroke-width: 3px;
-        stroke: currentColor;
-        fill: none;
-        width: 24px;
-    }
+  svg {
+    stroke-width: 3px;
+    stroke: currentColor;
+    fill: none;
+    width: 24px;
+  }
 }
 
 @include responsive {
-    .toTop {
-        bottom: rem(25px);
-    }
+  .toTop {
+    bottom: rem(25px);
+  }
 }

@@ -1,61 +1,66 @@
-@import "@styles/autoload.scss";
+@use '@styles/autoload.scss' as *;
 
-@import "./components/organisms/navbar.scss";
+@use './components/organisms/navbar.scss' as *;
 
 .header {
-    position: fixed;
-    bottom: rem(15px);
+  position: fixed;
+  bottom: rem(12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: calc(auto - rem(20px));
+  max-width: rem(340px);
+  border: rem(1px) solid $dark-color-700;
+  border-radius: rem(40px);
+  background: $dark-color-transparent;
+  box-shadow: $box-shadow;
+  backdrop-filter: blur(rem(7.6px));
+  -webkit-backdrop-filter: blur(rem(7.6px));
+
+  transition: $transition ease-in-out;
+  z-index: 899;
+
+  .container {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    width: calc(auto - rem(20px));
-    max-width: rem(400px);
-    border: rem(1px) solid $dark-color-700;
-    border-radius: rem(50px);
-    background: $dark-color-transparent;
-    box-shadow: $box-shadow;
-    backdrop-filter: blur(rem(7.6px));
-    -webkit-backdrop-filter: blur(rem(7.6px));
+    width: auto;
+    max-width: rem(1200px);
 
+    padding: 0;
     transition: $transition ease-in-out;
-    z-index: 899;
 
-    .container {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        width: auto;
-        max-width: rem(1320px);
-
-        padding: 0;
-        transition: $transition ease-in-out;
-
-        @include headerNavbar;
-    }
+    @include headerNavbar;
+  }
 }
 
 @include responsive {
-    .header {
-        top: 50%;
-        transform: translate(-50%, -50%);
-        left: rem(50px);
-        width: auto;
-        bottom: auto;
+  .header {
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: rem(40px);
+    width: auto;
+    bottom: auto;
+    overflow: visible;
 
-        .container .close {
-            position: initial;
-            display: flex;
-            flex-direction: row;
-            background-color: transparent;
-            padding: 0;
-
-            .routes {
-                flex-direction: row;
-                gap: rem(20px);
-            }
-        }
+    .container {
+      overflow: visible;
     }
+
+    .container .close {
+      position: initial;
+      display: flex;
+      flex-direction: row;
+      background-color: transparent;
+      padding: 0;
+
+      .routes {
+        flex-direction: row;
+        gap: rem(20px);
+      }
+    }
+  }
 }

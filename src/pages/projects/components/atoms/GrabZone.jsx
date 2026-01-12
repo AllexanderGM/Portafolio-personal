@@ -1,164 +1,164 @@
-import { useState, useRef, useEffect, useLayoutEffect } from "react";
-import PropTypes from "prop-types";
+import { useState, useRef, useEffect, useLayoutEffect } from 'react'
+import PropTypes from 'prop-types'
 
 const CONSTANTS = {
-    assetPath: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/184729",
-};
+  assetPath: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/184729'
+}
 
 const ASSETS = {
-    head: `${CONSTANTS.assetPath}/head.svg`,
-    waiting: `${CONSTANTS.assetPath}/hand.svg`,
-    stalking: `${CONSTANTS.assetPath}/hand-waiting.svg`,
-    grabbing: `${CONSTANTS.assetPath}/hand.svg`,
-    grabbed: `${CONSTANTS.assetPath}/hand-with-cursor.svg`,
-    shaka: `${CONSTANTS.assetPath}/hand-surfs-up.svg`,
-};
+  head: `${CONSTANTS.assetPath}/head.svg`,
+  waiting: `${CONSTANTS.assetPath}/hand.svg`,
+  stalking: `${CONSTANTS.assetPath}/hand-waiting.svg`,
+  grabbing: `${CONSTANTS.assetPath}/hand.svg`,
+  grabbed: `${CONSTANTS.assetPath}/hand-with-cursor.svg`,
+  shaka: `${CONSTANTS.assetPath}/hand-surfs-up.svg`
+}
 
-Object.keys(ASSETS).forEach((key) => {
-    const img = new Image();
-    img.src = ASSETS[key];
-});
+Object.keys(ASSETS).forEach(key => {
+  const img = new Image()
+  img.src = ASSETS[key]
+})
 
 const useHover = () => {
-    const ref = useRef();
-    const [hovered, setHovered] = useState(false);
+  const ref = useRef()
+  const [hovered, setHovered] = useState(false)
 
-    const enter = () => setHovered(true);
-    const leave = () => setHovered(false);
+  const enter = () => setHovered(true)
+  const leave = () => setHovered(false)
 
-    useEffect(() => {
-        ref.current.addEventListener("mouseenter", enter);
-        ref.current.addEventListener("mouseleave", leave);
-    }, [ref]);
+  useEffect(() => {
+    ref.current.addEventListener('mouseenter', enter)
+    ref.current.addEventListener('mouseleave', leave)
+  }, [ref])
 
-    return [ref, hovered];
-};
+  return [ref, hovered]
+}
 
 const useMousePosition = () => {
-    const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: 0, y: 0 })
 
-    useEffect(() => {
-        const setFromEvent = (e) => setPosition({ x: e.clientX, y: e.clientY });
-        window.addEventListener("mousemove", setFromEvent);
+  useEffect(() => {
+    const setFromEvent = e => setPosition({ x: e.clientX, y: e.clientY })
+    window.addEventListener('mousemove', setFromEvent)
 
-        return () => {
-            window.removeEventListener("mousemove", setFromEvent);
-        };
-    }, []);
+    return () => {
+      window.removeEventListener('mousemove', setFromEvent)
+    }
+  }, [])
 
-    return position;
-};
+  return position
+}
 
 const usePosition = () => {
-    const ref = useRef();
-    const [position, setPosition] = useState({});
+  const ref = useRef()
+  const [position, setPosition] = useState({})
 
-    const handleResize = () => {
-        setPosition(ref.current.getBoundingClientRect());
-    };
+  const handleResize = () => {
+    setPosition(ref.current.getBoundingClientRect())
+  }
 
-    useLayoutEffect(() => {
-        handleResize();
-        window.addEventListener("resize", handleResize);
+  useLayoutEffect(() => {
+    handleResize()
+    window.addEventListener('resize', handleResize)
 
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
-    return [ref, position];
-};
+  return [ref, position]
+}
 
 const Grabber = ({ state, gameOver, extended, onCursorGrabbed }) => {
-    const mousePos = useMousePosition();
-    const [ref, position] = usePosition();
+  const mousePos = useMousePosition()
+  const [ref, position] = usePosition()
 
-    // Calculate rotation of armWrapper
-    const x = position.left + position.width * 0.5;
-    const y = position.top + position.height * 0.5;
-    const angle = gameOver ? 0 : Math.atan2(mousePos.x - x, -(mousePos.y - y)) * (180 / Math.PI);
+  // Calculate rotation of armWrapper
+  const x = position.left + position.width * 0.5
+  const y = position.top + position.height * 0.5
+  const angle = gameOver ? 0 : Math.atan2(mousePos.x - x, -(mousePos.y - y)) * (180 / Math.PI)
 
-    // Ensure value is within acceptable range (-75 to 75)
-    const rotation = Math.min(Math.max(parseInt(angle), -79), 79);
+  // Ensure value is within acceptable range (-75 to 75)
+  const rotation = Math.min(Math.max(parseInt(angle), -79), 79)
 
-    const grabberClass = `grabber grabber--${state} ${extended && "grabber--extended"}`;
-    const wrapperStyle = { transform: `rotate(${rotation}deg)` };
+  const grabberClass = `grabber grabber--${state} ${extended && 'grabber--extended'}`
+  const wrapperStyle = { transform: `rotate(${rotation}deg)` }
 
-    let handImageSrc = ASSETS[state];
+  let handImageSrc = ASSETS[state]
 
-    return (
-        <div className={grabberClass}>
-            <div className="grabber__body"></div>
-            <img className="grabber__face" src={ASSETS.head} />
-            <div className="grabber__arm-wrapper" ref={ref} style={wrapperStyle}>
-                <div className="grabber__arm">
-                    <img className="grabber__hand" src={handImageSrc} onMouseEnter={onCursorGrabbed} />
-                </div>
-            </div>
+  return (
+    <div className={grabberClass}>
+      <div className='grabber__body'></div>
+      <img className='grabber__face' src={ASSETS.head} />
+      <div className='grabber__arm-wrapper' ref={ref} style={wrapperStyle}>
+        <div className='grabber__arm'>
+          <img className='grabber__hand' src={handImageSrc} onMouseEnter={onCursorGrabbed} />
         </div>
-    );
-};
+      </div>
+    </div>
+  )
+}
 
 Grabber.propTypes = {
-    state: PropTypes.string.isRequired,
-    gameOver: PropTypes.bool.isRequired,
-    extended: PropTypes.bool.isRequired,
-    onCursorGrabbed: PropTypes.func.isRequired,
-};
+  state: PropTypes.string.isRequired,
+  gameOver: PropTypes.bool.isRequired,
+  extended: PropTypes.bool.isRequired,
+  onCursorGrabbed: PropTypes.func.isRequired
+}
 
 const GrabZone = ({ cursorGrabbed, gameOver, onCursorGrabbed }) => {
-    const [outerRef, outerHovered] = useHover();
-    const [innerRef, innerHovered] = useHover();
-    const [isExtended, setExtendedArm] = useState(false);
+  const [outerRef, outerHovered] = useHover()
+  const [innerRef, innerHovered] = useHover()
+  const [isExtended, setExtendedArm] = useState(false)
 
-    let state = "waiting";
-    if (outerHovered) {
-        state = "stalking";
-    }
-    if (innerHovered) {
-        state = "grabbing";
-    }
-    if (cursorGrabbed) {
-        state = "grabbed";
-    }
-    if (gameOver) {
-        state = "shaka";
-    }
+  let state = 'waiting'
+  if (outerHovered) {
+    state = 'stalking'
+  }
+  if (innerHovered) {
+    state = 'grabbing'
+  }
+  if (cursorGrabbed) {
+    state = 'grabbed'
+  }
+  if (gameOver) {
+    state = 'shaka'
+  }
 
-    useEffect(() => {
-        let timer;
-        if (state === "grabbing") {
-            timer = setTimeout(() => {
-                setExtendedArm(true);
-                timer = null;
-            }, 2000);
-        }
-        return () => {
-            setExtendedArm(false);
-            if (timer) {
-                clearTimeout(timer);
-            }
-        };
-    }, [state]);
+  useEffect(() => {
+    let timer
+    if (state === 'grabbing') {
+      timer = setTimeout(() => {
+        setExtendedArm(true)
+        timer = null
+      }, 2000)
+    }
+    return () => {
+      setExtendedArm(false)
+      if (timer) {
+        clearTimeout(timer)
+      }
+    }
+  }, [state])
 
-    return (
-        <div className="grab-zone" ref={outerRef}>
-            <div className="grab-zone__debug">
-                <strong>Debug info:</strong>
-                <p>Current state: {state}</p>
-                <p>Extended arm: {isExtended ? "Yes" : "No"}</p>
-            </div>
-            <div className="grab-zone__danger" ref={innerRef}>
-                <Grabber state={state} gameOver={gameOver} extended={isExtended} onCursorGrabbed={onCursorGrabbed} />
-            </div>
-        </div>
-    );
-};
+  return (
+    <div className='grab-zone' ref={outerRef}>
+      <div className='grab-zone__debug'>
+        <strong>Debug info:</strong>
+        <p>Current state: {state}</p>
+        <p>Extended arm: {isExtended ? 'Yes' : 'No'}</p>
+      </div>
+      <div className='grab-zone__danger' ref={innerRef}>
+        <Grabber state={state} gameOver={gameOver} extended={isExtended} onCursorGrabbed={onCursorGrabbed} />
+      </div>
+    </div>
+  )
+}
 
 GrabZone.propTypes = {
-    cursorGrabbed: PropTypes.bool.isRequired,
-    gameOver: PropTypes.bool.isRequired,
-    onCursorGrabbed: PropTypes.func.isRequired,
-};
+  cursorGrabbed: PropTypes.bool.isRequired,
+  gameOver: PropTypes.bool.isRequired,
+  onCursorGrabbed: PropTypes.func.isRequired
+}
 
-export default GrabZone;
+export default GrabZone

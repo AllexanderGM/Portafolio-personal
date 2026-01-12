@@ -1,4 +1,4 @@
-@import "@styles/autoload.scss";
+@use '@styles/autoload.scss' as *;
 
 $widthMouse: 40px;
 $heightMouse: 64px;
@@ -14,271 +14,272 @@ $shrinkTrackball: 0.4;
 $animDuration: 6s;
 
 .mouse {
-    cursor: pointer;
-    position: fixed;
-    bottom: rem(25px);
-    right: rem(25px);
+  cursor: pointer;
+  position: fixed;
+  bottom: rem(25px);
+  right: rem(25px);
 
+  display: none;
+  width: $widthMouse;
+  height: $heightMouse;
+
+  background: $primary-color-transparent linear-gradient(transparent 0%, transparent 50%, $light-color-800 50%, $light-color-800 100%);
+  border-radius: rem(100px);
+  background-size: 100% 200%;
+  box-shadow: $box-shadow;
+  animation:
+    colorSlide $animDuration linear infinite,
+    nudgeMouse $animDuration ease-out infinite;
+  z-index: 100;
+  transition: $transition;
+
+  &.fade-out {
+    animation: opacityBtn$transition ease-out;
+    opacity: 0;
+    transition: $transition;
+  }
+
+  &.hidden {
+    opacity: 0;
     display: none;
-    width: $widthMouse;
-    height: $heightMouse;
+  }
 
-    background: $primary-color-transparent
-        linear-gradient(transparent 0%, transparent 50%, $light-color-800 50%, $light-color-800 100%);
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+
+  &:before {
+    width: $widthMouse - $borderMouse;
+    height: $heightMouse - $borderMouse;
+    background-color: $dark-color-transparent;
     border-radius: rem(100px);
-    background-size: 100% 200%;
-    box-shadow: $box-shadow;
-    animation: colorSlide $animDuration linear infinite, nudgeMouse $animDuration ease-out infinite;
-    z-index: 100;
+  }
+
+  &:after {
+    background-color: $primary-color-transparent;
+    width: $sizeTrackball;
+    height: $sizeTrackball;
+    border-radius: 100%;
+    animation: trackBallSlide $animDuration linear infinite;
+  }
+
+  &:hover {
+    background-color: $primary-color-transparent;
     transition: $transition;
 
-    &.fade-out {
-        animation: opacityBtn$transition ease-out;
-        opacity: 0;
-        transition: $transition;
-    }
-
-    &.hidden {
-        opacity: 0;
-        display: none;
-    }
-
-    &:before,
-    &:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        margin: auto;
-    }
-
     &:before {
-        width: $widthMouse - $borderMouse;
-        height: $heightMouse - $borderMouse;
-        background-color: $dark-color-transparent;
-        border-radius: rem(100px);
+      background-color: $dark-color-800;
+      transition: $transition;
     }
 
     &:after {
-        background-color: $primary-color-transparent;
-        width: $sizeTrackball;
-        height: $sizeTrackball;
-        border-radius: 100%;
-        animation: trackBallSlide $animDuration linear infinite;
+      background-color: $primary-color-transparent;
+      transition: $transition;
     }
-
-    &:hover {
-        background-color: $primary-color-transparent;
-        transition: $transition;
-
-        &:before {
-            background-color: $dark-color-800;
-            transition: $transition;
-        }
-
-        &:after {
-            background-color: $primary-color-transparent;
-            transition: $transition;
-        }
-    }
+  }
 }
 
 @include responsive {
-    .mouse {
-        display: block;
-    }
+  .mouse {
+    display: block;
+  }
 }
 
 @keyframes opacityBtn {
-    0% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 1;
+  }
 
-    100% {
-        opacity: 0;
-    }
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes colorSlide {
-    0% {
-        background-position: 0% 100%;
-    }
-    20% {
-        background-position: 0% 0%;
-    }
-    21% {
-        background-color: $primary-color-transparent;
-    }
-    29.99% {
-        background-color: $dark-color-700;
-        background-position: 0% 0%;
-    }
-    30% {
-        background-color: $primary-color-transparent;
-        background-position: 0% 100%;
-    }
-    50% {
-        background-position: 0% 0%;
-    }
-    51% {
-        background-color: $primary-color-transparent;
-    }
-    59% {
-        background-color: $dark-color-700;
-        background-position: 0% 0%;
-    }
-    60% {
-        background-color: $primary-color-transparent;
-        background-position: 0% 100%;
-    }
-    80% {
-        background-position: 0% 0%;
-    }
-    81% {
-        background-color: $primary-color-transparent;
-    }
-    90%,
-    100% {
-        background-color: $dark-color-700;
-    }
+  0% {
+    background-position: 0% 100%;
+  }
+  20% {
+    background-position: 0% 0%;
+  }
+  21% {
+    background-color: $primary-color-transparent;
+  }
+  29.99% {
+    background-color: $dark-color-700;
+    background-position: 0% 0%;
+  }
+  30% {
+    background-color: $primary-color-transparent;
+    background-position: 0% 100%;
+  }
+  50% {
+    background-position: 0% 0%;
+  }
+  51% {
+    background-color: $primary-color-transparent;
+  }
+  59% {
+    background-color: $dark-color-700;
+    background-position: 0% 0%;
+  }
+  60% {
+    background-color: $primary-color-transparent;
+    background-position: 0% 100%;
+  }
+  80% {
+    background-position: 0% 0%;
+  }
+  81% {
+    background-color: $primary-color-transparent;
+  }
+  90%,
+  100% {
+    background-color: $dark-color-700;
+  }
 }
 
 @keyframes trackBallSlide {
-    0% {
-        opacity: 1;
-        transform: scale(1) translateY(-$posTrackball);
-    }
-    6% {
-        opacity: 1;
-        transform: scale(0.9) translateY(calc(#{$posTrackball} / 4));
-    }
-    14% {
-        opacity: 0;
-        transform: scale($shrinkTrackball) translateY($posTrackball * 2);
-    }
-    15%,
-    19% {
-        opacity: 0;
-        transform: scale($shrinkTrackball) translateY(-$posTrackball);
-    }
-    28%,
-    29.99% {
-        opacity: 1;
-        transform: scale(1) translateY(-$posTrackball);
-    }
-    30% {
-        opacity: 1;
-        transform: scale(1) translateY(-$posTrackball);
-    }
-    36% {
-        opacity: 1;
-        transform: scale(0.9) translateY(calc(#{$posTrackball} / 4));
-    }
-    44% {
-        opacity: 0;
-        transform: scale($shrinkTrackball) translateY($posTrackball * 2);
-    }
-    45%,
-    49% {
-        opacity: 0;
-        transform: scale($shrinkTrackball) translateY(-$posTrackball);
-    }
-    58%,
-    59.99% {
-        opacity: 1;
-        transform: scale(1) translateY(-$posTrackball);
-    }
-    60% {
-        opacity: 1;
-        transform: scale(1) translateY(-$posTrackball);
-    }
-    66% {
-        opacity: 1;
-        transform: scale(0.9) translateY(calc(#{$posTrackball} / 4));
-    }
-    74% {
-        opacity: 0;
-        transform: scale($shrinkTrackball) translateY($posTrackball * 2);
-    }
-    75%,
-    79% {
-        opacity: 0;
-        transform: scale($shrinkTrackball) translateY(-$posTrackball);
-    }
-    88%,
-    100% {
-        opacity: 1;
-        transform: scale(1) translateY(-$posTrackball);
-    }
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(-$posTrackball);
+  }
+  6% {
+    opacity: 1;
+    transform: scale(0.9) translateY(calc(#{$posTrackball} / 4));
+  }
+  14% {
+    opacity: 0;
+    transform: scale($shrinkTrackball) translateY($posTrackball * 2);
+  }
+  15%,
+  19% {
+    opacity: 0;
+    transform: scale($shrinkTrackball) translateY(-$posTrackball);
+  }
+  28%,
+  29.99% {
+    opacity: 1;
+    transform: scale(1) translateY(-$posTrackball);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1) translateY(-$posTrackball);
+  }
+  36% {
+    opacity: 1;
+    transform: scale(0.9) translateY(calc(#{$posTrackball} / 4));
+  }
+  44% {
+    opacity: 0;
+    transform: scale($shrinkTrackball) translateY($posTrackball * 2);
+  }
+  45%,
+  49% {
+    opacity: 0;
+    transform: scale($shrinkTrackball) translateY(-$posTrackball);
+  }
+  58%,
+  59.99% {
+    opacity: 1;
+    transform: scale(1) translateY(-$posTrackball);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1) translateY(-$posTrackball);
+  }
+  66% {
+    opacity: 1;
+    transform: scale(0.9) translateY(calc(#{$posTrackball} / 4));
+  }
+  74% {
+    opacity: 0;
+    transform: scale($shrinkTrackball) translateY($posTrackball * 2);
+  }
+  75%,
+  79% {
+    opacity: 0;
+    transform: scale($shrinkTrackball) translateY(-$posTrackball);
+  }
+  88%,
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(-$posTrackball);
+  }
 }
 
 @keyframes nudgeMouse {
-    0% {
-        transform: translateY(0);
-    }
-    20% {
-        transform: translateY($posMouse);
-    }
-    30% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY($posMouse);
-    }
-    60% {
-        transform: translateY(0);
-    }
-    80% {
-        transform: translateY($posMouse);
-    }
-    90% {
-        transform: translateY(0);
-    }
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY($posMouse);
+  }
+  30% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY($posMouse);
+  }
+  60% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY($posMouse);
+  }
+  90% {
+    transform: translateY(0);
+  }
 }
 
 @keyframes nudgeText {
-    0% {
-        transform: translateY(0);
-    }
-    20% {
-        transform: translateY($posText);
-    }
-    30% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY($posText);
-    }
-    60% {
-        transform: translateY(0);
-    }
-    80% {
-        transform: translateY($posText);
-    }
-    90% {
-        transform: translateY(0);
-    }
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY($posText);
+  }
+  30% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY($posText);
+  }
+  60% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY($posText);
+  }
+  90% {
+    transform: translateY(0);
+  }
 }
 
 @keyframes colorText {
-    21% {
-        color: $primary-color-transparent;
-    }
-    30% {
-        color: $dark-color-700;
-    }
-    51% {
-        color: $primary-color-transparent;
-    }
-    60% {
-        color: $dark-color-700;
-    }
-    81% {
-        color: $primary-color-transparent;
-    }
-    90% {
-        color: $dark-color-700;
-    }
+  21% {
+    color: $primary-color-transparent;
+  }
+  30% {
+    color: $dark-color-700;
+  }
+  51% {
+    color: $primary-color-transparent;
+  }
+  60% {
+    color: $dark-color-700;
+  }
+  81% {
+    color: $primary-color-transparent;
+  }
+  90% {
+    color: $dark-color-700;
+  }
 }

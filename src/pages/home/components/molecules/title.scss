@@ -1,68 +1,69 @@
+@use '@styles/autoload.scss' as *;
 @mixin title {
+  .title {
+    position: absolute;
+    top: rem(20px);
+    right: rem(40px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: rem(0px);
+
+    width: 65vw;
+    margin-top: rem(10px);
+
+    h1 {
+      text-align: right;
+      font-size: $font-size-sm;
+      color: $contrast-color-400;
+    }
+
+    span {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+
+      color: $contrast-color-800;
+      width: 100%;
+      font-size: $font-size-sm;
+
+      .separator {
+        display: none;
+      }
+    }
+  }
+
+  @include responsive {
     .title {
-        position: absolute;
-        top: rem(20px);
-        right: rem(40px);
+      position: initial;
+      align-items: start;
+      gap: rem(10px);
+      width: 100%;
+      margin: 1;
 
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: rem(0px);
+      h1 {
+        text-align: left;
+        font-size: $icon-size-md;
+        color: $contrast-color-400;
+      }
 
-        width: 65vw;
-        margin-top: rem(10px);
+      span {
+        flex-direction: row;
+        align-items: center;
+        gap: rem(20px);
 
-        h1 {
-            text-align: right;
-            font-size: $font-size-sm;
-            color: $contrast-color-400;
+        color: $contrast-color-800;
+        width: 100%;
+        font-size: $font-size-lg;
+
+        .separator {
+          width: 38%;
+          height: rem(2px);
+          background-color: $contrast-color-800;
+          border-radius: rem(10px);
         }
-
-        span {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-
-            color: $contrast-color-800;
-            width: 100%;
-            font-size: $font-size-sm;
-
-            .separator {
-                display: none;
-            }
-        }
+      }
     }
-
-    @include responsive {
-        .title {
-            position: initial;
-            align-items: start;
-            gap: rem(10px);
-            width: 100%;
-            margin: 1;
-
-            h1 {
-                text-align: left;
-                font-size: $icon-size-md;
-                color: $contrast-color-400;
-            }
-
-            span {
-                flex-direction: row;
-                align-items: center;
-                gap: rem(20px);
-
-                color: $contrast-color-800;
-                width: 100%;
-                font-size: $font-size-lg;
-
-                .separator {
-                    width: 38%;
-                    height: rem(2px);
-                    background-color: $contrast-color-800;
-                    border-radius: rem(10px);
-                }
-            }
-        }
-    }
+  }
 }

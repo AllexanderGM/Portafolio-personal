@@ -1,179 +1,180 @@
+@use '@styles/autoload.scss' as *;
 @mixin grabZone {
-    .grab-zone {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        max-width: rem(370px);
-        height: rem(540px);
-        border-radius: 50%;
+  .grab-zone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: rem(370px);
+    height: rem(540px);
+    border-radius: 50%;
 
-        &__danger {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: rem(400px);
-            height: rem(540px);
-            border-radius: 50%;
+    &__danger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: rem(400px);
+      height: rem(540px);
+      border-radius: 50%;
 
-            .grabber {
-                position: relative;
-                width: rem(100px);
-                height: rem(100px);
+      .grabber {
+        position: relative;
+        width: rem(100px);
+        height: rem(100px);
 
-                &__arm-wrapper {
-                    position: absolute;
-                    top: rem(-90px);
-                    width: rem(24px);
-                    height: rem(260px);
-                }
-
-                &__arm {
-                    position: relative;
-                    width: rem(24px);
-                    height: rem(200px);
-                    background: #7d9a9e;
-                    border-radius: rem(20px);
-                    overflow: visible;
-                    transform: translateY(100%);
-                    transition: transform$transition ease;
-                }
-
-                &__hand {
-                    display: block;
-                    position: absolute;
-                    top: rem(-12px);
-                    transform: scale(1.4) rotate(-10deg) translateY(100%);
-                    transform-origin: bottom center;
-                    transition: transform $transition ease;
-                }
-
-                &__face {
-                    position: absolute;
-                    width: rem(75px);
-                    height: rem(84px);
-                    right: 5%;
-                    transition: transform $transition ease;
-                }
-
-                &__body {
-                    position: absolute;
-                    top: 50%;
-                    left: 0%;
-                    width: rem(110px);
-                    height: rem(95px);
-                    border-radius: 50%;
-                    background: #7d9a9e;
-                    transition: transform $transition ease;
-                }
-
-                // Modifiers
-                &--waiting {
-                    .grabber__hand {
-                        transform: scale(1.4) rotate(-10deg);
-                    }
-                    .grabber__arm {
-                        transform: translateY(80%);
-                    }
-                    .grabber__face {
-                        transform: translateY(60%);
-                    }
-                }
-
-                // Modifiers
-                &--stalking {
-                    .grabber__hand {
-                        transform: scale(1.4) rotate(-10deg);
-                    }
-                    .grabber__arm {
-                        transform: translateY(70%);
-                    }
-                    .grabber__face {
-                        transform: translateY(10%);
-                    }
-                }
-
-                &--grabbing {
-                    .grabber__face {
-                        transform: translateY(-40%) rotate(10deg);
-                    }
-                    .grabber__arm {
-                        transform: translateY(0%);
-                    }
-                    .grabber__body {
-                        transform: translateY(-20%);
-                    }
-                    .grabber__hand {
-                        transform: scale(1.7) rotate(10deg);
-                    }
-                }
-
-                &--grabbed {
-                    .grabber__arm {
-                        transition: transform 1s ease;
-                    }
-                    .grabber__hand {
-                        transition: transform 2.5s ease;
-                    }
-                    .grabber__face {
-                        transform: translateY(70%);
-                        transition: transform 1s ease;
-                    }
-                    .grabber__body {
-                        transform: translateY(50%);
-                        transition: transform 1s ease;
-                    }
-                }
-
-                &--extended {
-                    .grabber__arm {
-                        transform: translateY(-20%);
-                    }
-                    .grabber__face {
-                        transform: translateY(-60%) rotate(15deg);
-                    }
-                    .grabber__body {
-                        transform: translateY(-40%);
-                    }
-                }
-
-                &--shaka {
-                    .grabber__arm {
-                        transform: translateY(50%);
-                    }
-                    .grabber__hand {
-                        transform: scale(2.5) translateY(10%);
-                        animation: shaka 0.5s infinite alternate forwards;
-                        transform-origin: 55% 60%;
-                    }
-                    .grabber__face {
-                        transform: translateY(70%);
-                        transition: transform 1s ease;
-                    }
-                    .grabber__body {
-                        transform: translateY(50%);
-                        transition: transform 1s ease;
-                    }
-                }
-            }
-
-            @keyframes shaka {
-                0% {
-                    transform: scale(2.5) translateY(0%) rotate(-20deg);
-                }
-                100% {
-                    transform: scale(2.5) translateY(0%) rotate(20deg);
-                }
-            }
+        &__arm-wrapper {
+          position: absolute;
+          top: rem(-90px);
+          width: rem(24px);
+          height: rem(260px);
         }
 
-        &__debug {
-            display: none;
-            position: absolute;
-            width: rem(300px);
-            top: rem(-100px);
-            font-size: $font-size-sm;
-            text-align: center;
-            text-transform: uppercase;
+        &__arm {
+          position: relative;
+          width: rem(24px);
+          height: rem(200px);
+          background: #7d9a9e;
+          border-radius: rem(20px);
+          overflow: visible;
+          transform: translateY(100%);
+          transition: transform$transition ease;
         }
+
+        &__hand {
+          display: block;
+          position: absolute;
+          top: rem(-12px);
+          transform: scale(1.4) rotate(-10deg) translateY(100%);
+          transform-origin: bottom center;
+          transition: transform $transition ease;
+        }
+
+        &__face {
+          position: absolute;
+          width: rem(75px);
+          height: rem(84px);
+          right: 5%;
+          transition: transform $transition ease;
+        }
+
+        &__body {
+          position: absolute;
+          top: 50%;
+          left: 0%;
+          width: rem(110px);
+          height: rem(95px);
+          border-radius: 50%;
+          background: #7d9a9e;
+          transition: transform $transition ease;
+        }
+
+        // Modifiers
+        &--waiting {
+          .grabber__hand {
+            transform: scale(1.4) rotate(-10deg);
+          }
+          .grabber__arm {
+            transform: translateY(80%);
+          }
+          .grabber__face {
+            transform: translateY(60%);
+          }
+        }
+
+        // Modifiers
+        &--stalking {
+          .grabber__hand {
+            transform: scale(1.4) rotate(-10deg);
+          }
+          .grabber__arm {
+            transform: translateY(70%);
+          }
+          .grabber__face {
+            transform: translateY(10%);
+          }
+        }
+
+        &--grabbing {
+          .grabber__face {
+            transform: translateY(-40%) rotate(10deg);
+          }
+          .grabber__arm {
+            transform: translateY(0%);
+          }
+          .grabber__body {
+            transform: translateY(-20%);
+          }
+          .grabber__hand {
+            transform: scale(1.7) rotate(10deg);
+          }
+        }
+
+        &--grabbed {
+          .grabber__arm {
+            transition: transform 1s ease;
+          }
+          .grabber__hand {
+            transition: transform 2.5s ease;
+          }
+          .grabber__face {
+            transform: translateY(70%);
+            transition: transform 1s ease;
+          }
+          .grabber__body {
+            transform: translateY(50%);
+            transition: transform 1s ease;
+          }
+        }
+
+        &--extended {
+          .grabber__arm {
+            transform: translateY(-20%);
+          }
+          .grabber__face {
+            transform: translateY(-60%) rotate(15deg);
+          }
+          .grabber__body {
+            transform: translateY(-40%);
+          }
+        }
+
+        &--shaka {
+          .grabber__arm {
+            transform: translateY(50%);
+          }
+          .grabber__hand {
+            transform: scale(2.5) translateY(10%);
+            animation: shaka 0.5s infinite alternate forwards;
+            transform-origin: 55% 60%;
+          }
+          .grabber__face {
+            transform: translateY(70%);
+            transition: transform 1s ease;
+          }
+          .grabber__body {
+            transform: translateY(50%);
+            transition: transform 1s ease;
+          }
+        }
+      }
+
+      @keyframes shaka {
+        0% {
+          transform: scale(2.5) translateY(0%) rotate(-20deg);
+        }
+        100% {
+          transform: scale(2.5) translateY(0%) rotate(20deg);
+        }
+      }
     }
+
+    &__debug {
+      display: none;
+      position: absolute;
+      width: rem(300px);
+      top: rem(-100px);
+      font-size: $font-size-sm;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
 }

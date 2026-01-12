@@ -1,24 +1,25 @@
 // Dependences
-import { useMemo } from "react";
-import { motion } from "framer-motion";
-import PropTypes from "prop-types";
+import { useMemo } from 'react'
+import { motion } from 'framer-motion'
+import PropTypes from 'prop-types'
 
-import getScrollAnimation from "../../../../library/utils/GetScrollAnimation.jsx";
+import getScrollAnimation from '../../../../library/utils/GetScrollAnimation.jsx'
 
-const SkillsItem = ({ index, icon, text }) => {
-    const scrollAnimation = useMemo(() => getScrollAnimation(), []);
+const SkillsItem = ({ index, Icon, text }) => {
+  const scrollAnimation = useMemo(() => getScrollAnimation(), [])
 
-    return (
-        <motion.article variants={scrollAnimation} custom={{ duration: index + 1 }} className="skills_item">
-            <ion-icon name={icon}></ion-icon>
-            <span>{text}</span>
-        </motion.article>
-    );
-};
+  return (
+    <motion.article variants={scrollAnimation} custom={{ duration: index + 1 }} className='skills_item'>
+      {Icon && <Icon size={24} strokeWidth={2} />}
+      <span>{text}</span>
+    </motion.article>
+  )
+}
 
 SkillsItem.propTypes = {
-    icon: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-};
+  index: PropTypes.number,
+  Icon: PropTypes.elementType.isRequired,
+  text: PropTypes.string.isRequired
+}
 
-export default SkillsItem;
+export default SkillsItem

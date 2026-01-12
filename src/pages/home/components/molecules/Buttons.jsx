@@ -1,29 +1,43 @@
-import { useMemo } from "react";
-import { motion } from "framer-motion";
-import PropTypes from "prop-types";
+import { useMemo } from 'react'
+import { motion } from 'framer-motion'
+import PropTypes from 'prop-types'
 
-import getScrollAnimation from "../../../../library/utils/GetScrollAnimation.jsx";
-
-import BtnGeneric from "../../../../library/btns/BtnGeneric";
-
-// Components
+import getScrollAnimation from '@library/utils/GetScrollAnimation'
+import BtnGeneric from '@library/btns/BtnGeneric'
 
 const Buttons = ({ btns }) => {
-    const scrollAnimation = useMemo(() => getScrollAnimation(), []);
+  const scrollAnimation = useMemo(() => getScrollAnimation(), [])
 
-    const listButtons = btns.map((item, index) => (
-        <BtnGeneric key={index} text={item.text} route={item.url} className="btn_projetcs" icon={item.icon} />
-    ));
+  const listButtons = btns.map((item, index) => {
+    const isFirst = index === 0
 
-    return (
-        <motion.article variants={scrollAnimation} custom={{ duration: 3 }} className="buttons">
-            {listButtons}
-        </motion.article>
-    );
-};
+    // Configuración para cada botón según HeroUI
+    const buttonConfig = isFirst
+      ? {
+          variant: 'solid',
+          color: 'default',
+          className:
+            '!bg-portfolio-primary-300 !border-portfolio-primary-700 !text-portfolio-dark hover:!bg-portfolio-primary-400 hover:!border-portfolio-primary !shadow-lg !min-w-[140px] md:!min-w-[160px]'
+        }
+      : {
+          variant: 'bordered',
+          color: 'default',
+          className:
+            '!bg-portfolio-dark-950/85 !border-portfolio-dark-700 !text-portfolio-primary hover:!bg-portfolio-primary-400 hover:!text-portfolio-primary-950 !backdrop-blur-md !min-w-[140px] md:!min-w-[160px]'
+        }
+
+    return <BtnGeneric key={index} text={item.text} route={item.url} Icon={item.Icon} size='md' {...buttonConfig} />
+  })
+
+  return (
+    <motion.article variants={scrollAnimation} custom={{ duration: 3 }} className='buttons'>
+      {listButtons}
+    </motion.article>
+  )
+}
 
 Buttons.propTypes = {
-    btns: PropTypes.array.isRequired,
-};
+  btns: PropTypes.array.isRequired
+}
 
-export default Buttons;
+export default Buttons

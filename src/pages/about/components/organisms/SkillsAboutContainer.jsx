@@ -1,70 +1,60 @@
 // Dependences
-import { useMemo } from "react";
-import { motion } from "framer-motion";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { useMemo } from 'react'
+import { motion } from 'framer-motion'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
-import Image from "../../../../library/image/Image.jsx";
-import getScrollAnimation from "../../../../library/utils/GetScrollAnimation.jsx";
+import Image from '../../../../library/image/Image.jsx'
+import getScrollAnimation from '../../../../library/utils/GetScrollAnimation.jsx'
 
 // Components
-import SkillsItem from "../atoms/SkillsItem";
+import SkillsItem from '../atoms/SkillsItem'
+import CodeTerminal from '../molecules/CodeTerminal'
+import ExperienceTimeline from '../molecules/ExperienceTimeline'
 
 // Principal component
-const SkillsAboutContainer = ({ text, ability, images, imgMe, arrow }) => {
-    const scrollAnimation = useMemo(() => getScrollAnimation(), []);
-    // Texto de presentación
-    const paragraphs = text.map((item, index) => <p key={index} dangerouslySetInnerHTML={{ __html: item }}></p>);
+const SkillsAboutContainer = ({ ability, arrow, profileData, experiences }) => {
+  const scrollAnimation = useMemo(() => getScrollAnimation(), [])
 
-    // Lista de componentes de habilidades blandas
-    const componentSkills = ability.map((item, index) => {
-        return <SkillsItem key={index} index={index} icon={item.icon} text={item.text} />;
-    });
+  // Lista de componentes de habilidades blandas
+  const componentSkills = ability.map((item, index) => {
+    return <SkillsItem key={index} index={index} Icon={item.Icon} text={item.text} />
+  })
 
-    // Lista de imagenes de tecnologías
-    const componentImages = images.map((item, index) => {
-        const img = new URL(`../../../../assets/icon/${item.img}`, import.meta.url).pathname;
+  return (
+    <article className='text'>
+      {/* Terminal con toda la información técnica */}
+      <motion.div className='terminal-section' variants={scrollAnimation} custom={{ duration: 1 }}>
+        <CodeTerminal profileData={profileData} />
+      </motion.div>
 
-        return (
-            <Image
-                key={index}
-                className={`${item.id}_img animate__animated animate__zoomIn`}
-                src={img}
-                alt="Programing image"
-            />
-        );
-    });
+      {/* Timeline + Soft Skills */}
+      <motion.div className='experience-skills-section' variants={scrollAnimation} custom={{ duration: 1.5 }}>
+        <div className='timeline-container'>
+          <h3>Experiencia Profesional</h3>
+          <ExperienceTimeline experiences={experiences} />
+        </div>
 
-    return (
-        <article className="text">
-            <motion.figure className="img" variants={scrollAnimation} custom={{ duration: 2 }}>
-                <Image className="principal_img" src={imgMe} alt="Programing image" />
-                {componentImages}
-            </motion.figure>
+        <div className='skills-container'>
+          <h3>Habilidades Blandas</h3>
+          <article className='skills_items'>{componentSkills}</article>
 
-            <article>
-                <motion.article variants={scrollAnimation} custom={{ duration: 1 }} className="paragraphs">
-                    {paragraphs}
-                </motion.article>
-
-                <article className="skills_items">{componentSkills}</article>
-
-                <motion.article variants={scrollAnimation} custom={{ duration: 2 }}>
-                    <Link to="/contact" className="clickable">
-                        Contácta conmigo <img src={arrow} alt="contact img" />
-                    </Link>
-                </motion.article>
-            </article>
-        </article>
-    );
-};
+          <motion.article variants={scrollAnimation} custom={{ duration: 2 }} className='contact-link'>
+            <Link to='/contact' className='clickable'>
+              Contáctame <img src={arrow} alt='contact img' />
+            </Link>
+          </motion.article>
+        </div>
+      </motion.div>
+    </article>
+  )
+}
 
 SkillsAboutContainer.propTypes = {
-    text: PropTypes.array.isRequired,
-    ability: PropTypes.array.isRequired,
-    images: PropTypes.array.isRequired,
-    imgMe: PropTypes.string.isRequired,
-    arrow: PropTypes.string.isRequired,
-};
+  ability: PropTypes.array.isRequired,
+  arrow: PropTypes.string.isRequired,
+  profileData: PropTypes.object.isRequired,
+  experiences: PropTypes.array.isRequired
+}
 
-export default SkillsAboutContainer;
+export default SkillsAboutContainer

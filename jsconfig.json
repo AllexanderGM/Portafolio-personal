@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@styles/*": ["src/styles/*"],
+      "@library/*": ["src/library/*"],
+      "@pages/*": ["src/pages/*"],
+      "@context/*": ["src/context/*"],
+      "@routes/*": ["src/routes/*"],
+      "@data/*": ["src/_data/*"],
+      "@hooks": ["src/hooks/index.js"],
+      "@hooks/*": ["src/hooks/*"],
+      "@services/*": ["src/services/*"]
+    },
+    "jsx": "react-jsx"
+  },
+  "include": ["src", "vite.config.js"]
+}

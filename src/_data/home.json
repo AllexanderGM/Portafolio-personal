@@ -1,33 +1,39 @@
 {
-    "banner": {
-        "timer": 2000,
-        "welcome": "Ver proyectos",
-        "greeting": "Hola! Soy Jeisson Alexander,",
-        "profession": [" Web Developer", " Front-End Developer", " Back-End Developer", " Web Designer"],
-        "description": "Tengo experiencia en proyectos de programación y diseño web. He trabajado en diversos proyectos con instituciones de renombre como la Universidad Pedagógica Nacional."
-    },
+  "banner": {
+    "timer": 2000,
+    "welcome": "Ver proyectos",
+    "greeting": "Hola! Soy Jeisson Alexander,",
+    "profession": [" Software Developer", " Full Stack Developer", " Frontend Developer", " Backend Developer"],
+    "description": "Tengo +3 años de experiencia en desarrollo Full Stack. Actualmente trabajo en la Pontificia Universidad Javeriana desarrollando aplicativos web con Spring Boot, Nest.js, React y Docker. También he trabajado como docente en Organización Key y con la Universidad Pedagógica Nacional."
+  },
 
-    "skills": {
-        "text": [
-            "Soy un apasionado desarrollador que se destaca por enfrentar desafíos en situaciones nuevas y complejas. Esta mentalidad me impulsa a buscar constantemente nuevas formas de mejorar y ampliar mis habilidades en el campo de la tecnología. Además, como",
-            "Licenciado en Diseño Tecnológico, ",
-            "poseo la capacidad de liderar equipos con eficacia, adaptándome fácilmente y comunicándome de manera asertiva."
-        ],
-        "ability": [
-            { "icon": "people-circle-outline", "text": "COMUNICACIÓN" },
-            { "icon": "heart-half-outline", "text": "AUTONOMÍA" },
-            { "icon": "layers-outline", "text": "ORGANIZACIÓN" },
-            { "icon": "body-outline", "text": "ADAPTABILIDAD" }
-        ],
-        "imgMe": "me.svg",
-        "images": [
-            { "img": "HTML.svg", "id": "html" },
-            { "img": "CSS.svg", "id": "css" },
-            { "img": "javaScript.svg", "id": "javaScript" },
-            { "img": "react.svg", "id": "react" },
-            { "img": "node.svg", "id": "node" }
-        ],
-        "tecnologies": [{ "img": "nodejs.png" }, { "img": "reactjs.png" }, { "img": "expressjs.png" }, { "img": "mongodb.png" }],
-        "link": "https://drive.google.com/file/d/1sF0PBac5Z58viBODipNhiSbGKZyUKm0f/view?usp=share_link"
-    }
+  "skills": {
+    "text": [
+      "Soy desarrollador de software con +3 años de sólida formación y experiencia en aplicativos web, desde backend, frontend hasta la infraestructura. Mi objetivo:",
+      "transformar necesidades reales en soluciones tecnológicas que generen valor.",
+      "Además, mi formación como Licenciado en Diseño Tecnológico me ha permitido combinar destrezas técnicas con habilidades blandas y comunicativas para liderar equipos con eficacia."
+    ],
+    "ability": [
+      { "icon": "people-circle-outline", "text": "COMUNICACIÓN" },
+      { "icon": "heart-half-outline", "text": "AUTONOMÍA" },
+      { "icon": "layers-outline", "text": "ORGANIZACIÓN" },
+      { "icon": "body-outline", "text": "ADAPTABILIDAD" }
+    ],
+    "imgMe": "me.svg",
+    "images": [
+      { "img": "HTML.svg", "id": "html" },
+      { "img": "CSS.svg", "id": "css" },
+      { "img": "javaScript.svg", "id": "javaScript" },
+      { "img": "react.svg", "id": "react" },
+      { "img": "node.svg", "id": "node" }
+    ],
+    "technologies": [
+      { "img": "spring.svg" },
+      { "img": "nodejs.png" },
+      { "img": "reactjs.png" },
+      { "img": "expressjs.png" },
+      { "img": "mongodb.png" }
+    ],
+    "link": "https://drive.google.com/file/d/1sF0PBac5Z58viBODipNhiSbGKZyUKm0f/view?usp=share_link"
+  }
 }

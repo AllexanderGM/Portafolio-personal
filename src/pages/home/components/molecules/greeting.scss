@@ -1,56 +1,57 @@
+@use '@styles/autoload.scss' as *;
 @mixin greeting {
+  h2:first-of-type {
+    align-items: center;
+    font-size: rem(26px);
+    font-weight: $font-weight-bold;
+    color: $contrast-color-100;
+    letter-spacing: rem(0.8px);
+    line-height: 1;
+
+    span {
+      display: inline;
+
+      color: $dark-color-950;
+      border-radius: 0;
+      border: none;
+      font-size: rem(26px);
+      background: transparent;
+      border-right: rem(2px) solid $contrast-color-700;
+      border: none;
+
+      padding: 0;
+      margin-bottom: rem(16px);
+    }
+
+    .txt-rotate {
+      display: block;
+      height: rem(70px);
+      padding-top: rem(10px);
+
+      & > .wrap {
+        color: $primary-color;
+        padding-right: rem(5px);
+        border-right: rem(2px) solid $contrast-color-700;
+
+        &.true {
+          border-right: rem(2px) solid transparent;
+        }
+
+        &.false {
+          border-right: rem(2px) solid $contrast-color-700;
+        }
+      }
+    }
+  }
+
+  @include responsive {
     h2:first-of-type {
-        align-items: center;
-        font-size: rem(26px);
-        font-weight: $font-weight-bold;
-        color: $contrast-color-100;
-        letter-spacing: rem(0.8px);
-        line-height: 1;
+      text-align: left;
+      font-size: rem(42px);
 
-        span {
-            display: inline;
-
-            color: $dark-color-950;
-            border-radius: 0;
-            border: none;
-            font-size: rem(26px);
-            background: transparent;
-            border-right: rem(2px) solid $contrast-color-700;
-            border: none;
-
-            padding: 0;
-            margin-bottom: rem(16px);
-        }
-
-        .txt-rotate {
-            display: block;
-            height: rem(70px);
-            padding-top: rem(10px);
-
-            & > .wrap {
-                color: $primary-color;
-                padding-right: rem(5px);
-                border-right: rem(2px) solid $contrast-color-700;
-
-                &.true {
-                    border-right: rem(2px) solid transparent;
-                }
-
-                &.false {
-                    border-right: rem(2px) solid $contrast-color-700;
-                }
-            }
-        }
+      span {
+        font-size: rem(42px);
+      }
     }
-
-    @include responsive {
-        h2:first-of-type {
-            text-align: left;
-            font-size: rem(42px);
-
-            span {
-                font-size: rem(42px);
-            }
-        }
-    }
+  }
 }

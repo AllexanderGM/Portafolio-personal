@@ -1,123 +1,102 @@
 {
-    "categories": ["Todos", "Back end", "Front end"],
-    "projects": [
-        {
-            "id": 0,
-            "img": "relacionamiento.png",
-            "title": "Sitio Relacionamiento Javeriana",
-            "category": ["FRONT END", "BACK END"],
-            "date": "2024/ Bogotá - Colombia",
-            "text": "Plataforma web diseñada para la gestión de actividades con instituciones y personas interesadas en la Pontificia Universidad Javeriana.",
-            "author": ["Jeisson Gavilán", "Pontificia Universidad Javeriana"],
-            "location": "Dirección de Mercadeo | Javeriana",
-            "link": "",
-            "repo": "",
-            "modal": {
-                "images": [
-                    "etitc_1.webp",
-                    "etitc_2.webp",
-                    "etitc_3.webp",
-                    "etitc_4.webp",
-                    "etitc_5.webp",
-                    "etitc_6.webp"
-                ],
-                "technologies": ["Java", "Spring Boot", "Docker Compose", "React JS", "MySQL"],
-                "achievements": [
-                    "Implementación y despliegue de frontend y backend mediante la configuración y orquestación de dos contenedores en Docker.",
-                    "Establecimiento de robustas configuraciones de seguridad para la gestión de recursos de la API, utilizando JWT para autenticación, serialización de datos, encriptación, y configuraciones de CORS para asegurar la comunicación."
-                ]
-            }
-        },
-        {
-            "id": 1,
-            "img": "etitc.webp",
-            "title": "Plataforma virtual para ETICT",
-            "category": ["FRONT END"],
-            "date": "2023/ Bogotá - Colombia",
-            "text": "Desarrollo de una plataforma web integral para capacitar a 220 docentes de la Escuela Tecnológica Instituto Técnico Central (ETITC).",
-            "author": ["Jeisson Gavilán", "Cinndet UPN"],
-            "location": "CINNDET UPN",
-            "link": "https://etitc.netlify.app/m1_modelacion/_0_inicio",
-            "repo": "",
-            "modal": {
-                "images": [
-                    "etitc_1.webp",
-                    "etitc_2.webp",
-                    "etitc_3.webp",
-                    "etitc_4.webp",
-                    "etitc_5.webp",
-                    "etitc_6.webp"
-                ],
-                "technologies": ["HTML", "CSS", "JavaScript", "Boostrap", "CSS Pico"],
-                "achievements": [
-                    "Se implementaron componentes modulares y reutilizables con Js Vanilla en el desarrollo de la plataforma, lo que permitió agilizar el proceso de creación de contenido y facilitó la escalabilidad del sistema.",
-                    "Se desarrollaron layouts tipo plantilla para la virtualización del contenido, lo que garantizó una estructura coherente y consistente en todas las páginas del curso."
-                ]
-            }
-        },
-        {
-            "id": 2,
-            "img": "romeliny.webp",
-            "title": "Sitio web de Romeliny",
-            "category": ["FRONT END", "BACK END"],
-            "date": "2023/ Bogotá - Colombia",
-            "text": "Sitio web de comercio electrónico para Romeliny, una empresa colombiana dedicada a la fabricación de calzado.",
-            "author": ["Jeisson Gavilán", "Liliana Camargo"],
-            "location": "FREELANCER",
-            "link": "https://www.romeliny.com/",
-            "repo": "https://github.com/Alexander206/Romeliny-web",
-            "modal": {
-                "images": [
-                    "romeliny_1.webp",
-                    "romeliny_2.webp",
-                    "romeliny_3.webp",
-                    "romeliny_4.webp",
-                    "romeliny_5.webp",
-                    "romeliny_6.webp"
-                ],
-                "technologies": ["Node Js", "Express Js", "MongoDB", "React Js", "Sass", "Bootstrap"],
-                "achievements": [
-                    "Implementación de la API RESTful: Se utilizó el módulo Express de Node.js para construir una API RESTful que permite realizar operaciones CRUD de productos en la plataforma de comercio electrónico.",
-                    "Integración de tecnologías: Se logró integrar React, SASS y Bootstrap de manera armoniosa, aprovechando las ventajas de cada tecnología para lograr un diseño atractivo y una interfaz de usuario fluida."
-                ]
-            }
-        },
-        {
-            "id": 3,
-            "img": "sifa.webp",
-            "title": "Buscador de seminarios electivos SIFA",
-            "category": ["FRONT END", "BACK END"],
-            "date": "2023/ Bogotá - Colombia",
-            "text": "Aplicación web en Vainilla Js y Express JS con una base de datos en MySQL. Esta app permite a los estudiantes de posgrado buscar electivas de manera rápida y sencilla. ",
-            "author": ["Jeisson Gavilán", "Cinndet UPN"],
-            "location": "CINNDET UPN",
-            "link": "http://sifa.upn.edu.co/",
-            "repo": "",
-            "modal": {
-                "images": ["sifa_1.webp", "sifa_2.webp", "sifa_3.webp", "sifa_4.webp"],
-                "technologies": ["HTML", "CSS", "JavaScript", "ExpressJS", "MySQL", "Boostrap"],
-                "achievements": [
-                    "Adaptación al proyecto sin documentación: Esto implicó analizar y comprender el código existente, tanto en el frontend como en el backend, y realizar los ajustes necesarios para garantizar su funcionamiento correcto.",
-                    "Desarrollo del MVP en tiempo récord: Se logró completar el MVP en un tiempo aproximado de dos semana. Esto implicó una planificación detallada, y una gestión efectiva del tiempo para alcanzar los objetivos establecidos."
-                ]
-            }
-        },
-        {
-            "id": 4,
-            "img": "campusupn.webp",
-            "title": "Campus Virtual de la UPN",
-            "category": ["FRONT END"],
-            "date": "2022/ Bogotá - Colombia",
-            "text": "Desarrollo web del Campus virtual de la Universidad Pedagógica Nacional. Identificamos los principales espacios que los aspirantes, estudiantes, profesores y funcionaros necesitan de manera digital.",
-            "author": ["Jeisson Gavilán"],
-            "location": "CINNDET UPN",
-            "link": "",
-            "repo": "",
-            "modal": {
-                "images": ["sifa_1.webp", "sifa_2.webp", "sifa_3.webp"],
-                "technologies": ["HTML", "CSS", "JavaScript", "ExpressJS", "MySQL", ""],
-                "achievements": ["", ""]
-            }
-        }
-    ]
+  "categories": ["Todos", "Back end", "Front end"],
+  "projects": [
+    {
+      "id": 0,
+      "img": "relacionamiento.png",
+      "title": "Sitio Relacionamiento Javeriana",
+      "category": ["FRONT END", "BACK END"],
+      "date": "2024/ Bogotá - Colombia",
+      "text": "Plataforma web diseñada para la gestión de actividades con instituciones y personas interesadas en la Pontificia Universidad Javeriana.",
+      "author": ["Jeisson Gavilán", "Pontificia Universidad Javeriana"],
+      "location": "Dirección de Mercadeo | Javeriana",
+      "link": "",
+      "repo": "",
+      "modal": {
+        "images": ["etitc_1.webp", "etitc_2.webp", "etitc_3.webp", "etitc_4.webp", "etitc_5.webp", "etitc_6.webp"],
+        "technologies": ["Java", "Spring Boot", "Docker Compose", "React JS", "MySQL"],
+        "achievements": [
+          "Implementación y despliegue de frontend y backend mediante la configuración y orquestación de dos contenedores en Docker.",
+          "Establecimiento de robustas configuraciones de seguridad para la gestión de recursos de la API, utilizando JWT para autenticación, serialización de datos, encriptación, y configuraciones de CORS para asegurar la comunicación."
+        ]
+      }
+    },
+    {
+      "id": 1,
+      "img": "etitc.webp",
+      "title": "Plataforma virtual para ETICT",
+      "category": ["FRONT END"],
+      "date": "2023/ Bogotá - Colombia",
+      "text": "Desarrollo de una plataforma web integral para capacitar a 220 docentes de la Escuela Tecnológica Instituto Técnico Central (ETITC).",
+      "author": ["Jeisson Gavilán", "Cinndet UPN"],
+      "location": "CINNDET UPN",
+      "link": "https://etitc.netlify.app/m1_modelacion/_0_inicio",
+      "repo": "",
+      "modal": {
+        "images": ["etitc_1.webp", "etitc_2.webp", "etitc_3.webp", "etitc_4.webp", "etitc_5.webp", "etitc_6.webp"],
+        "technologies": ["HTML", "CSS", "JavaScript", "Boostrap", "CSS Pico"],
+        "achievements": [
+          "Se implementaron componentes modulares y reutilizables con Js Vanilla en el desarrollo de la plataforma, lo que permitió agilizar el proceso de creación de contenido y facilitó la escalabilidad del sistema.",
+          "Se desarrollaron layouts tipo plantilla para la virtualización del contenido, lo que garantizó una estructura coherente y consistente en todas las páginas del curso."
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "img": "romeliny.webp",
+      "title": "Sitio web de Romeliny",
+      "category": ["FRONT END", "BACK END"],
+      "date": "2023/ Bogotá - Colombia",
+      "text": "Sitio web de comercio electrónico para Romeliny, una empresa colombiana dedicada a la fabricación de calzado.",
+      "author": ["Jeisson Gavilán", "Liliana Camargo"],
+      "location": "FREELANCER",
+      "link": "https://www.romeliny.com/",
+      "repo": "https://github.com/Alexander206/Romeliny-web",
+      "modal": {
+        "images": ["romeliny_1.webp", "romeliny_2.webp", "romeliny_3.webp", "romeliny_4.webp", "romeliny_5.webp", "romeliny_6.webp"],
+        "technologies": ["Node Js", "Express Js", "MongoDB", "React Js", "Sass", "Bootstrap"],
+        "achievements": [
+          "Implementación de la API RESTful: Se utilizó el módulo Express de Node.js para construir una API RESTful que permite realizar operaciones CRUD de productos en la plataforma de comercio electrónico.",
+          "Integración de tecnologías: Se logró integrar React, SASS y Bootstrap de manera armoniosa, aprovechando las ventajas de cada tecnología para lograr un diseño atractivo y una interfaz de usuario fluida."
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "img": "sifa.webp",
+      "title": "Buscador de seminarios electivos SIFA",
+      "category": ["FRONT END", "BACK END"],
+      "date": "2023/ Bogotá - Colombia",
+      "text": "Aplicación web en Vainilla Js y Express JS con una base de datos en MySQL. Esta app permite a los estudiantes de posgrado buscar electivas de manera rápida y sencilla. ",
+      "author": ["Jeisson Gavilán", "Cinndet UPN"],
+      "location": "CINNDET UPN",
+      "link": "http://sifa.upn.edu.co/",
+      "repo": "",
+      "modal": {
+        "images": ["sifa_1.webp", "sifa_2.webp", "sifa_3.webp", "sifa_4.webp"],
+        "technologies": ["HTML", "CSS", "JavaScript", "ExpressJS", "MySQL", "Boostrap"],
+        "achievements": [
+          "Adaptación al proyecto sin documentación: Esto implicó analizar y comprender el código existente, tanto en el frontend como en el backend, y realizar los ajustes necesarios para garantizar su funcionamiento correcto.",
+          "Desarrollo del MVP en tiempo récord: Se logró completar el MVP en un tiempo aproximado de dos semana. Esto implicó una planificación detallada, y una gestión efectiva del tiempo para alcanzar los objetivos establecidos."
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "img": "campusupn.webp",
+      "title": "Campus Virtual de la UPN",
+      "category": ["FRONT END"],
+      "date": "2022/ Bogotá - Colombia",
+      "text": "Desarrollo web del Campus virtual de la Universidad Pedagógica Nacional. Identificamos los principales espacios que los aspirantes, estudiantes, profesores y funcionaros necesitan de manera digital.",
+      "author": ["Jeisson Gavilán"],
+      "location": "CINNDET UPN",
+      "link": "",
+      "repo": "",
+      "modal": {
+        "images": ["sifa_1.webp", "sifa_2.webp", "sifa_3.webp"],
+        "technologies": ["HTML", "CSS", "JavaScript", "ExpressJS", "MySQL", ""],
+        "achievements": ["", ""]
+      }
+    }
+  ]
 }

@@ -1,59 +1,52 @@
-import { useMemo } from "react";
-import { motion } from "framer-motion";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { useMemo } from 'react'
+import { motion } from 'framer-motion'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import { Button } from '@heroui/react'
 
-import getScrollAnimation from "../utils/GetScrollAnimation.jsx";
+import getScrollAnimation from '@library/utils/GetScrollAnimation'
 
-import "./btnGeneric.scss";
+const BtnGeneric = ({ route, url, className, variant = 'solid', Icon, text, color = 'primary', size = 'md' }) => {
+  const scrollAnimation = useMemo(() => getScrollAnimation(), [])
 
-const BodyBtn = ({ variant, icon, text }) => (
-    <button className={`custom-btn ${variant ? "variant" : ""} clickable`}>
-        {icon ? <ion-icon name={icon}></ion-icon> : false}
-        <span>{text}</span>
-    </button>
-);
+  // Configuración del botón de HeroUI
+  const buttonProps = {
+    color: color,
+    variant: variant,
+    size: size,
+    startContent: Icon && <Icon size={20} strokeWidth={2} />,
+    className: `${className || ''} clickable`,
+    disableRipple: false
+  }
 
-const BtnGeneric = ({ route, url, className, variant, icon, text }) => {
-    const scrollAnimation = useMemo(() => getScrollAnimation(), []);
-    const classCondition = `btn_generic ${className ? className : ""} ${variant ? "variant" : ""} clickable`;
-
-    if (route) {
-        return (
-            <Link to={route} className={classCondition}>
-                <BodyBtn variant={variant} icon={icon} text={text} />
-            </Link>
-        );
-    } else if (url) {
-        return (
-            <motion.a
-                variants={scrollAnimation}
-                custom={{ duration: 2 }}
-                href={url}
-                className={classCondition}
-                target="_blank"
-            >
-                <BodyBtn variant={variant} icon={icon} text={text} />
-            </motion.a>
-        );
-    } else {
-        <span>Boton no disponible</span>;
-    }
-};
-
-BodyBtn.propTypes = {
-    variant: PropTypes.bool,
-    icon: PropTypes.string,
-    text: PropTypes.string.isRequired,
-};
+  if (route) {
+    return (
+      <Button {...buttonProps} as={Link} to={route}>
+        {text}
+      </Button>
+    )
+  } else if (url) {
+    return (
+      <motion.div variants={scrollAnimation} custom={{ duration: 2 }} className='inline-block'>
+        <Button {...buttonProps} as='a' href={url} target='_blank' rel='noopener noreferrer'>
+          {text}
+        </Button>
+      </motion.div>
+    )
+  } else {
+    return <span>Boton no disponible</span>
+  }
+}
 
 BtnGeneric.propTypes = {
-    route: PropTypes.string,
-    url: PropTypes.string,
-    className: PropTypes.string,
-    variant: PropTypes.bool,
-    icon: PropTypes.string,
-    text: PropTypes.string.isRequired,
-};
+  route: PropTypes.string,
+  url: PropTypes.string,
+  className: PropTypes.string,
+  variant: PropTypes.oneOf(['solid', 'bordered', 'light', 'flat', 'faded', 'shadow', 'ghost']),
+  Icon: PropTypes.elementType,
+  text: PropTypes.string.isRequired,
+  color: PropTypes.oneOf(['default', 'primary', 'secondary', 'success', 'warning', 'danger']),
+  size: PropTypes.oneOf(['sm', 'md', 'lg'])
+}
 
-export default BtnGeneric;
+export default BtnGeneric

@@ -1,156 +1,156 @@
-@import "@styles/autoload.scss";
+@use '@styles/autoload.scss' as *;
 
 // Components
-@import "../../library/title/title.scss";
-@import "./components/templates/categoriesComponent.scss";
-@import "./components/organisms/project.scss";
+@use '../../library/title/title.scss' as *;
+@use './components/templates/categoriesComponent.scss' as *;
+@use './components/organisms/project.scss' as *;
 
 .main_projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  background: $dark-gradient-dark;
+
+  @include projectsTitle;
+
+  .container_filter {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: start;
-
+    align-items: start;
+    justify-content: center;
     width: 100%;
-    min-height: calc(100vh - 80px);
-    background: $dark-gradient-dark;
+    max-width: rem(1440px);
+    margin-bottom: rem(20px);
 
-    @include projectsTitle;
+    .filtrer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: rem(20px);
 
-    .container_filter {
+      width: 100%;
+      padding: rem(20px);
+
+      z-index: 1;
+
+      .text {
         display: flex;
         flex-direction: column;
-        align-items: start;
+        align-items: center;
         justify-content: center;
-        width: 100%;
-        max-width: rem(1440px);
-        margin-bottom: rem(20px);
+        gap: rem(20px);
+        padding: rem(20px) rem(30px);
+        padding-bottom: rem(10px);
 
-        .filtrer {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: rem(20px);
-
-            width: 100%;
-            padding: rem(20px);
-
-            z-index: 1;
-
-            .text {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: rem(20px);
-                padding: rem(20px) rem(30px);
-                padding-bottom: rem(10px);
-
-                h2 {
-                    color: $primary-color;
-                    font-size: $font-size-xl;
-                }
-
-                p {
-                    max-width: rem(315px);
-                    color: $contrast-color;
-                    font-size: $font-size-md;
-                    font-weight: $font-weight-regular;
-                    text-align: center;
-
-                    span {
-                        color: $primary-color;
-                    }
-                }
-            }
-
-            .categories {
-                max-width: rem(330px);
-                padding: 0;
-
-                h2 button {
-                    padding: rem(5px) rem(20px);
-                }
-
-                ul {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    gap: rem(5px);
-                    width: 100%;
-
-                    @include categoriesComponent;
-                }
-            }
+        h2 {
+          color: $primary-color;
+          font-size: $font-size-xl;
         }
 
-        .projects_container {
-            position: relative;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: stretch;
-            justify-content: left;
-            gap: rem(20px);
-            width: 100%;
-            padding: 0 rem(20px);
-            margin-top: rem(10px);
+        p {
+          max-width: rem(315px);
+          color: $contrast-color;
+          font-size: $font-size-md;
+          font-weight: $font-weight-regular;
+          text-align: center;
 
-            @include project;
+          span {
+            color: $primary-color;
+          }
         }
+      }
+
+      .categories {
+        max-width: rem(330px);
+        padding: 0;
+
+        h2 button {
+          padding: rem(5px) rem(20px);
+        }
+
+        ul {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: rem(5px);
+          width: 100%;
+
+          @include categoriesComponent;
+        }
+      }
     }
+
+    .projects_container {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      justify-content: left;
+      gap: rem(20px);
+      width: 100%;
+      padding: 0 rem(20px);
+      margin-top: rem(10px);
+
+      @include project;
+    }
+  }
 }
 
 @include responsive {
-    .main_projects {
-        padding: rem(40px);
-        padding-left: rem(80px);
+  .main_projects {
+    padding: rem(40px);
+    padding-left: rem(80px);
 
-        .container_filter {
-            flex-direction: row;
-            margin-bottom: 0;
+    .container_filter {
+      flex-direction: row;
+      margin-bottom: 0;
 
-            .filtrer {
-                position: sticky;
-                top: rem(40px);
-                max-width: rem(270px);
-                border-right: rem(1px) solid $contrast-color-700;
-                padding: rem(20px);
+      .filtrer {
+        position: sticky;
+        top: rem(40px);
+        max-width: rem(270px);
+        border-right: rem(1px) solid $contrast-color-700;
+        padding: rem(20px);
 
-                .text {
-                    align-items: flex-start;
-                    gap: rem(20px);
-                    padding: 0;
+        .text {
+          align-items: flex-start;
+          gap: rem(20px);
+          padding: 0;
 
-                    h2 {
-                        display: initial;
-                        text-align: right;
+          h2 {
+            display: initial;
+            text-align: right;
 
-                        color: $light-color;
-                    }
+            color: $light-color;
+          }
 
-                    p {
-                        text-align: start;
-                    }
-                }
-
-                .categories {
-                    h2 button {
-                        padding: rem(10px) 0;
-                    }
-
-                    ul {
-                        flex-direction: column;
-                        align-items: flex-start;
-                    }
-                }
-            }
-
-            .projects_container {
-                padding: rem(0px) rem(20px);
-                padding-right: 0;
-                margin: 0;
-            }
+          p {
+            text-align: start;
+          }
         }
+
+        .categories {
+          h2 button {
+            padding: rem(10px) 0;
+          }
+
+          ul {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+        }
+      }
+
+      .projects_container {
+        padding: rem(0px) rem(20px);
+        padding-right: 0;
+        margin: 0;
+      }
     }
+  }
 }

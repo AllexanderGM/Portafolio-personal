@@ -1,143 +1,144 @@
-@import "../atoms/grabZone.scss";
+@use '@styles/autoload.scss' as *;
+@use '../atoms/grabZone.scss' as *;
 
 @mixin project {
-    .projects_link {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
+  .projects_link {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 
-        text-decoration: none;
-        max-width: rem(350px);
-        background-color: $dark-color;
-        border-radius: rem(25px);
-        border: 1px solid $dark-color-800;
-        transition: $transition;
+    text-decoration: none;
+    max-width: rem(350px);
+    background-color: $dark-color;
+    border-radius: rem(25px);
+    border: 1px solid $dark-color-800;
+    transition: $transition;
 
-        margin: rem(10px) 0;
-        overflow: hidden;
+    margin: rem(10px) 0;
+    overflow: hidden;
 
-        &:hover {
-            box-shadow: 0 rem(0px) (10px) rgb(26 26 26 / 38%);
-            transform: translateY(rem(-6px));
-            transition: $transition;
-        }
-
-        .container_game {
-            width: 100%;
-            min-height: rem(240px);
-            height: rem(260px);
-            overflow: hidden;
-
-            .grab-zone-wrapper {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 100%;
-                height: rem(430px);
-                overflow: hidden;
-                transform: translateX(0) translateY(0%);
-
-                @include grabZone;
-            }
-        }
-
-        .projects_img {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            min-height: rem(240px);
-            height: rem(240px);
-            border-radius: rem(10px) rem(10px) 0 0;
-            overflow: hidden;
-
-            img {
-                width: 100%;
-            }
-        }
-
-        .projects_data > * {
-            margin: rem(8px) 0;
-            line-height: 1.5;
-            letter-spacing: rem(0.8px);
-        }
-
-        .projects_data {
-            position: relative;
-            height: 100%;
-            background-color: $dark-color;
-            padding: rem(20px);
-            margin-bottom: rem(35px);
-
-            .projects_category {
-                font-size: $font-size-xs;
-                letter-spacing: rem(3px);
-                color: $primary-color-600;
-            }
-
-            .projects_title {
-                display: block;
-                font-size: $font-size-lg;
-                color: $light-color;
-            }
-
-            .projects_date {
-                font-size: $font-size-xs;
-                color: $contrast-color-800;
-            }
-
-            .projects_text {
-                font-size: $font-size-sm;
-                font-weight: $font-weight-regular;
-                color: $contrast-color;
-                margin-bottom: rem(20px);
-            }
-
-            .projects_location {
-                display: flex;
-                align-items: center;
-                width: 100%;
-                font-size: $font-size-xs;
-                font-weight: $font-weight-bold;
-                color: $contrast-color-500;
-                border: rem(1px) solid $dark-color-700;
-                border-radius: rem(10px);
-
-                padding: rem(10px) rem(20px);
-                margin-bottom: rem(10px);
-            }
-        }
-
-        .container_btns {
-            position: absolute;
-            bottom: 0;
-            display: flex;
-            align-items: center;
-            justify-content: left;
-            gap: rem(20px);
-            width: 100%;
-
-            padding: rem(15px) rem(20px);
-
-            .upss {
-                width: 100%;
-                text-align: center;
-                color: $secondary-color-300;
-                font-size: $font-size-sm;
-            }
-
-            a ion-icon {
-                color: $primary-color-300;
-                font-size: $icon-size-lg;
-                transition: $transition;
-            }
-
-            a ion-icon:hover {
-                color: $primary-color-400;
-                transition: $transition;
-            }
-        }
+    &:hover {
+      box-shadow: 0 rem(0px) (10px) rgb(26 26 26 / 38%);
+      transform: translateY(rem(-6px));
+      transition: $transition;
     }
+
+    .container_game {
+      width: 100%;
+      min-height: rem(240px);
+      height: rem(260px);
+      overflow: hidden;
+
+      .grab-zone-wrapper {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: rem(430px);
+        overflow: hidden;
+        transform: translateX(0) translateY(0%);
+
+        @include grabZone;
+      }
+    }
+
+    .projects_img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: rem(240px);
+      height: rem(240px);
+      border-radius: rem(10px) rem(10px) 0 0;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .projects_data > * {
+      margin: rem(8px) 0;
+      line-height: 1.5;
+      letter-spacing: rem(0.8px);
+    }
+
+    .projects_data {
+      position: relative;
+      height: 100%;
+      background-color: $dark-color;
+      padding: rem(20px);
+      margin-bottom: rem(35px);
+
+      .projects_category {
+        font-size: $font-size-xs;
+        letter-spacing: rem(3px);
+        color: $primary-color-600;
+      }
+
+      .projects_title {
+        display: block;
+        font-size: $font-size-lg;
+        color: $light-color;
+      }
+
+      .projects_date {
+        font-size: $font-size-xs;
+        color: $contrast-color-800;
+      }
+
+      .projects_text {
+        font-size: $font-size-sm;
+        font-weight: $font-weight-regular;
+        color: $contrast-color;
+        margin-bottom: rem(20px);
+      }
+
+      .projects_location {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        font-size: $font-size-xs;
+        font-weight: $font-weight-bold;
+        color: $contrast-color-500;
+        border: rem(1px) solid $dark-color-700;
+        border-radius: rem(10px);
+
+        padding: rem(10px) rem(20px);
+        margin-bottom: rem(10px);
+      }
+    }
+
+    .container_btns {
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      gap: rem(20px);
+      width: 100%;
+
+      padding: rem(15px) rem(20px);
+
+      .upss {
+        width: 100%;
+        text-align: center;
+        color: $secondary-color-300;
+        font-size: $font-size-sm;
+      }
+
+      a ion-icon {
+        color: $primary-color-300;
+        font-size: $icon-size-lg;
+        transition: $transition;
+      }
+
+      a ion-icon:hover {
+        color: $primary-color-400;
+        transition: $transition;
+      }
+    }
+  }
 }

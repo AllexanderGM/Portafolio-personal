@@ -1,0 +1,123 @@
+@use '@styles/autoload.scss' as *;
+
+@mixin accordionTechnologies {
+  .slider {
+    overflow: hidden;
+    position: relative;
+
+    height: rem(60px);
+    width: calc(100% - rem(60px));
+    max-width: rem(1270px);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+
+    margin: auto;
+    margin-bottom: rem(40px);
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      background: linear-gradient(to right, var(--primary) 0%, transparent 100%);
+      height: rem(60px);
+      width: rem(120px);
+
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    &::after {
+      right: 0;
+      top: 0;
+      transform: rotateZ(180deg);
+    }
+
+    &::before {
+      left: 0;
+      top: 0;
+    }
+
+    .slider__swiper {
+      width: 100%;
+      height: 100%;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: grab;
+      touch-action: pan-y;
+    }
+
+    .slider__swiper:active {
+      cursor: grabbing;
+    }
+
+    .swiper-wrapper {
+      align-items: center;
+      transition-timing-function: linear;
+    }
+    .slide {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: rem(4px);
+      text-align: center;
+
+      width: rem(120px);
+      height: rem(60px);
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+
+        width: 100%;
+        height: 60%;
+
+        border-left: 2px solid $primary-color-transparent;
+      }
+
+      img {
+        width: auto;
+        max-width: rem(50px);
+        height: rem(28px);
+      }
+
+      .slide__label {
+        font-size: rem(10px);
+        color: $contrast-color-400;
+        line-height: 1;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  @include responsive {
+    .slider {
+      width: calc(100% - rem(220px));
+      height: rem(80px);
+
+      &::before,
+      &::after {
+        content: '';
+        height: rem(80px);
+        width: rem(180px);
+      }
+
+      .slide {
+        width: rem(180px);
+        height: rem(80px);
+        gap: rem(6px);
+
+        img {
+          max-width: rem(80px);
+          height: rem(40px);
+        }
+
+        .slide__label {
+          font-size: rem(12px);
+        }
+      }
+    }
+  }
+}
