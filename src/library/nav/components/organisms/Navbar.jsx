@@ -1,28 +1,26 @@
 import PropTypes from 'prop-types'
-
-import HashLink from '@library/nav/components/atoms/HashLink'
+import NavList from '@library/nav/components/molecules/NavList'
 
 const Navbar = ({ navItems, activeLink, setActiveLink }) => {
-  const navItemsElements = navItems.map((item, index) => (
-    <HashLink
-      key={index}
-      Icon={item.Icon}
-      route={item.route}
-      text={item.text}
-      setActiveLink={setActiveLink}
-      activeLink={activeLink}
-    />
-  ))
-
   return (
-    <nav className='header_navbar'>
-      <ul className='navbar_list routes'>{navItemsElements}</ul>
+    <nav className='header'>
+      <article className='container'>
+        <nav className='header_navbar' aria-label='Navegación principal'>
+          <NavList navItems={navItems} activeLink={activeLink} setActiveLink={setActiveLink} />
+        </nav>
+      </article>
     </nav>
   )
 }
 
 Navbar.propTypes = {
-  navItems: PropTypes.array.isRequired,
+  navItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      Icon: PropTypes.elementType.isRequired,
+      route: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired
+    })
+  ).isRequired,
   activeLink: PropTypes.string.isRequired,
   setActiveLink: PropTypes.func.isRequired
 }

@@ -1,130 +1,407 @@
+@use 'sass:math';
 @use '@styles/autoload.scss' as *;
 @use '../../../../library/icons/socialIcon.scss' as *;
 
+// ============================================================================
+// CONFIGURACIÓN
+// ============================================================================
+
+$image-aspect-ratio: math.div(3, 4);
+$image-border-radius: rem(20px);
+$image-max-width: rem(260px);
+$image-max-width-desktop: rem(450px);
+$image-max-height-desktop: rem(450px);
+$image-border-radius-desktop: rem(32px);
+
+// ============================================================================
+// BANNER IMAGE
+// ============================================================================
+
 @mixin bannerImage {
   .banner_image {
-    position: absolute;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: rem(42px);
+    justify-content: center;
+    gap: rem(16px);
 
-    width: 100%;
-    max-width: rem(200px);
-    max-height: rem(200px);
-    margin: 0;
-    margin-bottom: rem(70px);
-    margin-top: rem(30px);
-    z-index: 1;
+    max-width: $image-max-width;
+    margin: 0 auto;
+    padding: rem(10px);
 
-    &::after {
-      content: '';
-      position: absolute;
-      top: 22.5%;
-      left: -7.5%;
+    // Optimización
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 
-      aspect-ratio: 1/1;
-      width: 85%;
-      border-radius: 18% 18% 18% 60%;
-      border: rem(1px) solid $dark-color-700;
-
-      z-index: -1;
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 30%;
-      left: -15%;
-
-      aspect-ratio: 1/1;
-      width: 85%;
-      background-color: $dark-color-transparent;
-      border-radius: 18% 18% 18% 65%;
-      z-index: -1;
-      animation: alter 16s infinite alternate ease-in-out;
-    }
-
-    @keyframes alter {
-      0% {
-        transform: scale(1) rotate(0deg);
-      }
-      25% {
-        transform: scale(1.1) rotate(3deg);
-      }
-      50% {
-        transform: scale(0.9) rotate(0deg);
-      }
-      75% {
-        transform: scale(1.1) rotate(-3deg);
-      }
-      100% {
-        transform: scale(1) rotate(0deg);
-      }
-    }
-
-    .decoration {
-      position: absolute;
-      top: rem(-30px);
-      right: rem(20px);
-      list-style: none;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      gap: rem(20px);
-
-      div {
-        width: rem(10px);
-        height: rem(10px);
-        border-radius: 50%;
-        background-color: $primary-color-400;
-      }
-    }
+    // ========================================================================
+    // IMAGEN
+    // ========================================================================
 
     .picture {
+      position: relative;
       object-fit: cover;
-      aspect-ratio: 1/1;
+      aspect-ratio: $image-aspect-ratio;
       width: 100%;
-      min-width: rem(200px);
-      min-height: rem(200px);
-      border-radius: 50%;
-      border: rem(1px) solid $dark-color-700;
-      box-shadow: $box-shadow;
+      max-width: $image-max-width;
+      z-index: 10;
+
+      border-radius: $image-border-radius;
+      border: rem(2px) solid rgba(var(--accent-primary-rgb), 0.25);
+
+      box-shadow:
+        var(--shadow-lg),
+        0 0 rem(1px) rgba(var(--accent-primary-rgb), 0.2);
+
+      // Optimización
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
+
+      // Transición suave
+      transition:
+        transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+      // Hover sutil
+      &:hover {
+        transform: translate3d(0, rem(-2px), 0);
+        border-color: rgba(var(--accent-primary-rgb), 0.3);
+        box-shadow:
+          var(--shadow-lg),
+          0 0 rem(12px) rgba(var(--accent-primary-rgb), 0.1);
+      }
     }
+
+    // ========================================================================
+    // DECORACIONES - Mobile (integradas con la imagen)
+    // ========================================================================
+
+    .banner_corner {
+      display: block;
+      position: absolute;
+      z-index: 25;
+      pointer-events: none;
+
+      // Cruz pequeña arriba a la izquierda de la imagen
+      &--top-left {
+        top: rem(-8px);
+        left: rem(-8px);
+        width: rem(10px);
+        height: rem(10px);
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 100%;
+          height: rem(1px);
+          background-color: rgba(var(--accent-primary-rgb), 0.4);
+          transform: translateY(-50%);
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 50%;
+          width: rem(1px);
+          height: 100%;
+          background-color: rgba(var(--accent-primary-rgb), 0.4);
+          transform: translateX(-50%);
+        }
+      }
+    }
+
+    .banner_dots {
+      display: flex;
+      position: absolute;
+      z-index: 25;
+      pointer-events: none;
+
+      // Puntos arriba a la derecha - horizontal
+      &--top {
+        top: rem(-6px);
+        right: rem(20px);
+        flex-direction: row;
+        align-items: center;
+        gap: rem(5px);
+      }
+
+      // Puntos abajo a la izquierda - vertical
+      &--bottom {
+        bottom: rem(50px);
+        left: rem(-6px);
+        flex-direction: column;
+        align-items: center;
+        gap: rem(5px);
+      }
+    }
+
+    .banner_dot {
+      width: rem(3px);
+      height: rem(3px);
+      border-radius: 50%;
+      background-color: rgba(var(--accent-primary-rgb), 0.5);
+
+      &:nth-child(2) {
+        width: rem(2px);
+        height: rem(2px);
+        opacity: 0.7;
+      }
+
+      &:nth-child(3) {
+        width: rem(2px);
+        height: rem(2px);
+        opacity: 0.5;
+      }
+    }
+
+    // ========================================================================
+    // SOCIAL LINKS
+    // ========================================================================
 
     .banner_social {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: rem(20px);
+      gap: rem(12px);
       list-style: none;
-      z-index: 5;
+      z-index: 15;
+      position: relative;
 
       @include socialIcon;
+    }
+  }
+
+  // ==========================================================================
+  // RESPONSIVE (Desktop/Tablet)
+  // ==========================================================================
+
+  // Animaciones para los puntos
+  @keyframes dotPulse {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes dotFloat {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(rem(-3px));
     }
   }
 
   @include responsive {
     .banner_image {
       position: relative;
-      flex-direction: row;
-      align-items: flex-end;
+      flex: 0 0 auto;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       gap: 0;
-      width: 40%;
-      max-width: rem(450px);
-      max-height: rem(450px);
-      margin: 0;
 
-      .decoration {
-        display: flex;
+      max-width: none;
+      margin: 0;
+      padding: rem(30px);
+
+      // Decoración geométrica - Esquina superior derecha
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: rem(45px);
+        height: rem(45px);
+        border-top: rem(1px) solid rgba(var(--accent-primary-rgb), 0.2);
+        border-right: rem(1px) solid rgba(var(--accent-primary-rgb), 0.2);
+        border-radius: 0 rem(8px) 0 0;
+        pointer-events: none;
+        z-index: 1;
       }
 
-      .banner_social {
+      // Decoración geométrica - Esquina inferior izquierda
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: rem(45px);
+        height: rem(45px);
+        border-bottom: rem(1px) solid rgba(var(--accent-primary-rgb), 0.2);
+        border-left: rem(1px) solid rgba(var(--accent-primary-rgb), 0.2);
+        border-radius: 0 0 0 rem(8px);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      // ======================================================================
+      // ESQUINA SUPERIOR IZQUIERDA - Cruz sutil
+      // ======================================================================
+
+      .banner_corner {
+        display: block;
+        position: absolute;
+        z-index: 25;
+        pointer-events: none;
+
+        &--top-left {
+          top: rem(10px);
+          left: rem(10px);
+          width: rem(16px);
+          height: rem(16px);
+
+          // Línea horizontal
+          &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: rem(1px);
+            background-color: rgba(var(--accent-primary-rgb), 0.35);
+            transform: translateY(-50%);
+          }
+
+          // Línea vertical
+          &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: rem(1px);
+            height: 100%;
+            background-color: rgba(var(--accent-primary-rgb), 0.35);
+            transform: translateX(-50%);
+          }
+        }
+      }
+
+      // ======================================================================
+      // PUNTOS GEOMÉTRICOS - Extienden las líneas de las esquinas
+      // ======================================================================
+
+      .banner_dots {
+        display: block;
+        position: absolute;
+        z-index: 25;
+        pointer-events: none;
+
+        // Puntos superiores - Línea horizontal que extiende esquina sup-der
+        &--top {
+          top: 0;
+          right: rem(55px);
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: rem(10px);
+
+          .banner_dot {
+            width: rem(4px);
+            height: rem(4px);
+
+            &:nth-child(1) {
+              animation: dotPulse 3s ease-in-out infinite;
+            }
+
+            &:nth-child(2) {
+              width: rem(3px);
+              height: rem(3px);
+              animation: dotPulse 3s ease-in-out infinite 0.4s;
+            }
+
+            &:nth-child(3) {
+              width: rem(2px);
+              height: rem(2px);
+              opacity: 0.5;
+              animation: dotPulse 3s ease-in-out infinite 0.8s;
+            }
+          }
+        }
+
+        // Puntos inferiores - Línea vertical que extiende esquina inf-izq
+        &--bottom {
+          bottom: rem(55px);
+          left: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: rem(10px);
+
+          .banner_dot {
+            width: rem(4px);
+            height: rem(4px);
+
+            &:nth-child(1) {
+              animation: dotPulse 3.5s ease-in-out infinite;
+            }
+
+            &:nth-child(2) {
+              width: rem(3px);
+              height: rem(3px);
+              animation: dotPulse 3.5s ease-in-out infinite 0.4s;
+            }
+
+            &:nth-child(3) {
+              width: rem(2px);
+              height: rem(2px);
+              opacity: 0.5;
+              animation: dotPulse 3.5s ease-in-out infinite 0.8s;
+            }
+          }
+        }
+      }
+
+      .banner_dot {
+        border-radius: 50%;
+        background-color: rgba(var(--accent-primary-rgb), 0.5);
+      }
+
+      // ======================================================================
+      // IMAGEN
+      // ======================================================================
+
+      .picture {
         position: relative;
-        right: rem(50px);
-        bottom: rem(-50px);
+        max-width: $image-max-width-desktop;
+        max-height: $image-max-height-desktop;
+        border-radius: $image-border-radius-desktop;
+        border: rem(2px) solid rgba(var(--accent-primary-rgb), 0.2);
+
+        // Sombra elegante
+        box-shadow:
+          0 rem(20px) rem(50px) rgba(0, 0, 0, 0.2),
+          0 rem(8px) rem(20px) rgba(0, 0, 0, 0.12),
+          0 0 rem(1px) rgba(var(--accent-primary-rgb), 0.15);
+      }
+
+      // ======================================================================
+      // SOCIAL - Inferior derecha, sobre la imagen
+      // ======================================================================
+
+      .banner_social {
+        position: absolute;
+        right: rem(45px);
+        bottom: rem(45px);
         flex-direction: column;
         gap: rem(10px);
+        z-index: 20;
+
+        // Fondo sutil para mejor legibilidad
+        padding: rem(8px);
+        background: rgba(var(--bg-primary-rgb, 0, 0, 0), 0.3);
+        border-radius: rem(12px);
+        backdrop-filter: blur(rem(4px));
       }
     }
   }

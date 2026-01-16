@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-import Image from '../../../../library/image/Image.jsx'
 import getScrollAnimation from '../../../../library/utils/GetScrollAnimation.jsx'
 
 // Components
@@ -13,7 +12,7 @@ import CodeTerminal from '../molecules/CodeTerminal'
 import ExperienceTimeline from '../molecules/ExperienceTimeline'
 
 // Principal component
-const SkillsAboutContainer = ({ ability, arrow, profileData, experiences }) => {
+const AboutContent = ({ ability, arrow, profileData, experiences }) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), [])
 
   // Lista de componentes de habilidades blandas
@@ -50,11 +49,16 @@ const SkillsAboutContainer = ({ ability, arrow, profileData, experiences }) => {
   )
 }
 
-SkillsAboutContainer.propTypes = {
-  ability: PropTypes.array.isRequired,
+AboutContent.propTypes = {
+  ability: PropTypes.arrayOf(
+    PropTypes.shape({
+      Icon: PropTypes.elementType,
+      text: PropTypes.string.isRequired
+    })
+  ).isRequired,
   arrow: PropTypes.string.isRequired,
   profileData: PropTypes.object.isRequired,
   experiences: PropTypes.array.isRequired
 }
 
-export default SkillsAboutContainer
+export default AboutContent

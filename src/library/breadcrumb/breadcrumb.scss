@@ -1,0 +1,6 @@
+@use '@styles/autoload.scss' as *;
+@use './components/organisms/breadcrumbs.scss' as *;
+
+.breadcrumb {
+  @include breadcrumbs;
+}

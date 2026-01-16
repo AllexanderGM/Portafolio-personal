@@ -2,7 +2,6 @@ import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import PropTypes from 'prop-types'
 
-import ScrollAnimationWrapper from '@library/utils/ScrollAnimationWrapper'
 import getScrollAnimation from '@library/utils/GetScrollAnimation'
 
 import './title.scss'

@@ -1,0 +1,28 @@
+@use '@styles/autoload.scss' as *;
+@use '../atoms/hashLink.scss' as *;
+
+$navbar-gap: rem(6px);
+
+@mixin navList {
+  .navbar_list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $navbar-gap;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include hashLink;
+  }
+
+  @include responsive {
+    .navbar_list {
+      flex-direction: column;
+      overflow: visible;
+      align-items: flex-start;
+      width: auto;
+    }
+  }
+}

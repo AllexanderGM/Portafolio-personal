@@ -8,7 +8,7 @@ import getScrollAnimation from '../../../../library/utils/GetScrollAnimation.jsx
 const ExperienceTimeline = ({ experiences }) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), [])
 
-  const getIcon = (type) => {
+  const getIcon = type => {
     const icons = {
       university: Building2,
       teaching: GraduationCap,
@@ -23,21 +23,20 @@ const ExperienceTimeline = ({ experiences }) => {
     <motion.div className='experience-timeline' variants={scrollAnimation} custom={{ duration: 1.5 }}>
       {experiences.map((exp, index) => (
         <motion.div
-          key={index}
+          key={`${exp.company}-${exp.role}-${exp.period}`}
           className='timeline-item'
           variants={scrollAnimation}
-          custom={{ duration: 1.5 + index * 0.2 }}
-        >
-          <div className='timeline-icon'>
-            {getIcon(exp.type)}
-          </div>
+          custom={{ duration: 1.5 + index * 0.2 }}>
+          <div className='timeline-icon'>{getIcon(exp.type)}</div>
           <div className='timeline-content'>
             <span className='timeline-period'>{exp.period}</span>
             <h3 className='timeline-company'>{exp.company}</h3>
             <h4 className='timeline-role'>{exp.role}</h4>
             <div className='timeline-tech'>
-              {exp.technologies.map((tech, i) => (
-                <span key={i} className='tech-badge'>{tech}</span>
+              {exp.technologies.map(tech => (
+                <span key={`${exp.company}-${exp.role}-${tech}`} className='tech-badge'>
+                  {tech}
+                </span>
               ))}
             </div>
           </div>

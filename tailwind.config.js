@@ -103,6 +103,22 @@ const heroThemes = {
         DEFAULT: palette.danger.DEFAULT,
         foreground: palette.light.DEFAULT
       },
+      content1: {
+        DEFAULT: palette.light[100],
+        foreground: palette.dark.DEFAULT
+      },
+      content2: {
+        DEFAULT: palette.light[200],
+        foreground: palette.dark.DEFAULT
+      },
+      content3: {
+        DEFAULT: palette.light[300],
+        foreground: palette.dark.DEFAULT
+      },
+      content4: {
+        DEFAULT: palette.light[400],
+        foreground: palette.dark.DEFAULT
+      },
       background: palette.light.DEFAULT,
       foreground: palette.dark.DEFAULT
     }
@@ -110,8 +126,8 @@ const heroThemes = {
   dark: {
     colors: {
       primary: heroColor(palette.primary, {
-        DEFAULT: palette.primary[600],
-        foreground: palette.primary[50]
+        DEFAULT: palette.primary[200],
+        foreground: palette.dark[950]
       }),
       secondary: heroColor(palette.secondary, {
         DEFAULT: palette.secondary[500],
@@ -128,6 +144,22 @@ const heroThemes = {
       danger: {
         DEFAULT: palette.danger[400],
         foreground: '#000000'
+      },
+      content1: {
+        DEFAULT: palette.dark[900],
+        foreground: palette.light.DEFAULT
+      },
+      content2: {
+        DEFAULT: palette.dark[800],
+        foreground: palette.light.DEFAULT
+      },
+      content3: {
+        DEFAULT: palette.dark[700],
+        foreground: palette.light.DEFAULT
+      },
+      content4: {
+        DEFAULT: palette.dark[600],
+        foreground: palette.light.DEFAULT
       },
       background: palette.dark.DEFAULT,
       foreground: palette.light.DEFAULT
@@ -159,9 +191,9 @@ export default {
         custom: '300ms'
       },
       borderRadius: {
-        'heroui-large': 'var(--nextui-radius-large)',
-        'heroui-medium': 'var(--nextui-radius-medium)',
-        'heroui-small': 'var(--nextui-radius-small)'
+        'heroui-large': 'var(--heroui-radius-large)',
+        'heroui-medium': 'var(--heroui-radius-medium)',
+        'heroui-small': 'var(--heroui-radius-small)'
       },
       spacing
     }

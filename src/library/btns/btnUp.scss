@@ -8,22 +8,22 @@
   z-index: 9999;
   cursor: pointer;
 
-  border: rem(1px) solid $dark-color-700;
+  border: rem(1px) solid var(--border-color);
   border-radius: rem(50px);
-  background: $dark-color-transparent;
-  box-shadow: $box-shadow;
+  background: var(--surface-control);
+  box-shadow: var(--shadow-control);
   -webkit-backdrop-filter: blur(rem(7.6px));
   backdrop-filter: blur(rem(7.6px));
 
   padding: rem(10px);
-  color: $contrast-color;
+  color: var(--text-secondary);
 
   transition:
     opacity 0.3s,
     transform 0.3s;
 
   &:hover {
-    box-shadow: $box-shadow;
+    box-shadow: var(--shadow-control);
   }
 
   &:not(.is-visible) {

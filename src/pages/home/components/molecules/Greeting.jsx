@@ -7,24 +7,48 @@ import getScrollAnimation from '../../../../library/utils/GetScrollAnimation.jsx
 const Greeting = ({ greeting }) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), [])
   const [text, setText] = useState('')
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [loopIndex, setLoopIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
   const [isBlinking, setIsBlinking] = useState(false)
-  const toRotate = greeting.profession
-  const fullText = toRotate[0]
+  const typingSpeed = greeting.timer ?? 90
+  const typing = greeting.typing ?? null
+  const prefix = typing?.prefix ?? ''
+  const options = useMemo(() => {
+    if (typing?.options?.length) return typing.options
+    if (greeting.profession?.length) return greeting.profession
+    return []
+  }, [typing, greeting.profession])
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (currentIndex < fullText.length) {
-        setText(prevText => prevText + fullText[currentIndex])
-        setCurrentIndex(prevIndex => prevIndex + 1)
-      } else {
-        clearInterval(interval)
-        setIsBlinking(true)
-      }
-    }, greeting.timer)
+    if (!options.length) return undefined
 
-    return () => clearInterval(interval)
-  }, [currentIndex, fullText, greeting.timer])
+    const fullText = options[loopIndex % options.length]
+    const isFullText = text === fullText
+    const isEmptyText = text.length === 0
+
+    if (!isDeleting && isFullText) {
+      const pauseTimeout = setTimeout(() => setIsDeleting(true), 900)
+      return () => clearTimeout(pauseTimeout)
+    }
+
+    if (isDeleting && isEmptyText) {
+      setIsDeleting(false)
+      setLoopIndex(prevIndex => prevIndex + 1)
+      return undefined
+    }
+
+    const timeout = setTimeout(
+      () => {
+        setText(prevText => {
+          if (isDeleting) return fullText.slice(0, Math.max(0, prevText.length - 1))
+          return fullText.slice(0, prevText.length + 1)
+        })
+      },
+      isDeleting ? Math.max(40, typingSpeed / 2) : typingSpeed
+    )
+
+    return () => clearTimeout(timeout)
+  }, [text, isDeleting, loopIndex, options, typingSpeed])
 
   useEffect(() => {
     let blinkingInterval
@@ -42,14 +66,19 @@ const Greeting = ({ greeting }) => {
     return () => clearInterval(blinkingInterval)
   }, [isBlinking])
 
+  const showDynamicLine = Boolean(prefix || options.length)
+
   return (
-    <motion.h2 variants={scrollAnimation} custom={{ duration: 2 }}>
-      {greeting.greeting}
-      <br />
-      <span className='txt-rotate' data-rotate={`${toRotate}`}>
-        <span className={`wrap ${isBlinking}`}>{text}</span>
-      </span>
-    </motion.h2>
+    <motion.div variants={scrollAnimation} custom={{ duration: 2 }} className='greeting'>
+      {greeting.eyebrow && <span className='greeting_eyebrow'>{greeting.eyebrow}</span>}
+      {greeting.greeting && <p className='greeting_title'>{greeting.greeting}</p>}
+      {showDynamicLine && (
+        <p className='greeting_dynamic'>
+          {prefix && <span className='greeting_prefix'>{prefix}</span>}
+          <span className={`greeting_word ${isBlinking ? 'is-caret-hidden' : ''}`}>{text}</span>
+        </p>
+      )}
+    </motion.div>
   )
 }
 

@@ -1,4 +1,6 @@
 import { Switch } from '@heroui/react'
+import PropTypes from 'prop-types'
+import { Sun, Moon } from 'lucide-react'
 import { useGeneral } from '@hooks'
 
 const ThemeToggle = ({ size = 'md', className = '' }) => {
@@ -10,16 +12,16 @@ const ThemeToggle = ({ size = 'md', className = '' }) => {
       onValueChange={toggleTheme}
       size={size}
       color='primary'
-      startContent={<ion-icon name='sunny' style={{ fontSize: '18px' }}></ion-icon>}
-      endContent={<ion-icon name='moon' style={{ fontSize: '18px' }}></ion-icon>}
+      thumbIcon={({ isSelected }) => (isSelected ? <Moon size={12} /> : <Sun size={12} />)}
       aria-label='Toggle theme'
-      classNames={{
-        wrapper: 'group-data-[selected=true]:bg-primary',
-        thumb: 'group-data-[selected=true]:bg-dark'
-      }}
       className={className}
     />
   )
+}
+
+ThemeToggle.propTypes = {
+  size: PropTypes.string,
+  className: PropTypes.string
 }
 
 export default ThemeToggle

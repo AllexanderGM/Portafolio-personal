@@ -1,20 +1,72 @@
+/**
+ * @file hashLink.scss
+ * @description Estilos para el componente de navegación HashLink
+ * @module styles/components/atoms/hashLink
+ *
+ * Este mixin maneja dos estados de navegación:
+ * 1. Desktop (horizontal): Nav bar en la parte inferior con íconos circulares
+ * 2. Responsive (vertical): Nav lateral izquierdo con expansión de tooltip
+ *
+ * Características técnicas:
+ * - GPU acceleration con translate3d
+ * - Transiciones optimizadas a 60fps
+ * - Micro-interacciones con ease-out curves
+ * - will-change para optimización del browser
+ */
+
 @use '@styles/autoload.scss' as *;
+
+// ============================================================================
+// CONFIGURACIÓN
+// ============================================================================
+
+// Timings de animación
+$nav-transition-duration: 250ms;
+$nav-transition-timing: ease-out;
+
+// Dimensiones
+$nav-item-size: rem(48px);
+$nav-item-expanded-width: rem(140px);
+$nav-text-max-width: rem(90px);
+$nav-icon-scale-hover: 1.08;
+$nav-icon-scale-desktop-hover: 1.15;
+
+// Espaciado
+$nav-item-padding: rem(12px);
+$nav-text-padding-left: rem(10px);
+$nav-item-margin: rem(2px);
+
+// ============================================================================
+// MIXIN PRINCIPAL
+// ============================================================================
+
 @mixin hashLink {
+  // ==========================================================================
+  // ESTADO BASE (Desktop - Horizontal Navigation Bar)
+  // ==========================================================================
+
   li {
-    margin: rem(2px);
+    margin: $nav-item-margin;
     position: relative;
 
+    // ------------------------------------------------------------------------
+    // Estado activo en desktop
+    // ------------------------------------------------------------------------
     &.active {
-      background-color: $primary-color;
+      background-color: var(--accent-primary);
       border-radius: 50%;
-      transition: background-color 280ms cubic-bezier(0.4, 0, 0.2, 1),
-                  border-radius 340ms cubic-bezier(0.34, 1.56, 0.64, 1),
-                  box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 rem(2px) rem(8px) rgba($primary-color, 0.3);
+      box-shadow:
+        0 rem(2px) rem(6px) rgba(var(--accent-primary-rgb), 0.2),
+        0 rem(1px) rem(3px) rgba(var(--accent-primary-rgb), 0.15),
+        0 0 rem(12px) rgba(var(--accent-primary-rgb), 0.08);
+      transition:
+        background-color 280ms cubic-bezier(0.4, 0, 0.2, 1),
+        border-radius 340ms cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
 
       a {
         opacity: 1;
-        color: $dark-color;
+        color: var(--text-on-accent);
         font-weight: $font-weight-regular;
         transition: color 200ms cubic-bezier(0.4, 0, 0.2, 1);
       }
@@ -24,25 +76,26 @@
       }
 
       &:hover .nav-icon {
-        transform: scale(1.15);
+        transform: scale($nav-icon-scale-desktop-hover);
       }
     }
 
+    // ------------------------------------------------------------------------
+    // Link base en desktop
+    // ------------------------------------------------------------------------
     a {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: rem(6px);
-
       width: 100%;
       height: 100%;
       font-size: $font-size-xs;
-      color: $contrast-color-100;
+      color: var(--text-secondary);
       opacity: 0.75;
-      transition: opacity 240ms cubic-bezier(0.4, 0, 0.2, 1);
-
       padding: rem(10px);
+      transition: opacity 240ms cubic-bezier(0.4, 0, 0.2, 1);
 
       &:hover {
         opacity: 1;
@@ -59,116 +112,179 @@
       }
 
       &:hover .nav-icon {
-        transform: scale(1.15);
+        transform: scale($nav-icon-scale-desktop-hover);
       }
 
+      // Texto oculto en desktop
       .nav-text {
         display: none;
       }
     }
   }
 
+  // ==========================================================================
+  // RESPONSIVE (Mobile/Tablet - Vertical Sidebar Navigation)
+  // ==========================================================================
+
   @include responsive {
     li {
+      margin: $nav-item-margin;
       position: relative;
-      width: rem(48px);
-      height: rem(48px);
+      width: $nav-item-size;
+      height: $nav-item-size;
       flex-shrink: 0;
-      background: transparent;
-      border-radius: 0;
-      box-shadow: none;
 
+      // ------------------------------------------------------------------------
+      // Reset de estilos desktop
+      // ------------------------------------------------------------------------
+      // Importante: Sobrescribe los estilos del estado activo desktop
+      background: transparent !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+
+      // ------------------------------------------------------------------------
+      // Link base responsive
+      // ------------------------------------------------------------------------
       a {
-        display: flex;
-        flex-direction: row;
+        // Layout
+        display: flex !important;
+        flex-direction: row !important;
         align-items: center;
-        width: rem(48px);
-        height: rem(48px);
-        padding: rem(12px);
+        justify-content: center;
+        gap: 0;
+
+        // Dimensiones
+        width: $nav-item-size;
+        height: $nav-item-size;
+        padding: $nav-item-padding;
+
+        // Posicionamiento
         position: relative;
         border-radius: rem(60px);
-        overflow: hidden;
-        will-change: width;
-        transform: translate3d(0, 0, 0);
+
+        // Estilos visuales base
         background-color: transparent;
+        color: var(--text-secondary);
+        box-shadow: none;
+        opacity: 1 !important;
 
-        transition: width 250ms ease-out,
-                    background-color 200ms ease-out,
-                    box-shadow 200ms ease-out,
-                    color 200ms ease-out,
-                    padding 250ms ease-out;
+        // Optimización de rendimiento
+        will-change: width, background-color, box-shadow, color;
+        transform: translate3d(0, 0, 0);
 
+        // Transiciones globales
+        // Nota: Se aplica a TODOS los estados para consistencia
+        transition: all $nav-transition-duration $nav-transition-timing !important;
+
+        // ----------------------------------------------------------------------
+        // Ícono
+        // ----------------------------------------------------------------------
         .nav-icon {
           flex-shrink: 0;
           width: $icon-size-md;
           height: $icon-size-md;
           will-change: transform;
           transform: translate3d(0, 0, 0);
-          transition: transform 250ms ease-out;
+          transition: transform $nav-transition-duration $nav-transition-timing !important;
         }
 
+        // ----------------------------------------------------------------------
+        // Texto del tooltip
+        // ----------------------------------------------------------------------
         .nav-text {
+          // Display
+          display: block !important;
+
+          // Dimensiones iniciales (colapsado)
           opacity: 0;
+          width: 0;
           max-width: 0;
+          height: 0;
+
+          // Tipografía
           white-space: nowrap;
           font-size: $font-size-sm;
           font-weight: $font-weight-medium;
+
+          // Espaciado
+          padding: 0;
+          margin: 0;
           overflow: hidden;
-          padding-left: 0;
+
+          // Layout
+          flex-shrink: 0;
+
+          // Optimización
           will-change: opacity, max-width;
           transform: translate3d(0, 0, 0);
-          transition: opacity 200ms ease-out 40ms,
-                      max-width 250ms ease-out,
-                      padding-left 250ms ease-out;
+
+          // Transiciones
+          transition: all $nav-transition-duration $nav-transition-timing !important;
         }
       }
 
-      // Estado activo (no expandido)
-      &.active {
-        background: transparent;
-        border-radius: 0;
-        box-shadow: none;
-
-        a {
-          background-color: $primary-color;
-          color: $dark-color;
-        }
+      // ------------------------------------------------------------------------
+      // Estado: ACTIVO (no expandido)
+      // ------------------------------------------------------------------------
+      &.active a {
+        background-color: var(--accent-primary);
+        color: var(--text-on-accent);
       }
 
-      // Estado expandido - controlado por JS
+      // ------------------------------------------------------------------------
+      // Estado: EXPANDIDO (con hover/focus)
+      // ------------------------------------------------------------------------
       &.expanded {
         z-index: 100;
 
         a {
+          // Posicionamiento absoluto para salir del flujo
           position: absolute;
           left: 0;
           top: 0;
-          width: rem(135px);
+
+          // Dimensiones expandidas
+          width: $nav-item-expanded-width;
           padding-right: rem(16px);
 
+          // Alineación del contenido
+          justify-content: flex-start;
+
+          // Ícono con escala sutil
           .nav-icon {
-            transform: scale(1.08) translate3d(0, 0, 0);
+            transform: scale($nav-icon-scale-hover) translate3d(0, 0, 0);
           }
 
+          // Texto visible
           .nav-text {
             opacity: 1;
-            max-width: rem(85px);
-            padding-left: rem(8px);
+            width: auto;
+            max-width: $nav-text-max-width;
+            height: auto;
+            padding-left: $nav-text-padding-left;
           }
         }
 
-        // Active expandido
+        // ----------------------------------------------------------------------
+        // Variante: Activo + Expandido
+        // ----------------------------------------------------------------------
         &.active a {
-          background-color: $primary-color;
-          color: $dark-color;
-          box-shadow: 0 rem(3px) rem(12px) rgba($primary-color, 0.3);
+          background-color: var(--accent-primary);
+          color: var(--text-on-accent);
+          box-shadow:
+            0 rem(3px) rem(10px) rgba(var(--accent-primary-rgb), 0.22),
+            0 rem(1px) rem(4px) rgba(var(--accent-primary-rgb), 0.15),
+            0 0 rem(16px) rgba(var(--accent-primary-rgb), 0.1);
         }
 
-        // Inactive expandido
+        // ----------------------------------------------------------------------
+        // Variante: Inactivo + Expandido
+        // ----------------------------------------------------------------------
         &:not(.active) a {
-          background-color: rgba($dark-color-900, 0.98);
-          box-shadow: 0 rem(3px) rem(12px) rgba($dark-color-950, 0.6);
-          color: $contrast-color-100;
+          background-color: var(--surface-panel);
+          backdrop-filter: blur(rem(8px));
+          box-shadow: var(--shadow-popover);
+          color: var(--text-secondary);
         }
       }
     }

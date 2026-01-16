@@ -3,7 +3,7 @@
 // Full-screen wrapper
 .game {
   position: relative;
-  background: #f2e9de;
+  background: var(--bg-secondary);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -64,10 +64,7 @@
         "addressCountry": "CO"
       },
       "email": "allexander.gm@gmail.com",
-      "sameAs": [
-        "https://www.linkedin.com/in/jeisson-alexander",
-        "https://github.com/AllexanderGM"
-      ],
+      "sameAs": ["https://www.linkedin.com/in/jeisson-alexander", "https://github.com/AllexanderGM"],
       "knowsAbout": [
         "Web Development",
         "Full Stack Development",

@@ -20,11 +20,11 @@ const CodeTerminal = ({ profileData }) => {
   "location": "${profileData.location}",
 
   "technologies": {
-    "backend": ${JSON.stringify(profileData.technologies.backend, null, 4).replace(/\n/g, '\n    ')},
-    "frontend": ${JSON.stringify(profileData.technologies.frontend, null, 4).replace(/\n/g, '\n    ')},
-    "databases": ${JSON.stringify(profileData.technologies.databases, null, 4).replace(/\n/g, '\n    ')},
-    "devops": ${JSON.stringify(profileData.technologies.devops, null, 4).replace(/\n/g, '\n    ')},
-    "tools": ${JSON.stringify(profileData.technologies.tools, null, 4).replace(/\n/g, '\n    ')}
+    "backend": ${JSON.stringify(profileData.technologies.backend, null, 4).replaceAll('\n', '\n    ')},
+    "frontend": ${JSON.stringify(profileData.technologies.frontend, null, 4).replaceAll('\n', '\n    ')},
+    "databases": ${JSON.stringify(profileData.technologies.databases, null, 4).replaceAll('\n', '\n    ')},
+    "devops": ${JSON.stringify(profileData.technologies.devops, null, 4).replaceAll('\n', '\n    ')},
+    "tools": ${JSON.stringify(profileData.technologies.tools, null, 4).replaceAll('\n', '\n    ')}
   },
 
   "languages": ${JSON.stringify(profileData.languages, null, 2)},
@@ -34,13 +34,16 @@ const CodeTerminal = ({ profileData }) => {
 $ _`
 
   // Syntax highlighting con los colores del tema
-  const highlightSyntax = (text) => {
+  const highlightSyntax = text => {
     return text
-      .replace(/(\$ cat developer\.json)/g, '<span class="command">$1</span>')
-      .replace(/("(?:name|role|experience|current_company|education|location|technologies|backend|frontend|databases|devops|tools|languages|methodologies)")/g, '<span class="key">$1</span>')
-      .replace(/: (".*?")/g, ': <span class="string">$1</span>')
-      .replace(/([{}[\],])/g, '<span class="punctuation">$1</span>')
-      .replace(/(\$ _)/g, '<span class="prompt">$1</span>')
+      .replaceAll(/(\$ cat developer\.json)/g, '<span class="command">$1</span>')
+      .replaceAll(
+        /("(?:name|role|experience|current_company|education|location|technologies|backend|frontend|databases|devops|tools|languages|methodologies)")/g,
+        '<span class="key">$1</span>'
+      )
+      .replaceAll(/: (".*?")/g, ': <span class="string">$1</span>')
+      .replaceAll(/([{}[\],])/g, '<span class="punctuation">$1</span>')
+      .replaceAll(/(\$ _)/g, '<span class="prompt">$1</span>')
   }
 
   useEffect(() => {
@@ -61,11 +64,7 @@ $ _`
   }, [fullText])
 
   return (
-    <motion.div
-      className='code-terminal'
-      variants={scrollAnimation}
-      custom={{ duration: 1 }}
-    >
+    <motion.div className='code-terminal' variants={scrollAnimation} custom={{ duration: 1 }}>
       <div className='terminal-header'>
         <div className='terminal-buttons'>
           <span className='btn-close'></span>

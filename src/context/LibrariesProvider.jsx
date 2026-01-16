@@ -33,7 +33,7 @@ const LibrariesProvider = ({ children }) => {
   }
 
   return (
-    <HeroUIProvider navigate={navigate} useHref={useHref}>
+    <HeroUIProvider navigate={navigate} useHref={useHref} defaultTheme='dark'>
       <SEOProvider defaultSEO={defaultSEO}>
         <ToastProvider>{children}</ToastProvider>
       </SEOProvider>

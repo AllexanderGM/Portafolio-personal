@@ -1,4 +1,6 @@
 import { createContext, useState, useMemo, useCallback, useEffect } from 'react'
+import PropTypes from 'prop-types'
+import { useTheme } from '@heroui/use-theme'
 import generalData from '../_data/general.json'
 
 // Constantes
@@ -20,18 +22,16 @@ export const GeneralProvider = ({ children }) => {
   // Datos estáticos desde JSON
   const { social, route } = generalData
 
+  // Hook de HeroUI para manejo de tema (más eficiente)
+  const { theme, setTheme: setHeroUITheme } = useTheme()
+
   // Estados de la aplicación
   const [cursorActive, setCursorActive] = useState(false)
-  const [theme, setTheme] = useState(() => {
-    // Intentar obtener el tema guardado del localStorage
-    const savedTheme = localStorage.getItem('portfolio-theme')
-    return savedTheme || 'dark'
-  })
   const [fontScale, setFontScale] = useState(() => {
     const savedScale = Number(localStorage.getItem('portfolio-font-scale'))
     return FONT_SCALE_STEPS.includes(savedScale) ? savedScale : 1
   })
-  const [contrastMode, setContrastModeState] = useState(() => {
+  const [contrastModeState, setContrastModeState] = useState(() => {
     const savedMode = localStorage.getItem('portfolio-contrast')
     return CONTRAST_MODES.includes(savedMode) ? savedMode : 'normal'
   })
@@ -48,7 +48,7 @@ export const GeneralProvider = ({ children }) => {
     if (saved !== null) {
       return saved === 'true'
     }
-    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    return globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
   })
   const [firstLoad, setFirstLoad] = useState(true)
 
@@ -61,23 +61,22 @@ export const GeneralProvider = ({ children }) => {
     setCursorActive(false)
   }, [])
 
-  // Métodos del tema
+  // Métodos del tema (usando hook de HeroUI)
   const toggleTheme = useCallback(() => {
-    setTheme(prevTheme => {
-      const newTheme = prevTheme === 'light' ? 'dark' : 'light'
-      localStorage.setItem('portfolio-theme', newTheme)
-      return newTheme
-    })
-  }, [])
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    setHeroUITheme(newTheme)
+  }, [theme, setHeroUITheme])
 
-  const setThemeMode = useCallback(mode => {
-    if (mode !== 'light' && mode !== 'dark') {
-      console.warn('Tema inválido. Debe ser "light" o "dark"')
-      return
-    }
-    setTheme(mode)
-    localStorage.setItem('portfolio-theme', mode)
-  }, [])
+  const setThemeMode = useCallback(
+    mode => {
+      if (mode !== 'light' && mode !== 'dark') {
+        console.warn('Tema inválido. Debe ser "light" o "dark"')
+        return
+      }
+      setHeroUITheme(mode)
+    },
+    [setHeroUITheme]
+  )
 
   const setFontScaleValue = useCallback(scale => {
     if (!FONT_SCALE_STEPS.includes(scale)) {
@@ -157,41 +156,26 @@ export const GeneralProvider = ({ children }) => {
     setFirstLoad(false)
   }, [])
 
-  // Efecto para aplicar el tema al documento
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    document.documentElement.classList.toggle('dark', theme === 'dark')
-  }, [theme])
-
+  // Efectos para atributos de accesibilidad
   useEffect(() => {
     document.documentElement.style.setProperty('--font-scale', String(fontScale))
   }, [fontScale])
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-contrast', contrastMode)
-  }, [contrastMode])
+    document.documentElement.dataset.contrast = contrastModeState
+  }, [contrastModeState])
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-grayscale', grayscaleMode ? 'on' : 'off')
+    document.documentElement.dataset.grayscale = grayscaleMode ? 'on' : 'off'
   }, [grayscaleMode])
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-links', underlineLinks ? 'underline' : 'normal')
+    document.documentElement.dataset.links = underlineLinks ? 'underline' : 'normal'
   }, [underlineLinks])
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-motion', reduceMotion ? 'reduced' : 'normal')
+    document.documentElement.dataset.motion = reduceMotion ? 'reduced' : 'normal'
   }, [reduceMotion])
-
-  // Efecto para aplicar tema inicial (dark por defecto)
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('portfolio-theme')
-    if (!savedTheme) {
-      // Si no hay tema guardado, establecer dark por defecto
-      setTheme('dark')
-      localStorage.setItem('portfolio-theme', 'dark')
-    }
-  }, [])
 
   // Valor del contexto con useMemo para optimización
   const value = useMemo(
@@ -218,7 +202,7 @@ export const GeneralProvider = ({ children }) => {
       setFontScale: setFontScaleValue,
       increaseFontScale,
       decreaseFontScale,
-      contrastMode,
+      contrastMode: contrastModeState,
       setContrastMode,
       grayscaleMode,
       toggleGrayscaleMode,
@@ -245,7 +229,7 @@ export const GeneralProvider = ({ children }) => {
       setFontScaleValue,
       increaseFontScale,
       decreaseFontScale,
-      contrastMode,
+      contrastModeState,
       setContrastMode,
       grayscaleMode,
       toggleGrayscaleMode,
@@ -260,6 +244,10 @@ export const GeneralProvider = ({ children }) => {
   )
 
   return <GeneralContext.Provider value={value}>{children}</GeneralContext.Provider>
+}
+
+GeneralProvider.propTypes = {
+  children: PropTypes.node.isRequired
 }
 
 // Exportar constantes por si se necesitan externamente

@@ -8,6 +8,7 @@
 
 .carousel__swiper {
   width: 100%;
+  -webkit-user-select: none;
   user-select: none;
   cursor: grab;
   touch-action: pan-y;
@@ -35,8 +36,14 @@
   height: 100%;
   width: 100%;
   object-fit: cover;
+  -webkit-user-select: none;
   user-select: none;
-  -webkit-user-drag: none;
+}
+
+@supports (-webkit-user-drag: none) {
+  .carousel__image {
+    -webkit-user-drag: none;
+  }
 }
 
 .carousel__swiper .swiper-button-prev,
@@ -44,8 +51,8 @@
   width: rem(40px);
   height: rem(40px);
   border-radius: 50%;
-  color: $contrast-color;
-  -webkit-text-stroke: rem(1px) $dark-color;
+  color: var(--text-tertiary);
+  -webkit-text-stroke: rem(1px) var(--border-color);
 }
 
 .carousel__swiper .swiper-button-prev::after,
@@ -61,14 +68,14 @@
 .carousel__swiper .swiper-pagination-bullet {
   height: rem(10px);
   width: rem(10px);
-  background: $contrast-color-600;
+  background: var(--border-color-light);
   opacity: 1;
   border: 1px solid transparent;
 }
 
 .carousel__swiper .swiper-pagination-bullet-active {
-  background: $primary-color;
-  border-color: $dark-color-300;
+  background: var(--accent-primary);
+  border-color: var(--border-color);
 }
 
 .carousel__swiper .swiper-button-lock,

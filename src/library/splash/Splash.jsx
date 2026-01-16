@@ -1,40 +1,48 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import './splash.scss'
 
 import logo_figure from '../../assets/icon/logo.svg'
 
+const ANIMATION_TIMING = {
+  LOGO_ENTRANCE: 400,
+  TEXT_ENTRANCE: 600,
+  HOLD_TIME: 800,
+  EXIT_START: 1800,
+  EXIT_DURATION: 500,
+  TOTAL_DURATION: 2300
+}
+
 const Splash = ({ onFinish }) => {
-  const [stateClass, setStateClass] = useState('splash_screen-container')
+  const [isExiting, setIsExiting] = useState(false)
+  const timersRef = useRef([])
 
   useEffect(() => {
-    const timer_animation = setTimeout(() => {
-      setStateClass('splash_screen-container off')
-    }, 1390)
+    const exitTimer = setTimeout(() => {
+      setIsExiting(true)
+    }, ANIMATION_TIMING.EXIT_START)
 
-    const timer_splash = setTimeout(() => {
+    const finishTimer = setTimeout(() => {
       onFinish()
-    }, 1600)
+    }, ANIMATION_TIMING.TOTAL_DURATION)
+
+    timersRef.current = [exitTimer, finishTimer]
 
     return () => {
-      clearTimeout(timer_animation)
-      clearTimeout(timer_splash)
+      timersRef.current.forEach(timer => clearTimeout(timer))
     }
   }, [onFinish])
 
   return (
-    <section className={stateClass}>
-      <article className='splash_screen-animation'>
-        <article className='logo_container'>
-          <article className='logo_absolute'>
-            <figure className='logo' id='rocket'>
-              <img src={logo_figure} alt='Logo del splash' />
-            </figure>
-          </article>
-        </article>
-      </article>
-
-      <p className='splash_screen-logo-text'>Jeisson Alexander</p>
+    <section className={`splash ${isExiting ? 'exiting' : ''}`}>
+      <div className='splash_content'>
+        <div className='splash_logo-wrapper'>
+          <figure className='splash_logo'>
+            <img src={logo_figure} alt='Logo Jeisson Alexander' />
+          </figure>
+        </div>
+        <h1 className='splash_name'>Jeisson Alexander</h1>
+      </div>
     </section>
   )
 }

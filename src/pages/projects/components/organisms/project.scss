@@ -11,16 +11,16 @@
 
     text-decoration: none;
     max-width: rem(350px);
-    background-color: $dark-color;
+    background-color: var(--bg-secondary);
     border-radius: rem(25px);
-    border: 1px solid $dark-color-800;
+    border: 1px solid var(--border-color);
     transition: $transition;
 
     margin: rem(10px) 0;
     overflow: hidden;
 
     &:hover {
-      box-shadow: 0 rem(0px) (10px) rgb(26 26 26 / 38%);
+      box-shadow: var(--shadow-md);
       transform: translateY(rem(-6px));
       transition: $transition;
     }
@@ -68,31 +68,31 @@
     .projects_data {
       position: relative;
       height: 100%;
-      background-color: $dark-color;
+      background-color: var(--bg-secondary);
       padding: rem(20px);
       margin-bottom: rem(35px);
 
       .projects_category {
         font-size: $font-size-xs;
         letter-spacing: rem(3px);
-        color: $primary-color-600;
+        color: var(--accent-primary-600);
       }
 
       .projects_title {
         display: block;
         font-size: $font-size-lg;
-        color: $light-color;
+        color: var(--text-primary);
       }
 
       .projects_date {
         font-size: $font-size-xs;
-        color: $contrast-color-800;
+        color: var(--text-muted);
       }
 
       .projects_text {
         font-size: $font-size-sm;
         font-weight: $font-weight-regular;
-        color: $contrast-color;
+        color: var(--text-tertiary);
         margin-bottom: rem(20px);
       }
 
@@ -102,8 +102,8 @@
         width: 100%;
         font-size: $font-size-xs;
         font-weight: $font-weight-bold;
-        color: $contrast-color-500;
-        border: rem(1px) solid $dark-color-700;
+        color: var(--text-muted);
+        border: rem(1px) solid var(--border-color);
         border-radius: rem(10px);
 
         padding: rem(10px) rem(20px);
@@ -125,18 +125,18 @@
       .upss {
         width: 100%;
         text-align: center;
-        color: $secondary-color-300;
+        color: var(--accent-secondary-300);
         font-size: $font-size-sm;
       }
 
       a ion-icon {
-        color: $primary-color-300;
+        color: var(--accent-primary-300);
         font-size: $icon-size-lg;
         transition: $transition;
       }
 
       a ion-icon:hover {
-        color: $primary-color-400;
+        color: var(--accent-primary-400);
         transition: $transition;
       }
     }

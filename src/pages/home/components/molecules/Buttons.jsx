@@ -11,20 +11,7 @@ const Buttons = ({ btns }) => {
   const listButtons = btns.map((item, index) => {
     const isFirst = index === 0
 
-    // Configuración para cada botón según HeroUI
-    const buttonConfig = isFirst
-      ? {
-          variant: 'solid',
-          color: 'default',
-          className:
-            '!bg-portfolio-primary-300 !border-portfolio-primary-700 !text-portfolio-dark hover:!bg-portfolio-primary-400 hover:!border-portfolio-primary !shadow-lg !min-w-[140px] md:!min-w-[160px]'
-        }
-      : {
-          variant: 'bordered',
-          color: 'default',
-          className:
-            '!bg-portfolio-dark-950/85 !border-portfolio-dark-700 !text-portfolio-primary hover:!bg-portfolio-primary-400 hover:!text-portfolio-primary-950 !backdrop-blur-md !min-w-[140px] md:!min-w-[160px]'
-        }
+    const buttonConfig = isFirst ? { variant: 'solid', color: 'primary' } : { variant: 'ghost', color: 'primary' }
 
     return <BtnGeneric key={index} text={item.text} route={item.url} Icon={item.Icon} size='md' {...buttonConfig} />
   })

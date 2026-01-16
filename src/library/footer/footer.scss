@@ -8,10 +8,10 @@
   justify-content: space-between;
   width: 100%;
 
-  background-color: $dark-color-950;
-  backdrop-filter: blur(rem(7.6px));
+  background-color: var(--bg-secondary);
   -webkit-backdrop-filter: blur(rem(7.6px));
-  border-top: rem(1px) solid $dark-color;
+  backdrop-filter: blur(rem(7.6px));
+  border-top: rem(1px) solid var(--border-color);
 
   padding: rem(10px);
   padding-bottom: rem(100px);
@@ -19,7 +19,7 @@
 
   .footer_data {
     text-align: center;
-    color: $contrast-color;
+    color: var(--text-tertiary);
     font-size: $icon-size-sm;
     margin: rem(10px);
   }
@@ -41,11 +41,7 @@
   }
 
   &.theme-white {
-    background-color: $primary-color-200;
-
-    .footer_data {
-      color: $dark-color;
-    }
+    background-color: var(--bg-secondary);
   }
 }
 

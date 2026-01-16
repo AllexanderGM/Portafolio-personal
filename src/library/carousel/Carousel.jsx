@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { useMemo } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, A11y } from 'swiper/modules'
@@ -9,15 +10,12 @@ import './carousel.scss'
 
 const BREAKPOINT = 800
 const Carousel = ({ images = [], circular = true }) => {
-  const resolvedImages = useMemo(
-    () => images.map(image => new URL(`../../assets/proyects/${image}`, import.meta.url).href),
-    [images]
-  )
+  const resolvedImages = useMemo(() => images.map(image => new URL(`../../assets/proyects/${image}`, import.meta.url).href), [images])
 
   if (!resolvedImages.length) return null
 
   return (
-    <div className='carousel' role='region' aria-roledescription='carousel' aria-live='polite'>
+    <section className='carousel' aria-label='Image carousel' aria-live='polite'>
       <Swiper
         className='carousel__swiper'
         modules={[Navigation, Pagination, A11y]}
@@ -44,8 +42,13 @@ const Carousel = ({ images = [], circular = true }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </section>
   )
+}
+
+Carousel.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string),
+  circular: PropTypes.bool
 }
 
 export default Carousel

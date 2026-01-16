@@ -125,7 +125,7 @@ export class ErrorBoundary extends Component {
 
             <div className='flex gap-3'>
               <button
-                onClick={() => window.location.reload()}
+                onClick={() => globalThis.location.reload()}
                 className='flex-1 rounded-lg bg-blue-500 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-600'>
                 Recargar página
               </button>
@@ -183,7 +183,7 @@ export const ErrorProvider = ({ children }) => {
   }, [])
 
   /**
-   * Limpia todo el historial de errores
+   * Limpia el historial de errores
    */
   const clearErrorHistory = useCallback(() => {
     setErrorHistory([])

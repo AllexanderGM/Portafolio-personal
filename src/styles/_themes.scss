@@ -1,0 +1,169 @@
+@use '@styles/autoload.scss' as *;
+
+// ============================================================================
+// THEME SYSTEM - CSS Custom Properties
+// ============================================================================
+// Variables CSS que cambian según el tema usando la clase .dark de HeroUI
+
+// Transición suave para cambio de tema
+html,
+body,
+main,
+nav,
+footer,
+section,
+article,
+aside,
+header {
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+// ============================================================================
+// TEMA OSCURO (por defecto y cuando tiene clase .dark)
+// ============================================================================
+:root,
+html.dark {
+  // Colores de fondo
+  --bg-primary: hsl(var(--heroui-background));
+  --bg-secondary: hsl(var(--heroui-content1));
+  --bg-tertiary: hsl(var(--heroui-content2));
+
+  // Colores de texto
+  --text-primary: hsl(var(--heroui-foreground));
+  --text-secondary: #{$contrast-color-100};
+  --text-tertiary: #{$contrast-color-400};
+  --text-muted: #{$contrast-color-800};
+
+  // Colores de acento
+  --accent-primary: #{$primary-color};
+  --accent-primary-rgb: 213, 205, 192;
+  --accent-primary-300: #{$primary-color-300};
+  --accent-primary-400: #{$primary-color-400};
+  --accent-primary-500: #{$primary-color-500};
+  --accent-primary-600: #{$primary-color-600};
+  --accent-primary-700: #{$primary-color-700};
+  --accent-secondary: #{$secondary-color};
+  --accent-secondary-300: #{$secondary-color-300};
+  --accent-secondary-700: #{$secondary-color-700};
+
+  // Bordes y divisores
+  --border-color: #{$dark-color-700};
+  --border-color-light: #{$dark-color-600};
+
+  // Gradientes
+  --gradient-dark: linear-gradient(135deg, #{$dark-color-900} 0%, #{$dark-color-950} 50%, #{$dark-color-900} 100%);
+  --gradient-primary: #{$primary-gradient-dark};
+
+  // Sombras
+  --shadow-sm: 0 #{rem(2px)} #{rem(8px)} rgba(34, 37, 42, 0.3);
+  --shadow-md: 0 #{rem(4px)} #{rem(12px)} rgba(34, 37, 42, 0.4);
+  --shadow-lg: 0 #{rem(8px)} #{rem(24px)} rgba(34, 37, 42, 0.5);
+
+  // Overlays y scrollbars
+  --overlay-backdrop: rgba(34, 37, 42, 0.5);
+  --scrollbar-track: #{$dark-color-900};
+  --scrollbar-thumb: #{$primary-color-600};
+
+  // Superficies translúcidas
+  --surface-nav: rgba(#{$dark-color-900}, 0.85);
+  --surface-panel: rgba(#{$dark-color-900}, 0.95);
+  --surface-card: rgba(#{$dark-color-800}, 0.7);
+  --surface-control: rgba(#{$dark-color-900}, 0.9);
+
+  // Sombras específicas
+  --shadow-nav: 0 #{rem(2px)} #{rem(8px)} rgba(34, 37, 42, 0.3),
+    0 #{rem(1px)} #{rem(3px)} rgba(34, 37, 42, 0.2),
+    0 0 #{rem(1px)} rgba(var(--accent-primary-rgb), 0.1);
+  --shadow-panel: 0 #{rem(10px)} #{rem(30px)} rgba(34, 37, 42, 0.5),
+    0 #{rem(2px)} #{rem(10px)} rgba(34, 37, 42, 0.25);
+  --shadow-control: 0 #{rem(2px)} #{rem(8px)} rgba(34, 37, 42, 0.35),
+    0 0 #{rem(1px)} rgba(var(--accent-primary-rgb), 0.2);
+  --shadow-control-active: 0 #{rem(6px)} #{rem(20px)} rgba(34, 37, 42, 0.45),
+    0 0 #{rem(12px)} rgba(var(--accent-primary-rgb), 0.15);
+  --shadow-popover: 0 #{rem(3px)} #{rem(10px)} rgba(34, 37, 42, 0.4),
+    0 #{rem(1px)} #{rem(4px)} rgba(34, 37, 42, 0.3),
+    0 0 #{rem(1px)} rgba(var(--accent-primary-rgb), 0.08);
+
+  // Texto sobre acento
+  --text-on-accent: #{$dark-color};
+
+  // Filtros de imágenes
+  --img-tech-filter: brightness(0.9) contrast(1.1);
+  --img-tech-opacity: 0.85;
+}
+
+// ============================================================================
+// TEMA CLARO (cuando NO tiene clase .dark)
+// ============================================================================
+html:not(.dark) {
+  // Colores de fondo
+  --bg-primary: hsl(var(--heroui-background));
+  --bg-secondary: hsl(var(--heroui-content1));
+  --bg-tertiary: hsl(var(--heroui-content2));
+
+  // Colores de texto
+  --text-primary: hsl(var(--heroui-foreground));
+  --text-secondary: #{$dark-color-800};
+  --text-tertiary: #{$dark-color-600};
+  --text-muted: #{$dark-color-400};
+
+  // Colores de acento
+  --accent-primary: #{$primary-color-700};
+  --accent-primary-rgb: 122, 98, 84;
+  --accent-primary-300: #{$primary-color-300};
+  --accent-primary-400: #{$primary-color-400};
+  --accent-primary-500: #{$primary-color-500};
+  --accent-primary-600: #{$primary-color-600};
+  --accent-primary-700: #{$primary-color-700};
+  --accent-secondary: #{$secondary-color};
+  --accent-secondary-300: #{$secondary-color-300};
+  --accent-secondary-700: #{$secondary-color-700};
+
+  // Bordes y divisores
+  --border-color: #{$light-color-300};
+  --border-color-light: #{$light-color-200};
+
+  // Gradientes
+  --gradient-dark: linear-gradient(135deg, #{$light-color-50} 0%, #{$light-color-100} 50%, #{$light-color-50} 100%);
+  --gradient-primary: #{$primary-gradient};
+
+  // Sombras
+  --shadow-sm: 0 #{rem(2px)} #{rem(8px)} rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 #{rem(4px)} #{rem(12px)} rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 #{rem(8px)} #{rem(24px)} rgba(0, 0, 0, 0.16);
+
+  // Overlays y scrollbars
+  --overlay-backdrop: rgba(47, 50, 56, 0.25);
+  --scrollbar-track: #{$light-color-200};
+  --scrollbar-thumb: #{$primary-color-700};
+
+  // Superficies translúcidas
+  --surface-nav: #{$light-color};
+  --surface-panel: #{$light-color};
+  --surface-card: #{$light-color-100};
+  --surface-control: #{$light-color};
+
+  // Sombras específicas
+  --shadow-nav: 0 #{rem(2px)} #{rem(8px)} rgba(0, 0, 0, 0.12),
+    0 #{rem(1px)} #{rem(3px)} rgba(0, 0, 0, 0.08),
+    0 0 #{rem(1px)} rgba(var(--accent-primary-rgb), 0.16);
+  --shadow-panel: 0 #{rem(10px)} #{rem(30px)} rgba(0, 0, 0, 0.18),
+    0 #{rem(2px)} #{rem(10px)} rgba(0, 0, 0, 0.12);
+  --shadow-control: 0 #{rem(2px)} #{rem(8px)} rgba(0, 0, 0, 0.16),
+    0 0 #{rem(1px)} rgba(var(--accent-primary-rgb), 0.2);
+  --shadow-control-active: 0 #{rem(6px)} #{rem(20px)} rgba(0, 0, 0, 0.2),
+    0 0 #{rem(12px)} rgba(var(--accent-primary-rgb), 0.18);
+  --shadow-popover: 0 #{rem(3px)} #{rem(10px)} rgba(0, 0, 0, 0.16),
+    0 #{rem(1px)} #{rem(4px)} rgba(0, 0, 0, 0.12),
+    0 0 #{rem(1px)} rgba(var(--accent-primary-rgb), 0.12);
+
+  // Texto sobre acento
+  --text-on-accent: #{$light-color};
+
+  // Filtros de imágenes
+  --img-tech-filter: brightness(0.7) contrast(1.2) saturate(0.9);
+  --img-tech-opacity: 0.75;
+}

@@ -1,9 +1,10 @@
 @use '@styles/autoload.scss' as *;
 
-// components
+// Components
 @use '../organisms/bannerImage.scss' as *;
-@use '../organisms/bannerText.scss' as *;
 @use '../organisms/technology.scss' as *;
+@use '../molecules/heroText.scss' as *;
+@use '../molecules/buttons.scss' as *;
 
 @mixin banner {
   .banner {
@@ -15,43 +16,72 @@
 
     width: 100%;
     height: 100%;
-    min-height: calc(100vh - rem(73px));
-    color: $light-color;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    background-image: var(--gradient-dark);
     background-repeat: no-repeat;
     background-position: right top;
-    background-size: 45%;
-    background: $dark-color;
-    background: $dark-gradient-dark;
 
-    padding: rem(60px) rem(0px);
+    padding: rem(30px) rem(0px);
 
     .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto auto auto;
+      gap: rem(24px) rem(16px);
+      align-items: start;
+
       max-width: rem(1510px);
       width: 100%;
       height: 100%;
 
-      padding: 0;
+      padding: 0 rem(20px);
       z-index: 2;
 
+      // ======================================================================
+      // GRID MOBILE: 1 columna
+      // Fila 1: Logo
+      // Fila 2: HeroText
+      // Fila 3: Image
+      // Fila 4: Buttons
+      // ======================================================================
+
       & > a {
-        position: absolute;
-        top: rem(30px);
-        left: rem(30px);
+        grid-column: 1 / -1;
+        grid-row: 1;
+        align-self: start;
+        justify-self: start;
 
         .banner_logo {
-          width: rem(40px);
-          height: rem(40px);
+          width: rem(36px);
+          height: rem(36px);
           border-radius: 50%;
-          border: rem(1px) solid $primary-color-700;
+          border: rem(1px) solid var(--accent-primary);
         }
       }
 
+      .hero-text {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: 100%;
+      }
+
+      .banner_image {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        width: 100%;
+      }
+
+      .buttons {
+        grid-column: 1 / -1;
+        grid-row: 4;
+        width: 100%;
+      }
+
+      // Incluir estilos de componentes
       @include bannerImage;
-      @include bannerText;
+      @include heroText;
+      @include buttons;
     }
 
     @include technology;
@@ -62,10 +92,60 @@
       padding: rem(50px) rem(0px);
 
       .container {
-        align-items: stretch;
-        justify-content: space-between;
-        flex-direction: row;
-        padding: rem(50px) rem(85px);
+        // Grid de 2 columnas en desktop
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto auto;
+        column-gap: rem(100px);
+        row-gap: rem(50px);
+        align-items: start;
+        padding: rem(50px);
+        padding-left: rem(90px);
+
+        // ====================================================================
+        // GRID DESKTOP: 2 columnas
+        // Columna 1 (izquierda): Title → Greeting → Buttons
+        // Columna 2 (derecha): Image (ocupa las 3 filas)
+        // Logo: position absolute
+        // ====================================================================
+
+        & > a {
+          position: absolute;
+          top: rem(20px);
+          left: rem(20px);
+
+          .banner_logo {
+            width: rem(40px);
+            height: rem(40px);
+            border: rem(1px) solid var(--accent-primary);
+          }
+        }
+
+        .title {
+          grid-column: 1;
+          grid-row: 1;
+          width: 100%;
+        }
+
+        .greeting {
+          grid-column: 1;
+          grid-row: 2;
+          width: 100%;
+          text-align: left;
+        }
+
+        .buttons {
+          grid-column: 1;
+          grid-row: 3;
+          width: 100%;
+        }
+
+        // Columna derecha (imagen) - ocupa las 3 filas
+        .banner_image {
+          grid-column: 2;
+          grid-row: 1 / 4;
+          width: auto;
+        }
       }
     }
   }

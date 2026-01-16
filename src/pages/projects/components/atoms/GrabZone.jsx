@@ -39,10 +39,10 @@ const useMousePosition = () => {
 
   useEffect(() => {
     const setFromEvent = e => setPosition({ x: e.clientX, y: e.clientY })
-    window.addEventListener('mousemove', setFromEvent)
+    globalThis.addEventListener('mousemove', setFromEvent)
 
     return () => {
-      window.removeEventListener('mousemove', setFromEvent)
+      globalThis.removeEventListener('mousemove', setFromEvent)
     }
   }, [])
 
@@ -79,7 +79,7 @@ const Grabber = ({ state, gameOver, extended, onCursorGrabbed }) => {
   const angle = gameOver ? 0 : Math.atan2(mousePos.x - x, -(mousePos.y - y)) * (180 / Math.PI)
 
   // Ensure value is within acceptable range (-75 to 75)
-  const rotation = Math.min(Math.max(parseInt(angle), -79), 79)
+  const rotation = Math.min(Math.max(Number.parseInt(angle, 10), -79), 79)
 
   const grabberClass = `grabber grabber--${state} ${extended && 'grabber--extended'}`
   const wrapperStyle = { transform: `rotate(${rotation}deg)` }
@@ -89,10 +89,10 @@ const Grabber = ({ state, gameOver, extended, onCursorGrabbed }) => {
   return (
     <div className={grabberClass}>
       <div className='grabber__body'></div>
-      <img className='grabber__face' src={ASSETS.head} />
+      <img className='grabber__face' src={ASSETS.head} alt='Grabber face' />
       <div className='grabber__arm-wrapper' ref={ref} style={wrapperStyle}>
         <div className='grabber__arm'>
-          <img className='grabber__hand' src={handImageSrc} onMouseEnter={onCursorGrabbed} />
+          <img className='grabber__hand' src={handImageSrc} alt='Grabber hand' onMouseEnter={onCursorGrabbed} />
         </div>
       </div>
     </div>
@@ -109,7 +109,7 @@ Grabber.propTypes = {
 const GrabZone = ({ cursorGrabbed, gameOver, onCursorGrabbed }) => {
   const [outerRef, outerHovered] = useHover()
   const [innerRef, innerHovered] = useHover()
-  const [isExtended, setExtendedArm] = useState(false)
+  const [isExtended, setIsExtended] = useState(false)
 
   let state = 'waiting'
   if (outerHovered) {
@@ -129,12 +129,12 @@ const GrabZone = ({ cursorGrabbed, gameOver, onCursorGrabbed }) => {
     let timer
     if (state === 'grabbing') {
       timer = setTimeout(() => {
-        setExtendedArm(true)
+        setIsExtended(true)
         timer = null
       }, 2000)
     }
     return () => {
-      setExtendedArm(false)
+      setIsExtended(false)
       if (timer) {
         clearTimeout(timer)
       }

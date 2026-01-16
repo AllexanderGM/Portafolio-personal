@@ -1,4 +1,5 @@
 import { createContext, useMemo } from 'react'
+import PropTypes from 'prop-types'
 import toast, { Toaster } from 'react-hot-toast'
 
 // Crear contexto
@@ -162,4 +163,8 @@ export const ToastProvider = ({ children }) => {
       />
     </ToastContext.Provider>
   )
+}
+
+ToastProvider.propTypes = {
+  children: PropTypes.node.isRequired
 }

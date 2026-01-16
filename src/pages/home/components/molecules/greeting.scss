@@ -1,57 +1,91 @@
 @use '@styles/autoload.scss' as *;
 @mixin greeting {
-  h2:first-of-type {
+  .greeting {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    font-size: rem(26px);
+    gap: rem(6px);
+    text-align: center;
+    color: var(--text-primary);
+  }
+
+  .greeting_eyebrow {
+    font-size: rem(11px);
+    font-weight: $font-weight-medium;
+    letter-spacing: rem(1.6px);
+    text-transform: uppercase;
+    color: rgba(var(--accent-primary-rgb), 0.7);
+  }
+
+  .greeting_title {
+    margin: 0;
+    font-size: rem(18px);
+    font-weight: $font-weight-regular;
+    color: var(--text-secondary);
+    letter-spacing: rem(0.2px);
+    line-height: 1.35;
+  }
+
+  .greeting_dynamic {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: rem(6px);
     font-weight: $font-weight-bold;
-    color: $contrast-color-100;
-    letter-spacing: rem(0.8px);
-    line-height: 1;
+    color: var(--text-primary);
+    line-height: 1.1;
+  }
 
-    span {
-      display: inline;
+  .greeting_prefix {
+    font-size: rem(16px);
+    font-weight: $font-weight-medium;
+    color: var(--text-secondary);
+    letter-spacing: rem(0.25px);
+  }
 
-      color: $dark-color-950;
-      border-radius: 0;
-      border: none;
-      font-size: rem(26px);
-      background: transparent;
-      border-right: rem(2px) solid $contrast-color-700;
-      border: none;
+  .greeting_word {
+    display: inline-block;
+    color: var(--accent-primary);
+    padding-right: rem(6px);
+    border-right: rem(2px) solid var(--text-muted);
+    font-size: rem(28px);
+    letter-spacing: rem(0.35px);
 
-      padding: 0;
-      margin-bottom: rem(16px);
-    }
-
-    .txt-rotate {
-      display: block;
-      height: rem(70px);
-      padding-top: rem(10px);
-
-      & > .wrap {
-        color: $primary-color;
-        padding-right: rem(5px);
-        border-right: rem(2px) solid $contrast-color-700;
-
-        &.true {
-          border-right: rem(2px) solid transparent;
-        }
-
-        &.false {
-          border-right: rem(2px) solid $contrast-color-700;
-        }
-      }
+    &.is-caret-hidden {
+      border-right-color: transparent;
     }
   }
 
   @include responsive {
-    h2:first-of-type {
+    .greeting {
+      align-items: flex-start;
       text-align: left;
-      font-size: rem(42px);
+      gap: rem(10px);
+    }
 
-      span {
-        font-size: rem(42px);
-      }
+    .greeting_eyebrow {
+      font-size: rem(12px);
+      letter-spacing: rem(1.9px);
+    }
+
+    .greeting_title {
+      font-size: rem(22px);
+      letter-spacing: rem(0.3px);
+    }
+
+    .greeting_dynamic {
+      gap: rem(8px);
+      line-height: 1.05;
+    }
+
+    .greeting_prefix {
+      font-size: rem(20px);
+      letter-spacing: rem(0.3px);
+    }
+
+    .greeting_word {
+      font-size: rem(42px);
+      letter-spacing: rem(0.45px);
     }
   }
 }

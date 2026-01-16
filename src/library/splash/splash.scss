@@ -1,167 +1,231 @@
 @use '@styles/autoload.scss' as *;
 
-.splash_screen {
-  &-container {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+// ============================================================================
+// CONFIGURACIÓN
+// ============================================================================
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+$splash-logo-size: rem(140px);
+$splash-logo-border-width: rem(2px);
 
-    z-index: 2000;
-    background: $dark-gradient-dark;
+// Timings
+$logo-entrance-duration: 400ms;
+$logo-entrance-delay: 100ms;
+$name-entrance-duration: 600ms;
+$name-entrance-delay: 400ms;
+$exit-duration: 500ms;
 
-    animation: fadeIm 250ms ease;
-    animation-delay: 1300ms;
+// Easing curves
+$entrance-ease: cubic-bezier(0.34, 1.56, 0.64, 1); // Elastic out
+$exit-ease: cubic-bezier(0.4, 0, 0.6, 1); // Smooth out
 
-    &.off {
-      display: none;
-    }
-  }
+// ============================================================================
+// SPLASH CONTAINER
+// ============================================================================
 
-  &-animation {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    align-content: stretch;
-    overflow: hidden;
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
 
-    .logo_container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: rem(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-      width: 100%;
-      max-width: rem(400px);
-      max-height: rem(400px);
+  background: var(--gradient-dark);
 
-      opacity: 0;
-      animation-delay: 0.25s;
-      animation-name: rocketAnimation;
-      animation-duration: 0.25s;
-      animation-iteration-count: 1;
-      animation-fill-mode: forwards;
-      -webkit-animation-delay: 0.25s;
-      -webkit-animation-name: rocketAnimation;
-      -webkit-animation-duration: 0.25s;
-      -webkit-animation-iteration-count: 1;
-      -webkit-animation-fill-mode: forwards;
+  // Optimización de performance
+  will-change: opacity, transform;
+  transform: translate3d(0, 0, 0);
 
-      .logo_absolute {
-        width: rem(140px);
-        height: rem(140px);
-        max-width: rem(180px);
-        max-height: rem(180px);
-        border: 1px solid $primary-color-700;
-        border-radius: 50%;
+  // Estado inicial visible
+  opacity: 1;
+  pointer-events: all;
 
-        figure {
-          width: 100%;
-          height: 100%;
-          max-width: rem(180px);
-          max-height: rem(180px);
-          padding: 0;
-          margin: 0;
-        }
-      }
-    }
-  }
+  // Transición de salida
+  transition:
+    opacity $exit-duration $exit-ease,
+    transform $exit-duration $exit-ease;
 
-  &-logo-text {
-    position: relative;
-    top: 0;
-    text-align: center;
-    color: $contrast-color;
-    font-size: $font-size-xxl;
-    animation-name: logoText;
-    animation-duration: 1s;
-    margin-top: rem(40px);
-  }
-}
-
-@keyframes fadeIm {
-  0% {
-    opacity: 100%;
-  }
-
-  100% {
-    opacity: 0%;
-  }
-}
-
-@keyframes circleAnimation {
-  1% {
-    visibility: visible;
-    opacity: 1;
-  }
-  20% {
-    opacity: 1;
-  }
-  80% {
-    transform: scale(0.02) translate(-2500%, -2500%);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(0.02) translate(-2500%, -2500%);
+  // Estado de salida
+  &.exiting {
     opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.96);
+    pointer-events: none;
   }
 }
 
-@keyframes rocketAnimation {
+// ============================================================================
+// CONTENIDO
+// ============================================================================
+
+.splash_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem(40px);
+
+  // Optimización
+  transform: translate3d(0, 0, 0);
+}
+
+// ============================================================================
+// LOGO
+// ============================================================================
+
+.splash_logo-wrapper {
+  position: relative;
+  width: $splash-logo-size;
+  height: $splash-logo-size;
+
+  // Border animado
+  &::before {
+    content: '';
+    position: absolute;
+    inset: rem(-8px);
+    border: $splash-logo-border-width solid var(--accent-primary);
+    border-radius: 50%;
+    opacity: 0.3;
+
+    // Animación de entrada
+    animation: logo-border-entrance $logo-entrance-duration $entrance-ease $logo-entrance-delay both;
+
+    // Optimización
+    will-change: transform, opacity;
+    transform: translate3d(0, 0, 0);
+  }
+
+  // Glow effect
+  &::after {
+    content: '';
+    position: absolute;
+    inset: rem(-12px);
+    background: radial-gradient(circle, rgba(var(--accent-primary-rgb), 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+
+    // Animación de entrada con delay
+    animation: logo-glow-entrance $logo-entrance-duration $entrance-ease calc($logo-entrance-delay + 100ms) both;
+
+    // Optimización
+    will-change: transform, opacity;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.splash_logo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Animación de entrada
+  animation: logo-entrance $logo-entrance-duration $entrance-ease $logo-entrance-delay both;
+
+  // Optimización
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 rem(4px) rem(12px) rgba(var(--accent-primary-rgb), 0.3));
+  }
+}
+
+// ============================================================================
+// NOMBRE
+// ============================================================================
+
+.splash_name {
+  margin: 0;
+  padding: 0;
+
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-medium;
+  color: var(--text-primary);
+  text-align: center;
+  letter-spacing: rem(1px);
+
+  // Animación de entrada
+  animation: name-entrance $name-entrance-duration $entrance-ease $name-entrance-delay both;
+
+  // Optimización
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+
+  // Sutil glow en el texto
+  text-shadow: 0 0 rem(20px) rgba(var(--accent-primary-rgb), 0.2);
+}
+
+// ============================================================================
+// KEYFRAMES
+// ============================================================================
+
+// Logo principal
+@keyframes logo-entrance {
   0% {
     opacity: 0;
-    left: -7%;
-    top: 20%;
+    transform: translate3d(0, rem(30px), 0) scale(0.8);
   }
   100% {
     opacity: 1;
-    left: 0;
-    top: 0;
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
-@keyframes logoAnimation {
+// Border del logo
+@keyframes logo-border-entrance {
   0% {
     opacity: 0;
-    top: 15%;
+    transform: translate3d(0, 0, 0) scale(0.5);
   }
   100% {
-    left: 0;
-    top: 0;
+    opacity: 0.3;
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
-@keyframes logoText {
+// Glow del logo
+@keyframes logo-glow-entrance {
   0% {
     opacity: 0;
-    top: 2.5%;
-  }
-  60% {
-    opacity: 0;
-    top: 2.5%;
+    transform: translate3d(0, 0, 0) scale(0.7);
   }
   100% {
     opacity: 1;
-    top: 0;
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
-@keyframes logoLoadingAnimation {
+// Nombre
+@keyframes name-entrance {
   0% {
-    transform: rotateY(0deg);
-  }
-  15% {
-    transform: rotateY(360deg);
+    opacity: 0;
+    transform: translate3d(0, rem(20px), 0);
   }
   100% {
-    transform: rotateY(360deg);
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
+
+@include responsive {
+  .splash_logo-wrapper {
+    width: rem(120px);
+    height: rem(120px);
+  }
+
+  .splash_name {
+    font-size: $font-size-xl;
   }
 }

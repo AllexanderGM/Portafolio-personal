@@ -9,6 +9,7 @@ const Contact = lazy(() => import('../pages/contact/Contact.jsx'))
 const NotFound = lazy(() => import('../pages/not_found/NotFound.jsx'))
 
 import LoadingPage from '../library/loadingPage/LoadingPage.jsx'
+import AppLayout from '../layouts/AppLayout.jsx'
 
 const Routes = ({ route }) => {
   const location = useLocation()
@@ -27,11 +28,13 @@ const Routes = ({ route }) => {
       {showLoad && <LoadingPage onFinish={handleLoadFinish} />}
       <Suspense fallback={<></>}>
         <RoutesReact>
-          <Route path={route.home} element={<Home />} />
-          <Route path={route.about} element={<Navigate to={`${route.home}#about`} replace />} />
-          <Route path={route.projects} element={<Projects />} />
-          <Route path={route.contact} element={<Contact />} />
-          <Route path={route.notFound} element={<NotFound />} />
+          <Route element={<AppLayout />}>
+            <Route path={route.home} element={<Home />} />
+            <Route path={route.about} element={<Navigate to={`${route.home}#about`} replace />} />
+            <Route path={route.projects} element={<Projects />} />
+            <Route path={route.contact} element={<Contact />} />
+            <Route path={route.notFound} element={<NotFound />} />
+          </Route>
         </RoutesReact>
       </Suspense>
     </>

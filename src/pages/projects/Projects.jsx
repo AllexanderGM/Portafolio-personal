@@ -10,8 +10,6 @@ import ScrollAnimationWrapper from '../../library/utils/ScrollAnimationWrapper'
 import getScrollAnimation from '../../library/utils/GetScrollAnimation.jsx'
 import { SEO } from '@context/SEOContext'
 
-import Nav from '../../library/nav/Nav.jsx'
-import Footer from '../../library/footer/Footer.jsx'
 import CategoriesComponent from './components/templates/CategoriesComponent.jsx'
 import Project from './components/organisms/Project.jsx'
 
@@ -55,7 +53,6 @@ const Projects = () => {
         type='website'
         breadcrumbs={breadcrumbs}
       />
-      <Nav classPage='header_projects' />
       <BtnUp />
       <BtnScroll href='#id_4' />
       <main className='main_projects'>
@@ -82,7 +79,6 @@ const Projects = () => {
           </article>
         </section>
       </main>
-      <Footer />
     </ProjectsProvider>
   )
 }

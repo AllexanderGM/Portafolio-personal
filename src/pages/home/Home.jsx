@@ -2,10 +2,8 @@ import { Code, Phone } from 'lucide-react'
 
 import './home.scss'
 
-import Nav from '../../library/nav/Nav.jsx'
-import Footer from '../../library/footer/Footer.jsx'
 import Banner from './components/templates/Banner'
-import Skills from '../about/components/templates/Skills.jsx'
+import AboutSection from './components/templates/AboutSection.jsx'
 import { SEO as Seo } from '@context/SEOContext'
 
 import { useGeneral } from '@hooks'
@@ -15,7 +13,6 @@ import imgProfile from '../../assets/pages/home/me.png'
 import imgArrow from '../../assets/icon/arrow-right.svg'
 import data from './data.json'
 import seoData from '../../_data/seo.json'
-import { ABOUT_ABILITIES, ABOUT_EXPERIENCES, ABOUT_PROFILE } from '../about/aboutSectionData.js'
 
 const Home = () => {
   const { route, social } = useGeneral()
@@ -33,16 +30,10 @@ const Home = () => {
         url={seoData.home.canonical}
         type='website'
       />
-      <Nav classPage={'header_home'} />
       <main className='main_home'>
         <Banner
           text={{
-            title: ['Jeisson Alexander Gavilán Murcia', 'Software Developer'],
-            greeting: {
-              timer: 100,
-              greeting: '¡Hola a todos!',
-              profession: ['Les doy la bienvenida a mi portafolio web']
-            },
+            hero: data.banner.hero,
             btns: [
               { text: 'Proyectos', url: route.projects, Icon: Code },
               { text: 'Contacto', url: route.contact, Icon: Phone }
@@ -62,18 +53,17 @@ const Home = () => {
             list: data.technologies
           }}
         />
-        <Skills
-          ability={ABOUT_ABILITIES}
+        <AboutSection
+          abilities={data.about.abilities}
           arrow={imgArrow}
-          profileData={ABOUT_PROFILE}
-          experiences={ABOUT_EXPERIENCES}
+          profileData={data.about.profile}
+          experiences={data.about.experiences}
           btnlink={{
             cvUrl: social.cv,
             text: 'Hoja de vida'
           }}
         />
       </main>
-      <Footer />
     </>
   )
 }

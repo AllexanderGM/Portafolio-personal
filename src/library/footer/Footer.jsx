@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import './footer.scss'
 
 const Footer = ({ theme }) => (
@@ -5,5 +6,9 @@ const Footer = ({ theme }) => (
     <p className='footer_data'> © 2024 Alexander Gavilán. Todos los derechos reservados. </p>
   </footer>
 )
+
+Footer.propTypes = {
+  theme: PropTypes.string
+}
 
 export default Footer

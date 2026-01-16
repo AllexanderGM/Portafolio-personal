@@ -1,0 +1,13 @@
+@use '@styles/autoload.scss' as *;
+@use '../atoms/breadcrumbItem.scss' as *;
+
+@mixin breadcrumbList {
+  .breadcrumb_list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style: none;
+  }
+
+  @include breadcrumbItem;
+}

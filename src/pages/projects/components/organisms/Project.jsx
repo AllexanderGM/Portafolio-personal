@@ -1,12 +1,9 @@
-// Dependences
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 
-// Components
 import GrabZone from '../atoms/GrabZone'
 import ModalProject from '../../../../library/modalProject/ModalProject'
 
-// Hooks
 import { useProjects } from '@hooks'
 
 const Project = ({ id }) => {
@@ -21,7 +18,7 @@ const Project = ({ id }) => {
   const img = new URL(`../../../../assets/proyects/${projectData.img}`, import.meta.url).href
 
   const formattedCategories = projectData.category.map((item, index) => {
-    return index !== projectData.category.length - 1 ? `${item} - ` : item
+    return index === projectData.category.length - 1 ? item : `${item} - `
   })
 
   const handleCursorGrabbed = () => {
@@ -36,7 +33,7 @@ const Project = ({ id }) => {
       {projectData.link.length < 1 ? (
         <div className='container_game'>
           <figure className='projects_img'>
-            <img src={img} alt='image project' />
+            <img src={img} alt={projectData.title || 'Project preview'} />
           </figure>
 
           <div className='grab-zone-wrapper'>
@@ -45,7 +42,7 @@ const Project = ({ id }) => {
         </div>
       ) : (
         <figure className='projects_img'>
-          <img src={img} alt='image project' />
+          <img src={img} alt={projectData.title || 'Project preview'} />
         </figure>
       )}
 

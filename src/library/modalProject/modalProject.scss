@@ -9,15 +9,15 @@
   align-items: center;
   justify-content: center;
 
-  color: $primary-color;
+  color: var(--accent-primary);
   font-size: $font-size-xl;
   min-width: auto;
   width: auto;
   height: rem(40px);
   border-radius: rem(25px);
-  background-color: $dark-color;
-  box-shadow: $box-shadow-hover;
-  border: 1px solid $contrast-color-700;
+  background-color: var(--bg-secondary);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
 
   padding: 10px 20px;
   margin: 0;
@@ -28,13 +28,13 @@
   }
 
   &:hover {
-    background-color: $dark-color;
+    background-color: var(--bg-secondary);
   }
 }
 
 .modal_personalized {
-  border: 1px solid $dark-color-800;
-  background-color: $dark-color;
+  border: 1px solid var(--border-color);
+  background-color: var(--surface-panel);
   border-radius: rem(20px);
   padding-top: rem(40px);
   width: 100%;
@@ -74,10 +74,10 @@
         }
 
         .slide {
-          border: rem(1px) solid $primary-color-700;
+          border: rem(1px) solid var(--accent-primary-700);
           border-radius: rem(50px);
           font-size: $font-size-md;
-          color: $contrast-color-800;
+          color: var(--text-muted);
           padding: rem(5px) rem(15px);
         }
       }
@@ -99,7 +99,7 @@
         }
 
         h4 {
-          color: $primary-color;
+          color: var(--accent-primary);
           font-size: $font-size-lg;
           margin-bottom: rem(10px);
         }
@@ -108,7 +108,7 @@
           width: 100%;
           min-width: rem(100px);
           height: rem(2px);
-          background-color: $dark-color-700;
+          background-color: var(--border-color);
         }
 
         .links {
@@ -122,7 +122,7 @@
           .upss {
             width: 100%;
             text-align: center;
-            color: $secondary-color;
+            color: var(--accent-secondary);
             font-size: $font-size-sm;
           }
 
@@ -135,9 +135,9 @@
 
             font-size: $icon-size-sm;
             font-weight: $font-weight-bold;
-            color: $contrast-color;
+            color: var(--text-secondary);
             background-color: transparent;
-            border: rem(1px) solid var(--neutral);
+            border: rem(1px) solid var(--border-color);
             border-radius: rem(15px);
 
             padding: rem(10px) 0;
@@ -147,18 +147,18 @@
             /* ---------------- */
 
             &:hover {
-              background-color: $contrast-color-100;
-              color: $dark-color;
+              background-color: rgba(var(--accent-primary-rgb), 0.12);
+              color: var(--text-primary);
               transition: $transition;
             }
 
             &:hover ion-icon {
-              color: $primary-color-500;
+              color: var(--accent-primary-500);
               transition: $transition;
             }
 
             ion-icon {
-              color: $contrast-color;
+              color: var(--text-secondary);
               font-size: $icon-size-md;
               transition: $transition;
             }
@@ -172,7 +172,7 @@
 
           li {
             font-size: $icon-size-sm;
-            color: $contrast-color;
+            color: var(--text-secondary);
           }
         }
 
@@ -182,7 +182,7 @@
 
           font-size: $font-size-sm;
           font-weight: $font-weight-regular;
-          color: $contrast-color;
+          color: var(--text-secondary);
           max-width: 100%;
         }
       }
@@ -218,7 +218,7 @@
           min-width: auto;
           width: auto;
           background-color: transparent;
-          border: 1px solid $contrast-color-600;
+          border: 1px solid var(--border-color-light);
           border-radius: rem(25px);
           padding: rem(10px) rem(15px);
           transition: 0.3s ease-in-out;

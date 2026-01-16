@@ -15,7 +15,8 @@
       "WebFetch(domain:www.heroui.com)",
       "Bash(npm run build:*)",
       "Bash(npm uninstall:*)",
-      "Bash(node scripts/generate-scss-tokens.mjs:*)"
+      "Bash(node scripts/generate-scss-tokens.mjs:*)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }

@@ -1,0 +1,149 @@
+@use '@styles/autoload.scss' as *;
+
+@mixin heroText {
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: var(--text-primary);
+  }
+
+  // ============================================================================
+  // EYEBROW - Introduce, pequeño y sutil
+  // ============================================================================
+  .hero-text_eyebrow {
+    font-size: rem(11px);
+    font-weight: $font-weight-medium;
+    letter-spacing: rem(2px);
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    opacity: 0.85;
+    margin-bottom: rem(12px);
+  }
+
+  // ============================================================================
+  // NOMBRE - El protagonista, grande y claro
+  // ============================================================================
+  .hero-text_name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(2px);
+    margin: 0;
+    font-size: rem(28px);
+    font-weight: $font-weight-bold;
+    line-height: 1.15;
+    color: var(--text-primary);
+    letter-spacing: rem(-0.5px);
+  }
+
+  .hero-text_name-line {
+    display: block;
+  }
+
+  // ============================================================================
+  // ROLE - Subtítulo, complementa el nombre
+  // ============================================================================
+  .hero-text_role {
+    margin: rem(6px) 0 0;
+    font-size: rem(14px);
+    font-weight: $font-weight-regular;
+    color: var(--text-muted);
+    letter-spacing: rem(0.5px);
+  }
+
+  // ============================================================================
+  // VALUE PROPOSITION - El mensaje, separado visualmente
+  // ============================================================================
+  .hero-text_value {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(6px);
+    margin-top: rem(24px);
+    padding-top: rem(20px);
+    border-top: rem(1px) solid rgba(var(--accent-primary-rgb), 0.15);
+    max-width: rem(340px);
+  }
+
+  .hero-text_description {
+    margin: 0;
+    font-size: rem(15px);
+    font-weight: $font-weight-regular;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .hero-text_typing {
+    margin: 0;
+    font-size: rem(14px);
+    line-height: 1.4;
+    color: var(--text-tertiary);
+  }
+
+  .hero-text_prefix {
+    font-weight: $font-weight-regular;
+  }
+
+  .hero-text_word {
+    display: inline;
+    font-weight: $font-weight-medium;
+    color: var(--accent-primary);
+    padding-right: rem(2px);
+    border-right: rem(2px) solid var(--accent-primary);
+
+    &.caret-hidden {
+      border-right-color: transparent;
+    }
+  }
+
+  // ============================================================================
+  // RESPONSIVE - Desktop
+  // ============================================================================
+  @include responsive {
+    .hero-text {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .hero-text_eyebrow {
+      font-size: rem(12px);
+      letter-spacing: rem(2.5px);
+      margin-bottom: rem(16px);
+    }
+
+    .hero-text_name {
+      align-items: flex-start;
+      gap: rem(4px);
+      font-size: rem(52px);
+      letter-spacing: rem(-1px);
+    }
+
+    .hero-text_role {
+      margin-top: rem(10px);
+      font-size: rem(18px);
+      letter-spacing: rem(0.8px);
+    }
+
+    .hero-text_value {
+      align-items: flex-start;
+      margin-top: rem(36px);
+      padding-top: rem(28px);
+      max-width: rem(480px);
+    }
+
+    .hero-text_description {
+      font-size: rem(18px);
+    }
+
+    .hero-text_typing {
+      font-size: rem(16px);
+    }
+
+    .hero-text_word {
+      font-size: rem(17px);
+      padding-right: rem(3px);
+    }
+  }
+}

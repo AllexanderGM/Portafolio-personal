@@ -9,21 +9,21 @@
 
   width: 100%;
   min-height: 100vh;
-  background: $primary-gradient;
+  background: var(--gradient-primary);
 
   padding: rem(40px);
   padding-bottom: rem(100px);
 
   h4 {
     text-align: center;
-    color: $secondary-color-700;
+    color: var(--accent-secondary-700);
     font-size: $font-size-xl;
     font-weight: 700;
   }
 
   p {
     text-align: center;
-    color: $contrast-color-900;
+    color: var(--text-tertiary);
     font-size: $font-size-sm;
   }
 

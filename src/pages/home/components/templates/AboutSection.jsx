@@ -2,41 +2,45 @@
 import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import PropTypes from 'prop-types'
+import { Users, Heart, Layers, User } from 'lucide-react'
 
 import ScrollAnimationWrapper from '../../../../library/utils/ScrollAnimationWrapper'
 import getScrollAnimation from '../../../../library/utils/GetScrollAnimation.jsx'
+import ParticlesBackground from '@library/particles/ParticlesBackground'
 
 // Components
-import SkillsAboutContainer from '../organisms/SkillsAboutContainer'
+import AboutContent from '../organisms/AboutContent'
 import BtnGeneric from '../../../../library/btns/BtnGeneric'
 
 // Principal component
-const Skills = ({ ability, arrow, btnlink, profileData, experiences }) => {
+const ABILITY_ICONS = [Users, Heart, Layers, User]
+
+const AboutSection = ({ abilities, arrow, btnlink, profileData, experiences }) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), [])
+  const abilityItems = abilities.map((text, index) => ({
+    Icon: ABILITY_ICONS[index],
+    text
+  }))
 
   return (
-    <ScrollAnimationWrapper className='skills' id='about'>
+    <ScrollAnimationWrapper className='about-section' id='about'>
+      <ParticlesBackground />
       <article className='container'>
         <motion.h2 variants={scrollAnimation}>Sobre mí</motion.h2>
 
-        <SkillsAboutContainer
-          ability={ability}
-          arrow={arrow}
-          profileData={profileData}
-          experiences={experiences}
-        />
+        <AboutContent ability={abilityItems} arrow={arrow} profileData={profileData} experiences={experiences} />
         <BtnGeneric text={btnlink.text} url={btnlink.cvUrl} variant='shadow' />
       </article>
     </ScrollAnimationWrapper>
   )
 }
 
-Skills.propTypes = {
-  ability: PropTypes.array.isRequired,
+AboutSection.propTypes = {
+  abilities: PropTypes.arrayOf(PropTypes.string).isRequired,
   arrow: PropTypes.string.isRequired,
   btnlink: PropTypes.object.isRequired,
   profileData: PropTypes.object.isRequired,
   experiences: PropTypes.array.isRequired
 }
 
-export default Skills
+export default AboutSection

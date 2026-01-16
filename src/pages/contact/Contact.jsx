@@ -7,7 +7,6 @@ import ScrollAnimationWrapper from '../../library/utils/ScrollAnimationWrapper'
 import getScrollAnimation from '../../library/utils/GetScrollAnimation.jsx'
 import { SEO } from '@context/SEOContext'
 
-import Nav from '../../library/nav/Nav.jsx'
 import ProjectsTitle from '../../library/title/Title.jsx'
 
 import { useGeneral } from '@hooks'
@@ -37,7 +36,6 @@ const Contact = () => {
         type='website'
         breadcrumbs={breadcrumbs}
       />
-      <Nav classPage={'header_contact'} />
       <main className='main_contact'>
         <ScrollAnimationWrapper className='contact' id='contact'>
           <ProjectsTitle title={data.title} text1={data.text1} textSpan={data.textSpan} text2={data.text2} />

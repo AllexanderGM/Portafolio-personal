@@ -23,8 +23,8 @@
     }
 
     &.pointer {
-      background-color: $primary-color-600;
-      border: rem(1px) solid $primary-color-600;
+      background-color: var(--accent-primary-600);
+      border: rem(1px) solid var(--accent-primary-600);
       width: rem(50px);
       height: rem(50px);
       animation: rippleAnimation 1.5s ease-out infinite;

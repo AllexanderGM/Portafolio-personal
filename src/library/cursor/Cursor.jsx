@@ -91,14 +91,11 @@ const Cursor = ({ cursorActive, setCursorActive }) => {
   const classNameCursor = `cursor ${cursorActive ? 'active' : ''} ${isClickableHovered ? 'pointer' : ''} ${
     isCursorShow ? '' : 'no-visible'
   }`.trim()
-  const icon = `${isClickableHovered ? 'ellipse' : 'ellipse'}`
 
   return (
     <>
-      <div className={classNameCursor} style={{ left: cursorPosition.x, top: cursorPosition.y }}>
-        {/* <ion-icon name={icon}></ion-icon> */}
-      </div>
-      <div className={classNameCursor} style={{ left: cursorTwoPosition.x, top: cursorTwoPosition.y }}></div>
+      <div className={classNameCursor} style={{ left: cursorPosition.x, top: cursorPosition.y }} />
+      <div className={classNameCursor} style={{ left: cursorTwoPosition.x, top: cursorTwoPosition.y }} />
     </>
   )
 }

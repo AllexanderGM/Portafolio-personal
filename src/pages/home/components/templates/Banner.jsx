@@ -7,9 +7,13 @@ import { useGeneral } from '@hooks'
 import Technology from '../organisms/Technology'
 import ScrollAnimationWrapper from '../../../../library/utils/ScrollAnimationWrapper'
 
-// Components
-import BannerText from '../organisms/BannerText'
+// Components - Molecules
+import HeroText from '../molecules/HeroText'
+import Buttons from '../molecules/buttons'
+
+// Components - Organisms
 import BannerImage from '../organisms/BannerImage'
+
 const Image = lazy(() => import('../../../../library/image/Image'))
 
 const Banner = ({ text, image, technologies }) => {
@@ -25,9 +29,11 @@ const Banner = ({ text, image, technologies }) => {
           </a>
         </Suspense>
 
-        <BannerText data={text} />
+        <HeroText hero={text.hero} />
 
         <BannerImage data={image} shape={image.shape} />
+
+        <Buttons btns={text.btns} />
       </article>
 
       <Technology data={technologies} />
