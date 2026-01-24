@@ -1,19 +1,17 @@
 @use '@styles/autoload.scss' as *;
 
-@mixin buttons {
-  .buttons {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: center;
-    gap: rem(12px);
-  }
+.buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: rem(12px);
+}
 
-  @include responsive {
-    .buttons {
-      flex-direction: row;
-      justify-content: flex-start;
-      gap: rem(20px);
-    }
+@include responsive {
+  .buttons {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: rem(20px);
   }
 }

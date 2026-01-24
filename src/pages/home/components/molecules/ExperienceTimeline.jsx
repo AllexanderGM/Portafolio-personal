@@ -1,9 +1,11 @@
 import { useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { Building2, GraduationCap, Briefcase, ShoppingBag } from 'lucide-react'
 import PropTypes from 'prop-types'
 
-import getScrollAnimation from '../../../../library/utils/GetScrollAnimation.jsx'
+import { getScrollAnimation } from '@library/animation'
+
+import './experienceTimeline.scss'
 
 const ExperienceTimeline = ({ experiences }) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), [])
@@ -20,9 +22,9 @@ const ExperienceTimeline = ({ experiences }) => {
   }
 
   return (
-    <motion.div className='experience-timeline' variants={scrollAnimation} custom={{ duration: 1.5 }}>
+    <m.div className='experience-timeline' variants={scrollAnimation} custom={{ duration: 1.5 }}>
       {experiences.map((exp, index) => (
-        <motion.div
+        <m.div
           key={`${exp.company}-${exp.role}-${exp.period}`}
           className='timeline-item'
           variants={scrollAnimation}
@@ -40,9 +42,9 @@ const ExperienceTimeline = ({ experiences }) => {
               ))}
             </div>
           </div>
-        </motion.div>
+        </m.div>
       ))}
-    </motion.div>
+    </m.div>
   )
 }
 

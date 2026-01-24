@@ -1,0 +1,96 @@
+@use '@styles/autoload.scss' as *;
+
+.accessibility_option {
+  background: var(--surface-card);
+  border: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.1);
+  border-radius: rem(14px);
+  transition:
+    border-color 220ms ease,
+    background 220ms ease;
+
+  &:hover {
+    border-color: hsl(var(--accent-primary-hsl) / 0.18);
+    background: rgba(var(--surface-card), 0.9);
+  }
+}
+
+.accessibility_option--stack {
+  .accessibility_option_body {
+    flex-direction: column;
+    align-items: stretch;
+    gap: rem(12px);
+  }
+}
+
+.accessibility_option_body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: rem(12px);
+  padding: rem(12px) rem(14px);
+}
+
+.accessibility_option_body--column {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.accessibility_option_label {
+  display: flex;
+  align-items: center;
+  gap: rem(10px);
+  flex: 1;
+}
+
+.accessibility_option_icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: rem(32px);
+  height: rem(32px);
+  border-radius: rem(10px);
+  flex-shrink: 0;
+  transition: transform 220ms ease;
+
+  &--primary {
+    background: $primary-color-100;
+    color: $primary-color-700;
+  }
+
+  &--secondary {
+    background: $secondary-color-100;
+    color: $secondary-color-700;
+  }
+
+  &--warning {
+    background: $warning-color-100;
+    color: $warning-color-800;
+  }
+
+  &--success {
+    background: $success-color-100;
+    color: $success-color-800;
+  }
+
+  &--danger {
+    background: $danger-color-100;
+    color: $danger-color-800;
+  }
+}
+
+.accessibility_option:hover .accessibility_option_icon {
+  transform: scale(1.05);
+}
+
+.accessibility_option_text {
+  font-size: rem(13px);
+  font-weight: $font-weight-medium;
+  color: var(--text-secondary);
+}
+
+.accessibility_option_control {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

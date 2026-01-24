@@ -1,6 +1,15 @@
 {
-  "title": "¡Contáctame!",
-  "text1": "Si te gustaron mis proyectos y te gustaría trabajar",
-  "textSpan": " conmigo, ",
-  "text2": "contáctame mediante mis redes sociales o mi número telefónico."
+  "eyebrow": "Contacto",
+  "title": "Trabajemos juntos",
+  "description": "Si tienes un proyecto o una idea en la que pueda aportar, me encantaría escucharte.",
+  "info": {
+    "location": "Bogotá, Colombia",
+    "availability": "Lunes a Viernes",
+    "response": "Respondo en 24h"
+  },
+  "socialLabel": "Encuéntrame en",
+  "cta": {
+    "text": "Envíame un correo",
+    "subject": "Hola Jeisson, tengo un proyecto para ti"
+  }
 }

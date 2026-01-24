@@ -3,6 +3,7 @@ import LibrariesProvider from './LibrariesProvider'
 import { ErrorProvider } from './ErrorContext'
 import { LoadingProvider } from './LoadingContext'
 import { GeneralProvider } from './GeneralContext'
+import { MotionProvider } from '@library/animation'
 
 /**
  * RootProvider
@@ -11,9 +12,10 @@ import { GeneralProvider } from './GeneralContext'
  *
  * Jerarquía de providers (de afuera hacia adentro):
  * 1. LibrariesProvider - Providers de librerías externas (HeroUI, SEO, Toast)
- * 2. ErrorProvider - Manejo centralizado de errores con ErrorBoundary
- * 3. LoadingProvider - Estados de carga globales
- * 4. GeneralProvider - Contexto general de la aplicación (theme, cursor, data)
+ * 2. MotionProvider - LazyMotion para optimizar framer-motion
+ * 3. ErrorProvider - Manejo centralizado de errores con ErrorBoundary
+ * 4. LoadingProvider - Estados de carga globales
+ * 5. GeneralProvider - Contexto general de la aplicación (theme, cursor, data)
  *
  * Nota: ProjectsProvider se usa localmente en la página de proyectos,
  * no globalmente, por lo que no está incluido aquí
@@ -21,11 +23,13 @@ import { GeneralProvider } from './GeneralContext'
 const RootProvider = ({ children }) => {
   return (
     <LibrariesProvider>
-      <ErrorProvider>
-        <LoadingProvider>
-          <GeneralProvider>{children}</GeneralProvider>
-        </LoadingProvider>
-      </ErrorProvider>
+      <MotionProvider>
+        <ErrorProvider>
+          <LoadingProvider>
+            <GeneralProvider>{children}</GeneralProvider>
+          </LoadingProvider>
+        </ErrorProvider>
+      </MotionProvider>
     </LibrariesProvider>
   )
 }

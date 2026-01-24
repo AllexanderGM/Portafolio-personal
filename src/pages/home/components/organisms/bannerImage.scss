@@ -1,12 +1,12 @@
 @use 'sass:math';
 @use '@styles/autoload.scss' as *;
-@use '../../../../library/icons/socialIcon.scss' as *;
 
 // ============================================================================
 // CONFIGURACIÓN
 // ============================================================================
 
-$image-aspect-ratio: math.div(3, 4);
+$image-aspect-ratio: 1; // 1:1 cuadrada
+//$image-aspect-ratio: math.div(3, 4); // 3:4 rectangular (portrait)
 $image-border-radius: rem(20px);
 $image-max-width: rem(260px);
 $image-max-width-desktop: rem(450px);
@@ -17,7 +17,6 @@ $image-border-radius-desktop: rem(32px);
 // BANNER IMAGE
 // ============================================================================
 
-@mixin bannerImage {
   .banner_image {
     position: relative;
     display: flex;
@@ -47,11 +46,11 @@ $image-border-radius-desktop: rem(32px);
       z-index: 10;
 
       border-radius: $image-border-radius;
-      border: rem(2px) solid rgba(var(--accent-primary-rgb), 0.25);
+      border: rem(2px) solid hsl(var(--accent-primary-hsl) / 0.25);
 
       box-shadow:
         var(--shadow-lg),
-        0 0 rem(1px) rgba(var(--accent-primary-rgb), 0.2);
+        0 0 rem(1px) hsl(var(--accent-primary-hsl) / 0.2);
 
       // Optimización
       will-change: transform;
@@ -66,10 +65,10 @@ $image-border-radius-desktop: rem(32px);
       // Hover sutil
       &:hover {
         transform: translate3d(0, rem(-2px), 0);
-        border-color: rgba(var(--accent-primary-rgb), 0.3);
+        border-color: hsl(var(--accent-primary-hsl) / 0.3);
         box-shadow:
           var(--shadow-lg),
-          0 0 rem(12px) rgba(var(--accent-primary-rgb), 0.1);
+          0 0 rem(12px) hsl(var(--accent-primary-hsl) / 0.1);
       }
     }
 
@@ -97,7 +96,7 @@ $image-border-radius-desktop: rem(32px);
           left: 0;
           width: 100%;
           height: rem(1px);
-          background-color: rgba(var(--accent-primary-rgb), 0.4);
+          background-color: hsl(var(--accent-primary-hsl) / 0.4);
           transform: translateY(-50%);
         }
 
@@ -108,7 +107,7 @@ $image-border-radius-desktop: rem(32px);
           left: 50%;
           width: rem(1px);
           height: 100%;
-          background-color: rgba(var(--accent-primary-rgb), 0.4);
+          background-color: hsl(var(--accent-primary-hsl) / 0.4);
           transform: translateX(-50%);
         }
       }
@@ -143,7 +142,7 @@ $image-border-radius-desktop: rem(32px);
       width: rem(3px);
       height: rem(3px);
       border-radius: 50%;
-      background-color: rgba(var(--accent-primary-rgb), 0.5);
+      background-color: hsl(var(--accent-primary-hsl) / 0.5);
 
       &:nth-child(2) {
         width: rem(2px);
@@ -171,7 +170,6 @@ $image-border-radius-desktop: rem(32px);
       z-index: 15;
       position: relative;
 
-      @include socialIcon;
     }
   }
 
@@ -223,8 +221,8 @@ $image-border-radius-desktop: rem(32px);
         right: 0;
         width: rem(45px);
         height: rem(45px);
-        border-top: rem(1px) solid rgba(var(--accent-primary-rgb), 0.2);
-        border-right: rem(1px) solid rgba(var(--accent-primary-rgb), 0.2);
+        border-top: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.2);
+        border-right: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.2);
         border-radius: 0 rem(8px) 0 0;
         pointer-events: none;
         z-index: 1;
@@ -238,8 +236,8 @@ $image-border-radius-desktop: rem(32px);
         left: 0;
         width: rem(45px);
         height: rem(45px);
-        border-bottom: rem(1px) solid rgba(var(--accent-primary-rgb), 0.2);
-        border-left: rem(1px) solid rgba(var(--accent-primary-rgb), 0.2);
+        border-bottom: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.2);
+        border-left: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.2);
         border-radius: 0 0 0 rem(8px);
         pointer-events: none;
         z-index: 1;
@@ -269,7 +267,7 @@ $image-border-radius-desktop: rem(32px);
             left: 0;
             width: 100%;
             height: rem(1px);
-            background-color: rgba(var(--accent-primary-rgb), 0.35);
+            background-color: hsl(var(--accent-primary-hsl) / 0.35);
             transform: translateY(-50%);
           }
 
@@ -281,7 +279,7 @@ $image-border-radius-desktop: rem(32px);
             left: 50%;
             width: rem(1px);
             height: 100%;
-            background-color: rgba(var(--accent-primary-rgb), 0.35);
+            background-color: hsl(var(--accent-primary-hsl) / 0.35);
             transform: translateX(-50%);
           }
         }
@@ -364,7 +362,7 @@ $image-border-radius-desktop: rem(32px);
 
       .banner_dot {
         border-radius: 50%;
-        background-color: rgba(var(--accent-primary-rgb), 0.5);
+        background-color: hsl(var(--accent-primary-hsl) / 0.5);
       }
 
       // ======================================================================
@@ -376,13 +374,13 @@ $image-border-radius-desktop: rem(32px);
         max-width: $image-max-width-desktop;
         max-height: $image-max-height-desktop;
         border-radius: $image-border-radius-desktop;
-        border: rem(2px) solid rgba(var(--accent-primary-rgb), 0.2);
+        border: rem(2px) solid hsl(var(--accent-primary-hsl) / 0.2);
 
         // Sombra elegante
         box-shadow:
           0 rem(20px) rem(50px) rgba(0, 0, 0, 0.2),
           0 rem(8px) rem(20px) rgba(0, 0, 0, 0.12),
-          0 0 rem(1px) rgba(var(--accent-primary-rgb), 0.15);
+          0 0 rem(1px) hsl(var(--accent-primary-hsl) / 0.15);
       }
 
       // ======================================================================
@@ -401,8 +399,8 @@ $image-border-radius-desktop: rem(32px);
         padding: rem(8px);
         background: rgba(var(--bg-primary-rgb, 0, 0, 0), 0.3);
         border-radius: rem(12px);
+        -webkit-backdrop-filter: blur(rem(4px));
         backdrop-filter: blur(rem(4px));
       }
     }
   }
-}

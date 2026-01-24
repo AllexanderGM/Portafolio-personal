@@ -1,50 +1,41 @@
-import { lazy, Suspense } from 'react'
 import PropTypes from 'prop-types'
 
-import { Skeleton } from '@heroui/react'
-
-import { useGeneral } from '@hooks'
-import Technology from '../organisms/Technology'
-import ScrollAnimationWrapper from '../../../../library/utils/ScrollAnimationWrapper'
+import { Container } from '@library/container'
+import { ScrollAnimationWrapper } from '@library/animation'
 
 // Components - Molecules
 import HeroText from '../molecules/HeroText'
-import Buttons from '../molecules/buttons'
+import Buttons from '../molecules/Buttons'
 
 // Components - Organisms
 import BannerImage from '../organisms/BannerImage'
 
-const Image = lazy(() => import('../../../../library/image/Image'))
+import './banner.scss'
 
-const Banner = ({ text, image, technologies }) => {
-  const { route } = useGeneral()
-  const logo = new URL(`../../../../assets/icon/${image.logo}`, import.meta.url).href
-
+const Banner = ({ text, image }) => {
   return (
     <ScrollAnimationWrapper className='banner'>
-      <article className='container'>
-        <Suspense fallback={<Skeleton className='banner_logo' />}>
-          <a href={route.home}>
-            <Image className='banner_logo' src={logo} alt='Logo' />
-          </a>
-        </Suspense>
-
+      <Container as='article' className='banner-container'>
         <HeroText hero={text.hero} />
 
         <BannerImage data={image} shape={image.shape} />
 
         <Buttons btns={text.btns} />
-      </article>
+      </Container>
 
-      <Technology data={technologies} />
+      {/* Divider decorativo */}
+      <div className='banner-divider'>
+        <span className='divider-dot' />
+        <span className='divider-line' />
+        <span className='divider-dot' />
+      </div>
     </ScrollAnimationWrapper>
   )
 }
 
 Banner.propTypes = {
   text: PropTypes.object.isRequired,
-  image: PropTypes.object.isRequired,
-  technologies: PropTypes.object.isRequired
+  image: PropTypes.object.isRequired
 }
 
 export default Banner

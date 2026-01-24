@@ -1,0 +1,78 @@
+@use '@styles/autoload.scss' as *;
+
+// ============================================================================
+// CONFIGURACION
+// ============================================================================
+
+$spinner-size: rem(40px);
+$entrance-ease: cubic-bezier(0.2, 0, 0.2, 1);
+
+// ============================================================================
+// SPINNER
+// ============================================================================
+
+.loading-page_spinner {
+  position: relative;
+  width: $spinner-size;
+  height: $spinner-size;
+
+  // Optimizacion
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+
+  // Animacion de entrada mas rapida
+  animation: spinner-entrance 200ms $entrance-ease both;
+
+  @include responsive {
+    width: rem(35px);
+    height: rem(35px);
+  }
+}
+
+// ============================================================================
+// GLOW EFFECT
+// ============================================================================
+
+.loading-page_spinner::before {
+  content: '';
+  position: absolute;
+  inset: rem(-20px);
+  background: radial-gradient(circle, hsl(var(--accent-primary-hsl) / 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+
+  // Animacion de pulsacion mas sutil
+  animation: glow-pulse 1500ms ease-in-out infinite;
+
+  // Optimizacion
+  will-change: opacity, transform;
+  transform: translate3d(0, 0, 0);
+}
+
+// ============================================================================
+// KEYFRAMES
+// ============================================================================
+
+// Entrada del spinner
+@keyframes spinner-entrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+// Pulsacion del glow
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1.1);
+  }
+}

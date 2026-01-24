@@ -1,4 +1,4 @@
-import { Switch } from '@heroui/react'
+import { Switch } from '@heroui/switch'
 import PropTypes from 'prop-types'
 import { Sun, Moon } from 'lucide-react'
 import { useGeneral } from '@hooks'

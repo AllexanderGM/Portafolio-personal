@@ -1,0 +1,211 @@
+@use '@styles/autoload.scss' as *;
+
+// ============================================================================
+// CONFIGURACIÓN
+// ============================================================================
+
+$splash-logo-size: rem(140px);
+$splash-logo-border-width: rem(2px);
+
+// Timings
+$logo-entrance-duration: 400ms;
+$logo-entrance-delay: 100ms;
+$name-entrance-duration: 600ms;
+$name-entrance-delay: 400ms;
+$exit-duration: 500ms;
+
+// Easing curves
+$entrance-ease: cubic-bezier(0.34, 1.56, 0.64, 1); // Elastic out
+$exit-ease: cubic-bezier(0.4, 0, 0.6, 1); // Smooth out
+
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--gradient-dark);
+
+  // Optimizacion de performance
+  will-change: opacity, transform;
+  transform: translate3d(0, 0, 0);
+
+  // Estado inicial visible
+  opacity: 1;
+  pointer-events: all;
+
+  // Transicion de salida
+  transition:
+    opacity $exit-duration $exit-ease,
+    transform $exit-duration $exit-ease;
+
+  // Estado de salida
+  &.is-exiting {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.96);
+    pointer-events: none;
+  }
+}
+
+.splash-screen__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem(40px);
+
+  // Optimizacion
+  transform: translate3d(0, 0, 0);
+}
+
+.splash-screen__logo-wrapper {
+  position: relative;
+  width: $splash-logo-size;
+  height: $splash-logo-size;
+
+  // Border animado
+  &::before {
+    content: '';
+    position: absolute;
+    inset: rem(-8px);
+    border: $splash-logo-border-width solid var(--accent-primary);
+    border-radius: 50%;
+    opacity: 0.3;
+
+    // Animacion de entrada
+    animation: logo-border-entrance $logo-entrance-duration $entrance-ease $logo-entrance-delay both;
+
+    // Optimizacion
+    will-change: transform, opacity;
+    transform: translate3d(0, 0, 0);
+  }
+
+  // Glow effect
+  &::after {
+    content: '';
+    position: absolute;
+    inset: rem(-12px);
+    background: radial-gradient(circle, hsl(var(--accent-primary-hsl) / 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+
+    // Animacion de entrada con delay
+    animation: logo-glow-entrance $logo-entrance-duration $entrance-ease calc($logo-entrance-delay + 100ms) both;
+
+    // Optimizacion
+    will-change: transform, opacity;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.splash-screen__logo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Animacion de entrada
+  animation: logo-entrance $logo-entrance-duration $entrance-ease $logo-entrance-delay both;
+
+  // Optimizacion
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 rem(4px) rem(12px) hsl(var(--accent-primary-hsl) / 0.3));
+  }
+}
+
+.splash-screen__name {
+  margin: 0;
+  padding: 0;
+
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-medium;
+  color: var(--text-primary);
+  text-align: center;
+  letter-spacing: rem(1px);
+
+  // Animacion de entrada
+  animation: name-entrance $name-entrance-duration $entrance-ease $name-entrance-delay both;
+
+  // Optimizacion
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+
+  // Sutil glow en el texto
+  text-shadow: 0 0 rem(20px) hsl(var(--accent-primary-hsl) / 0.2);
+}
+
+@include responsive {
+  .splash-screen__logo-wrapper {
+    width: rem(120px);
+    height: rem(120px);
+  }
+
+  .splash-screen__name {
+    font-size: $font-size-xl;
+  }
+}
+
+// ============================================================================
+// KEYFRAMES
+// ============================================================================
+
+// Logo principal
+@keyframes logo-entrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, rem(30px), 0) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+// Border del logo
+@keyframes logo-border-entrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.5);
+  }
+  100% {
+    opacity: 0.3;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+// Glow del logo
+@keyframes logo-glow-entrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+// Nombre
+@keyframes name-entrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, rem(20px), 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

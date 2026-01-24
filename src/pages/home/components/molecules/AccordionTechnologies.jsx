@@ -6,6 +6,8 @@ import { Autoplay, FreeMode, A11y } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 
+import './accordionTechnologies.scss'
+
 const AccordionTechnologies = ({ technologies }) => {
   const resolvedTechnologies = useMemo(
     () =>

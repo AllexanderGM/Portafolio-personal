@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Skeleton } from '@heroui/react'
+import { Skeleton } from '@heroui/skeleton'
 
 const BannerSkeleton = () => {
   return (
@@ -50,14 +50,14 @@ const BannerSkeleton = () => {
           </span>
           <img className='picture' src='/src/assets/pages/home/me.png' alt='Fotografia de Jeisson Alexander' loading='lazy' />
           <ul className='banner_social'>
-            <li>
-              <a className='clickable' href='https://www.linkedin.com/in/jeisson-alexander' target='_blank' aria-label='icon social'>
-                <img src='/src/assets/icon/linkedin.svg' alt='icon social' />
+            <li className='social-link'>
+              <a className='social-link__anchor clickable' href='https://www.linkedin.com/in/jeisson-alexander' target='_blank' aria-label='icon social'>
+                <img className='social-link__icon' src='/src/assets/icon/linkedin.svg' alt='icon social' />
               </a>
             </li>
-            <li>
-              <a className='clickable' href='https://github.com/AllexanderGM' target='_blank' aria-label='icon social'>
-                <img src='/src/assets/icon/github.svg' alt='icon social' />
+            <li className='social-link'>
+              <a className='social-link__anchor clickable' href='https://github.com/AllexanderGM' target='_blank' aria-label='icon social'>
+                <img className='social-link__icon' src='/src/assets/icon/github.svg' alt='icon social' />
               </a>
             </li>
           </ul>

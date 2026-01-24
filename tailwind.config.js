@@ -103,6 +103,13 @@ const heroThemes = {
         DEFAULT: palette.danger.DEFAULT,
         foreground: palette.light.DEFAULT
       },
+      divider: palette.light[300],
+      'divider-light': palette.light[200],
+      'text-on-accent': palette.light.DEFAULT,
+      foreground: heroColor(palette.dark, {
+        DEFAULT: palette.dark.DEFAULT,
+        foreground: palette.light.DEFAULT
+      }),
       content1: {
         DEFAULT: palette.light[100],
         foreground: palette.dark.DEFAULT
@@ -119,6 +126,7 @@ const heroThemes = {
         DEFAULT: palette.light[400],
         foreground: palette.dark.DEFAULT
       },
+      overlay: palette.dark.DEFAULT,
       background: palette.light.DEFAULT,
       foreground: palette.dark.DEFAULT
     }
@@ -145,6 +153,13 @@ const heroThemes = {
         DEFAULT: palette.danger[400],
         foreground: '#000000'
       },
+      divider: palette.dark[700],
+      'divider-light': palette.dark[600],
+      'text-on-accent': palette.dark.DEFAULT,
+      foreground: heroColor(palette.contrast, {
+        DEFAULT: palette.light.DEFAULT,
+        foreground: palette.dark.DEFAULT
+      }),
       content1: {
         DEFAULT: palette.dark[900],
         foreground: palette.light.DEFAULT
@@ -161,6 +176,7 @@ const heroThemes = {
         DEFAULT: palette.dark[600],
         foreground: palette.light.DEFAULT
       },
+      overlay: palette.dark[950],
       background: palette.dark.DEFAULT,
       foreground: palette.light.DEFAULT
     }

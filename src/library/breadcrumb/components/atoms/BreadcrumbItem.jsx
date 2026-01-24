@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-const BreadcrumbItem = ({ label, path, isCurrent }) => {
+import './breadcrumbItem.scss'
+
+const BreadcrumbItem = ({ label, path, isCurrent = false }) => {
   if (isCurrent) {
     return (
       <li className='breadcrumb_item current' aria-current='page'>
@@ -21,10 +23,6 @@ BreadcrumbItem.propTypes = {
   label: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
   isCurrent: PropTypes.bool
-}
-
-BreadcrumbItem.defaultProps = {
-  isCurrent: false
 }
 
 export default BreadcrumbItem

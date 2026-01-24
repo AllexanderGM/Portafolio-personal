@@ -14,7 +14,6 @@ export const GeneralContext = createContext(null)
  * Provider General que maneja:
  * - Información social (links, email, etc.)
  * - Rutas de navegación
- * - Estado del cursor
  * - Tema (light/dark)
  * - Estado de primera carga
  */
@@ -23,10 +22,9 @@ export const GeneralProvider = ({ children }) => {
   const { social, route } = generalData
 
   // Hook de HeroUI para manejo de tema (más eficiente)
-  const { theme, setTheme: setHeroUITheme } = useTheme()
+  const { theme, setTheme: setHeroUITheme } = useTheme('dark')
 
   // Estados de la aplicación
-  const [cursorActive, setCursorActive] = useState(false)
   const [fontScale, setFontScale] = useState(() => {
     const savedScale = Number(localStorage.getItem('portfolio-font-scale'))
     return FONT_SCALE_STEPS.includes(savedScale) ? savedScale : 1
@@ -43,23 +41,7 @@ export const GeneralProvider = ({ children }) => {
     const saved = localStorage.getItem('portfolio-underline-links')
     return saved === 'true'
   })
-  const [reduceMotion, setReduceMotion] = useState(() => {
-    const saved = localStorage.getItem('portfolio-reduce-motion')
-    if (saved !== null) {
-      return saved === 'true'
-    }
-    return globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
-  })
   const [firstLoad, setFirstLoad] = useState(true)
-
-  // Métodos del cursor
-  const activeCursor = useCallback(() => {
-    setCursorActive(true)
-  }, [])
-
-  const inactiveCursor = useCallback(() => {
-    setCursorActive(false)
-  }, [])
 
   // Métodos del tema (usando hook de HeroUI)
   const toggleTheme = useCallback(() => {
@@ -130,25 +112,15 @@ export const GeneralProvider = ({ children }) => {
     })
   }, [])
 
-  const toggleReduceMotion = useCallback(() => {
-    setReduceMotion(prev => {
-      const next = !prev
-      localStorage.setItem('portfolio-reduce-motion', String(next))
-      return next
-    })
-  }, [])
-
   const resetAccessibility = useCallback(() => {
     setFontScale(1)
     setContrastModeState('normal')
     setGrayscaleMode(false)
     setUnderlineLinks(false)
-    setReduceMotion(false)
     localStorage.setItem('portfolio-font-scale', '1')
     localStorage.setItem('portfolio-contrast', 'normal')
     localStorage.setItem('portfolio-grayscale', 'false')
     localStorage.setItem('portfolio-underline-links', 'false')
-    localStorage.setItem('portfolio-reduce-motion', 'false')
   }, [])
 
   // Métodos de primera carga
@@ -173,22 +145,12 @@ export const GeneralProvider = ({ children }) => {
     document.documentElement.dataset.links = underlineLinks ? 'underline' : 'normal'
   }, [underlineLinks])
 
-  useEffect(() => {
-    document.documentElement.dataset.motion = reduceMotion ? 'reduced' : 'normal'
-  }, [reduceMotion])
-
   // Valor del contexto con useMemo para optimización
   const value = useMemo(
     () => ({
       // Datos estáticos
       social,
       route,
-
-      // Estado y métodos del cursor
-      cursorActive,
-      setCursorActive,
-      activeCursor,
-      inactiveCursor,
 
       // Estado y métodos del tema
       theme,
@@ -208,8 +170,6 @@ export const GeneralProvider = ({ children }) => {
       toggleGrayscaleMode,
       underlineLinks,
       toggleUnderlineLinks,
-      reduceMotion,
-      toggleReduceMotion,
       resetAccessibility,
 
       // Estado y métodos de primera carga
@@ -219,9 +179,6 @@ export const GeneralProvider = ({ children }) => {
     [
       social,
       route,
-      cursorActive,
-      activeCursor,
-      inactiveCursor,
       theme,
       toggleTheme,
       setThemeMode,
@@ -235,8 +192,6 @@ export const GeneralProvider = ({ children }) => {
       toggleGrayscaleMode,
       underlineLinks,
       toggleUnderlineLinks,
-      reduceMotion,
-      toggleReduceMotion,
       resetAccessibility,
       firstLoad,
       finishFirstLoad

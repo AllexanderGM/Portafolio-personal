@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types'
 import NavList from '@library/nav/components/molecules/NavList'
 
+import './navbar.scss'
+
 const Navbar = ({ navItems, activeLink, setActiveLink }) => {
   return (
-    <nav className='header'>
-      <article className='container'>
-        <nav className='header_navbar' aria-label='Navegación principal'>
+    <nav className='nav-shell__header'>
+      <article className='nav-shell__container'>
+        <nav className='nav-shell__bar' aria-label='Navegación principal'>
           <NavList navItems={navItems} activeLink={activeLink} setActiveLink={setActiveLink} />
         </nav>
       </article>

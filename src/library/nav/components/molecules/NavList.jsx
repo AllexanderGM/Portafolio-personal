@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types'
 import HashLink from '@library/nav/components/atoms/HashLink'
 
+import './navList.scss'
+
 const NavList = ({ navItems, activeLink, setActiveLink }) => {
   return (
-    <ul className='navbar_list routes'>
+    <ul className='nav-shell__list'>
       {navItems.map(item => (
         <HashLink
           key={item.route}

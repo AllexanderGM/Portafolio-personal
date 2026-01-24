@@ -1,0 +1,68 @@
+@use '@styles/autoload.scss' as *;
+
+// ============================================================================
+// CONFIGURACION
+// ============================================================================
+
+$spinner-ring-width: rem(2.5px);
+$spinner-rotation-duration: 800ms;
+$spinner-ease: linear;
+
+// ============================================================================
+// RING
+// ============================================================================
+
+.spinner-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: $spinner-ring-width solid transparent;
+
+  // Optimizacion
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+
+  // Ring 1 (Externo)
+  &:nth-child(1) {
+    border-top-color: var(--accent-primary);
+    animation: spinner-rotate $spinner-rotation-duration $spinner-ease infinite;
+    opacity: 0.9;
+  }
+
+  // Ring 2 (Medio)
+  &:nth-child(2) {
+    width: 75%;
+    height: 75%;
+    top: 12.5%;
+    left: 12.5%;
+    border-right-color: var(--accent-primary);
+    animation: spinner-rotate calc($spinner-rotation-duration * 0.8) $spinner-ease infinite reverse;
+    opacity: 0.7;
+  }
+
+  // Ring 3 (Interno)
+  &:nth-child(3) {
+    width: 50%;
+    height: 50%;
+    top: 25%;
+    left: 25%;
+    border-bottom-color: var(--accent-primary);
+    animation: spinner-rotate calc($spinner-rotation-duration * 0.6) $spinner-ease infinite;
+    opacity: 0.5;
+  }
+}
+
+// ============================================================================
+// KEYFRAMES
+// ============================================================================
+
+// Rotacion del spinner
+@keyframes spinner-rotate {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(360deg);
+  }
+}

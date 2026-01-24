@@ -3,8 +3,8 @@ import RootProvider from '../context/RootProvider'
 import { useGeneral } from '../hooks'
 
 // Componentes
-import Cursor from '../library/cursor/Cursor.jsx'
-import Splash from '../library/splash/Splash.jsx'
+import Cursor from '@library/cursor'
+import Splash from '@library/splash'
 import Routes from './Routes.jsx'
 
 /**
@@ -12,12 +12,12 @@ import Routes from './Routes.jsx'
  * Separado para poder usar hooks dentro del RootProvider
  */
 const AppContent = () => {
-  const { route, cursorActive, setCursorActive, firstLoad, finishFirstLoad } = useGeneral()
+  const { route, firstLoad, finishFirstLoad } = useGeneral()
 
   return (
     <>
       {firstLoad && <Splash onFinish={finishFirstLoad} />}
-      <Cursor cursorActive={cursorActive} setCursorActive={setCursorActive} />
+      <Cursor />
       <Routes route={route} />
     </>
   )

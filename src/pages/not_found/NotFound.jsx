@@ -1,6 +1,6 @@
 import './notFound.scss'
 
-import BtnGeneric from '../../library/btns/BtnGeneric.jsx'
+import { PrimaryButton } from '@library/buttons'
 
 import illustration from '../../assets/pages/notFound/illustration.svg'
 
@@ -16,7 +16,7 @@ const NotFound = () => {
       <p>Lo sentimos, pero la página que estás buscando no existe o ha sido movida.</p>
       <p>No te preocupes, ¡te ayudaremos a encontrar el camino de regreso!</p>
 
-      <BtnGeneric text='Volver al inicio' route='/' className='btn_projetcs' />
+      <PrimaryButton text='Volver al inicio' route='/' className='btn_projetcs' />
     </main>
   )
 }

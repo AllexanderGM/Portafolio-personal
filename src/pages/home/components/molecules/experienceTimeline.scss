@@ -1,117 +1,115 @@
 @use '@styles/autoload.scss' as *;
 
-@mixin ExperienceTimeline {
-  .experience-timeline {
-    display: flex;
-    flex-direction: column;
-    gap: rem(30px);
-    width: 100%;
-    max-width: rem(500px);
-    position: relative;
-    padding-left: rem(40px);
+.experience-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: rem(30px);
+  width: 100%;
+  max-width: rem(500px);
+  position: relative;
+  padding-left: rem(40px);
 
-    &::before {
-      content: '';
+  &::before {
+    content: '';
+    position: absolute;
+    left: rem(13px);
+    top: 0;
+    bottom: 0;
+    width: rem(2px);
+    background: linear-gradient(to bottom, hsl(var(--accent-primary-hsl) / 0.7), hsl(var(--accent-primary-hsl) / 0.35));
+  }
+
+  .timeline-item {
+    position: relative;
+    display: flex;
+    gap: rem(20px);
+    align-items: flex-start;
+
+    .timeline-icon {
       position: absolute;
-      left: rem(13px);
-      top: 0;
-      bottom: 0;
-      width: rem(2px);
-      background: linear-gradient(to bottom, rgba(var(--accent-primary-rgb), 0.7), rgba(var(--accent-primary-rgb), 0.35));
+      left: rem(-40px);
+      width: rem(28px);
+      height: rem(28px);
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      border: rem(3px) solid var(--accent-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+
+      svg {
+        color: var(--accent-primary);
+      }
     }
 
-    .timeline-item {
-      position: relative;
+    .timeline-content {
+      flex: 1;
       display: flex;
-      gap: rem(20px);
-      align-items: flex-start;
+      flex-direction: column;
+      gap: rem(8px);
+      padding: rem(15px) rem(20px);
+      background: var(--surface-card);
+      border-radius: rem(12px);
+      border-left: rem(3px) solid var(--accent-primary);
+      box-shadow: var(--shadow-sm);
+      transition: $transition;
 
-      .timeline-icon {
-        position: absolute;
-        left: rem(-40px);
-        width: rem(28px);
-        height: rem(28px);
-        border-radius: 50%;
-        background: var(--bg-secondary);
-        border: rem(3px) solid var(--accent-primary);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 2;
-
-        svg {
-          color: var(--accent-primary);
-        }
+      &:hover {
+        background: var(--surface-panel);
+        transform: translateX(rem(5px));
+        transition: $transition;
       }
 
-      .timeline-content {
-        flex: 1;
+      .timeline-period {
+        font-size: $font-size-sm;
+        color: var(--accent-primary);
+        font-weight: $font-weight-bold;
+        letter-spacing: rem(0.5px);
+      }
+
+      .timeline-company {
+        font-size: $font-size-lg;
+        color: var(--text-primary);
+        font-weight: $font-weight-bold;
+        margin: 0;
+      }
+
+      .timeline-role {
+        font-size: $font-size-md;
+        color: var(--text-tertiary);
+        font-weight: $font-weight-medium;
+        margin: 0;
+      }
+
+      .timeline-tech {
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
         gap: rem(8px);
-        padding: rem(15px) rem(20px);
-        background: var(--surface-card);
-        border-radius: rem(12px);
-        border-left: rem(3px) solid var(--accent-primary);
-        box-shadow: var(--shadow-sm);
-        transition: $transition;
+        margin-top: rem(8px);
 
-        &:hover {
-          background: var(--surface-panel);
-          transform: translateX(rem(5px));
-          transition: $transition;
-        }
-
-        .timeline-period {
-          font-size: $font-size-sm;
-          color: var(--accent-primary);
-          font-weight: $font-weight-bold;
-          letter-spacing: rem(0.5px);
-        }
-
-        .timeline-company {
-          font-size: $font-size-lg;
-          color: var(--text-primary);
-          font-weight: $font-weight-bold;
-          margin: 0;
-        }
-
-        .timeline-role {
-          font-size: $font-size-md;
+        .tech-badge {
+          font-size: $font-size-xs;
           color: var(--text-tertiary);
-          font-weight: $font-weight-medium;
-          margin: 0;
-        }
+          background: hsl(var(--accent-primary-hsl) / 0.08);
+          padding: rem(4px) rem(10px);
+          border-radius: rem(6px);
+          border: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.25);
+          transition: $transition;
 
-        .timeline-tech {
-          display: flex;
-          flex-wrap: wrap;
-          gap: rem(8px);
-          margin-top: rem(8px);
-
-          .tech-badge {
-            font-size: $font-size-xs;
-            color: var(--text-tertiary);
-            background: rgba(var(--accent-primary-rgb), 0.08);
-            padding: rem(4px) rem(10px);
-            border-radius: rem(6px);
-            border: rem(1px) solid rgba(var(--accent-primary-rgb), 0.25);
+          &:hover {
+            background: hsl(var(--accent-primary-hsl) / 0.2);
+            color: var(--text-secondary);
             transition: $transition;
-
-            &:hover {
-              background: rgba(var(--accent-primary-rgb), 0.2);
-              color: var(--text-secondary);
-              transition: $transition;
-            }
           }
         }
       }
     }
   }
+}
 
-  @include responsive {
-    .experience-timeline {
-      max-width: 100%;
-    }
+@include responsive {
+  .experience-timeline {
+    max-width: 100%;
   }
 }

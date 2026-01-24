@@ -1,0 +1,53 @@
+@use '@styles/autoload.scss' as *;
+
+.app-cursor {
+  display: none;
+  pointer-events: none;
+  position: fixed;
+  font-size: $icon-size-xs;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    opacity 0.15s ease-in-out 0s,
+    height $transition ease-in-out 0s,
+    width $transition ease-in-out 0s;
+
+  @include responsive {
+    display: block;
+  }
+
+  &.is-hidden {
+    display: none;
+  }
+}
+
+.app-cursor__trail {
+  width: rem(50px);
+  height: rem(50px);
+  z-index: 998;
+
+  &.is-active {
+    width: rem(55px);
+    height: rem(55px);
+  }
+
+  &.is-clickable {
+    background-color: var(--accent-primary-600);
+    border: rem(1px) solid var(--accent-primary-600);
+    width: rem(50px);
+    height: rem(50px);
+    animation: rippleAnimation 1.5s ease-out infinite;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes rippleAnimation {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}

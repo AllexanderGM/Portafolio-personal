@@ -1,4 +1,4 @@
-import { Code, Phone } from 'lucide-react'
+import { FolderKanban, Mail } from 'lucide-react'
 
 import './home.scss'
 
@@ -10,7 +10,6 @@ import { useGeneral } from '@hooks'
 
 // Resources
 import imgProfile from '../../assets/pages/home/me.png'
-import imgArrow from '../../assets/icon/arrow-right.svg'
 import data from './data.json'
 import seoData from '../../_data/seo.json'
 
@@ -35,8 +34,8 @@ const Home = () => {
           text={{
             hero: data.banner.hero,
             btns: [
-              { text: 'Proyectos', url: route.projects, Icon: Code },
-              { text: 'Contacto', url: route.contact, Icon: Phone }
+              { text: 'Proyectos', url: route.projects, Icon: FolderKanban },
+              { text: 'Contacto', url: route.contact, Icon: Mail }
             ]
           }}
           image={{
@@ -48,20 +47,10 @@ const Home = () => {
               { icon: data.banner.github, url: social.github }
             ]
           }}
-          technologies={{
-            title: 'Algunas de las tecnologías y herramientas que he usado',
-            list: data.technologies
-          }}
         />
         <AboutSection
-          abilities={data.about.abilities}
-          arrow={imgArrow}
-          profileData={data.about.profile}
-          experiences={data.about.experiences}
-          btnlink={{
-            cvUrl: social.cv,
-            text: 'Hoja de vida'
-          }}
+          aboutData={data.about}
+          cvUrl={social.cv}
         />
       </main>
     </>

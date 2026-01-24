@@ -1,9 +1,11 @@
 import { useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import PropTypes from 'prop-types'
 
-import getScrollAnimation from '@library/utils/GetScrollAnimation'
-import BtnGeneric from '@library/btns/BtnGeneric'
+import { getScrollAnimation } from '@library/animation'
+import { PrimaryButton } from '@library/buttons'
+
+import './buttons.scss'
 
 const Buttons = ({ btns }) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), [])
@@ -13,13 +15,13 @@ const Buttons = ({ btns }) => {
 
     const buttonConfig = isFirst ? { variant: 'solid', color: 'primary' } : { variant: 'ghost', color: 'primary' }
 
-    return <BtnGeneric key={index} text={item.text} route={item.url} Icon={item.Icon} size='md' {...buttonConfig} />
+    return <PrimaryButton key={index} text={item.text} route={item.url} Icon={item.Icon} size='md' {...buttonConfig} />
   })
 
   return (
-    <motion.article variants={scrollAnimation} custom={{ duration: 3 }} className='buttons'>
+    <m.article variants={scrollAnimation} custom={{ duration: 3 }} className='buttons'>
       {listButtons}
-    </motion.article>
+    </m.article>
   )
 }
 

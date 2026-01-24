@@ -1,46 +1,210 @@
-// Dependences
 import { useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import PropTypes from 'prop-types'
-import { Users, Heart, Layers, User } from 'lucide-react'
+import { Building2, GraduationCap, Briefcase, ShoppingBag, MapPin } from 'lucide-react'
+import { Button } from '@heroui/button'
 
-import ScrollAnimationWrapper from '../../../../library/utils/ScrollAnimationWrapper'
-import getScrollAnimation from '../../../../library/utils/GetScrollAnimation.jsx'
-import ParticlesBackground from '@library/particles/ParticlesBackground'
+import { Container } from '@library/container'
+import { ScrollAnimationWrapper, getScrollAnimation } from '@library/animation'
 
-// Components
-import AboutContent from '../organisms/AboutContent'
-import BtnGeneric from '../../../../library/btns/BtnGeneric'
+import './aboutSection.scss'
 
-// Principal component
-const ABILITY_ICONS = [Users, Heart, Layers, User]
+// Parsea texto con *palabra* para resaltar con accent-primary
+const parseHighlightedText = text => {
+  if (!text) return null
+  const parts = text.split(/(\*[^*]+\*)/g)
+  return parts.map((part, index) => {
+    if (part.startsWith('*') && part.endsWith('*')) {
+      return (
+        <span key={index} className='about-highlight'>
+          {part.slice(1, -1)}
+        </span>
+      )
+    }
+    return part
+  })
+}
 
-const AboutSection = ({ abilities, arrow, btnlink, profileData, experiences }) => {
+// Iconos para tipos de experiencia
+const getExperienceIcon = type => {
+  const icons = {
+    university: Building2,
+    teaching: GraduationCap,
+    company: Briefcase,
+    ecommerce: ShoppingBag
+  }
+  const Icon = icons[type] || Briefcase
+  return <Icon size={18} />
+}
+
+const AboutSection = ({ aboutData, cvUrl }) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), [])
-  const abilityItems = abilities.map((text, index) => ({
-    Icon: ABILITY_ICONS[index],
-    text
-  }))
+  const { eyebrow, title, narrative, personalInfo, softSkills, stats, fullTimeExperiences, freelanceExperiences } = aboutData
 
   return (
     <ScrollAnimationWrapper className='about-section' id='about'>
-      <ParticlesBackground />
-      <article className='container'>
-        <motion.h2 variants={scrollAnimation}>Sobre mí</motion.h2>
+      <Container as='article' className='about-container'>
+        {/* Header */}
+        <m.header className='about-header' variants={scrollAnimation}>
+          <span className='about-eyebrow'>{eyebrow}</span>
+          <h2 className='about-title'>{title}</h2>
+        </m.header>
 
-        <AboutContent ability={abilityItems} arrow={arrow} profileData={profileData} experiences={experiences} />
-        <BtnGeneric text={btnlink.text} url={btnlink.cvUrl} variant='shadow' />
-      </article>
+        {/* Main content - 2 columns */}
+        <div className='about-content'>
+          {/* Left column - Narrative */}
+          <div className='about-narrative'>
+            {/* Narrative text */}
+            <m.div className='narrative-text' variants={scrollAnimation} custom={{ duration: 1 }}>
+              {narrative.paragraphs.map((paragraph, index) => (
+                <p key={index}>{parseHighlightedText(paragraph)}</p>
+              ))}
+            </m.div>
+
+            {/* Personal Info */}
+            <m.div className='about-personal-info' variants={scrollAnimation} custom={{ duration: 1.2 }}>
+              <div className='info-item'>
+                <MapPin size={16} />
+                <span>{personalInfo.location}</span>
+              </div>
+              <div className='info-section'>
+                <span className='info-section-label'>Formación</span>
+                {personalInfo.education.map((edu, index) => (
+                  <div key={index} className='info-item info-item--education'>
+                    <GraduationCap size={16} />
+                    <div className='info-education'>
+                      <span className='edu-degree'>{edu.degree}</span>
+                      <span className='edu-institution'>{edu.institution}</span>
+                      <span className='edu-period'>{edu.period}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </m.div>
+
+            {/* Soft Skills */}
+            <m.div className='about-soft-skills' variants={scrollAnimation} custom={{ duration: 1.4 }}>
+              <span className='skills-label'>Cómo trabajo</span>
+              <div className='skills-list'>
+                {softSkills.map((skill, index) => (
+                  <span key={index} className='skill-item'>
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </m.div>
+
+            {/* Stats */}
+            <m.div className='about-stats' variants={scrollAnimation} custom={{ duration: 1.6 }}>
+              {stats.map((stat, index) => (
+                <div key={index} className='stat-item'>
+                  <span className='stat-value'>{stat.value}</span>
+                  <span className='stat-label'>{stat.label}</span>
+                </div>
+              ))}
+            </m.div>
+
+            {/* CTA */}
+            <m.div variants={scrollAnimation} custom={{ duration: 1.8 }}>
+              <Button
+                as='a'
+                href={cvUrl}
+                target='_blank'
+                rel='noopener noreferrer'
+                variant='bordered'
+                className='about-cta'>
+                Descargar CV
+              </Button>
+            </m.div>
+          </div>
+
+          {/* Right column - Experience */}
+          <div className='about-experience'>
+            {/* Tiempo completo */}
+            <m.div className='experience-category' variants={scrollAnimation} custom={{ duration: 1.2 }}>
+              <span className='category-label'>Tiempo completo</span>
+              <div className='experience-timeline'>
+                {fullTimeExperiences.map((exp, index) => (
+                  <div key={index} className='timeline-item'>
+                    <div className='timeline-icon'>{getExperienceIcon(exp.type)}</div>
+                    <div className='timeline-content'>
+                      <span className='timeline-period'>{exp.period}</span>
+                      <h4 className='timeline-company'>{exp.company}</h4>
+                      <p className='timeline-role'>{exp.role}</p>
+                      {exp.technologies && (
+                        <div className='timeline-tech'>
+                          {exp.technologies.map((tech, techIndex) => (
+                            <span key={techIndex} className='tech-badge'>
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </m.div>
+
+            {/* Freelance */}
+            <m.div className='experience-category' variants={scrollAnimation} custom={{ duration: 1.6 }}>
+              <span className='category-label'>Proyectos & Freelance</span>
+              <div className='experience-timeline'>
+                {freelanceExperiences.map((exp, index) => (
+                  <div key={index} className='timeline-item timeline-item--freelance'>
+                    <div className='timeline-icon'>{getExperienceIcon(exp.type)}</div>
+                    <div className='timeline-content'>
+                      <span className='timeline-period'>{exp.period}</span>
+                      <h4 className='timeline-company'>{exp.company}</h4>
+                      <p className='timeline-role'>{exp.role}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </m.div>
+          </div>
+        </div>
+      </Container>
     </ScrollAnimationWrapper>
   )
 }
 
+const experienceShape = PropTypes.shape({
+  period: PropTypes.string.isRequired,
+  company: PropTypes.string.isRequired,
+  role: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  technologies: PropTypes.arrayOf(PropTypes.string)
+})
+
 AboutSection.propTypes = {
-  abilities: PropTypes.arrayOf(PropTypes.string).isRequired,
-  arrow: PropTypes.string.isRequired,
-  btnlink: PropTypes.object.isRequired,
-  profileData: PropTypes.object.isRequired,
-  experiences: PropTypes.array.isRequired
+  aboutData: PropTypes.shape({
+    eyebrow: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    narrative: PropTypes.shape({
+      paragraphs: PropTypes.arrayOf(PropTypes.string).isRequired
+    }).isRequired,
+    personalInfo: PropTypes.shape({
+      location: PropTypes.string.isRequired,
+      education: PropTypes.arrayOf(
+        PropTypes.shape({
+          degree: PropTypes.string.isRequired,
+          institution: PropTypes.string.isRequired,
+          period: PropTypes.string.isRequired
+        })
+      ).isRequired
+    }).isRequired,
+    softSkills: PropTypes.arrayOf(PropTypes.string).isRequired,
+    stats: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired
+      })
+    ).isRequired,
+    fullTimeExperiences: PropTypes.arrayOf(experienceShape).isRequired,
+    freelanceExperiences: PropTypes.arrayOf(experienceShape).isRequired
+  }).isRequired,
+  cvUrl: PropTypes.string.isRequired
 }
 
 export default AboutSection

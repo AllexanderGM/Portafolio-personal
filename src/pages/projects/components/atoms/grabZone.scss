@@ -2,10 +2,10 @@
 @mixin grabZone {
   .grab-zone {
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     max-width: rem(370px);
-    height: rem(540px);
+    height: rem(520px);
     border-radius: 50%;
 
     &__danger {
@@ -13,7 +13,7 @@
       align-items: center;
       justify-content: center;
       width: rem(400px);
-      height: rem(540px);
+      height: rem(480px);
       border-radius: 50%;
 
       .grabber {
@@ -76,7 +76,7 @@
             transform: translateY(80%);
           }
           .grabber__face {
-            transform: translateY(60%);
+            transform: translateY(40%);
           }
         }
 
@@ -89,13 +89,13 @@
             transform: translateY(70%);
           }
           .grabber__face {
-            transform: translateY(10%);
+            transform: translateY(-10%);
           }
         }
 
         &--grabbing {
           .grabber__face {
-            transform: translateY(-40%) rotate(10deg);
+            transform: translateY(-60%) rotate(10deg);
           }
           .grabber__arm {
             transform: translateY(0%);

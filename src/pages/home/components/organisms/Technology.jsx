@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 // Components
 import AccordionTechnologies from '../molecules/AccordionTechnologies'
 
+import './technology.scss'
+
 const Technology = ({ data }) => {
   const technologiesArray = Object.keys(data.list).map(key => ({
     name: key,

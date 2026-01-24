@@ -1,233 +1,331 @@
 @use '@styles/autoload.scss' as *;
 
-.btn_modal {
-  position: absolute;
-  top: rem(220px);
-  right: rem(15px);
+// ============================================================================
+// MODAL BASE - HeroUI Customization
+// ============================================================================
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+// Wrapper de HeroUI
+.modal-wrapper {
+  // Mobile: pequeño espaciado con los bordes
+  padding: rem(10px) !important;
+  align-items: stretch !important;
+  z-index: 900 !important; // Por encima de la nav (899)
 
-  color: var(--accent-primary);
-  font-size: $font-size-xl;
-  min-width: auto;
-  width: auto;
-  height: rem(40px);
-  border-radius: rem(25px);
-  background-color: var(--bg-secondary);
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--border-color);
-
-  padding: 10px 20px;
-  margin: 0;
-  transition: $transition;
-
-  span {
-    font-size: $font-size-sm;
+  @include responsive {
+    // Desktop: centrado normal
+    padding: rem(24px) !important;
+    align-items: center !important;
   }
+}
+
+.modal-backdrop {
+  background-color: hsl(0 0% 0% / 0.6);
+  backdrop-filter: blur(rem(8px));
+  z-index: 900 !important; // Por encima de la nav
+}
+
+.modal-base {
+  background-color: var(--bg-secondary);
+  border: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.1);
+
+  // Mobile: casi fullscreen con espaciado
+  margin: 0 !important;
+  border-radius: rem(16px) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+
+  @include responsive {
+    // Desktop: modal centrado con márgenes
+    border-radius: rem(20px) !important;
+    width: auto !important;
+    max-width: rem(900px) !important;
+    height: auto !important;
+    max-height: calc(100dvh - rem(48px)) !important;
+  }
+}
+
+.modal-close-btn {
+  color: var(--text-muted);
+  transition: all 200ms ease;
 
   &:hover {
-    background-color: var(--bg-secondary);
+    color: var(--accent-primary);
+    background-color: hsl(var(--accent-primary-hsl) / 0.1);
   }
 }
 
-.modal_personalized {
-  border: 1px solid var(--border-color);
-  background-color: var(--surface-panel);
-  border-radius: rem(20px);
-  padding-top: rem(40px);
+// ============================================================================
+// HEADER
+// ============================================================================
+.modal-header {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: rem(8px);
+  padding: rem(20px) rem(24px);
+  border-bottom: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.08);
+
+  @include responsive {
+    padding: rem(24px) rem(32px);
+  }
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  gap: rem(12px);
   width: 100%;
-  margin: rem(10px);
-  margin-bottom: rem(100px);
-  z-index: 999 !important;
+}
 
-  .modal_body {
-    width: 100%;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
+.header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: rem(8px);
+}
 
-    .text {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: rem(20px);
-      padding-bottom: rem(50px);
+.chip-icon {
+  margin-right: rem(4px);
+}
 
-      .slider {
-        width: 100%;
-        height: auto;
-        overflow: hidden;
-        margin: 0;
-        margin-bottom: rem(30px);
+.header-title {
+  margin: 0;
+  font-size: rem(22px);
+  font-weight: $font-weight-bold;
+  color: var(--text-primary);
+  line-height: 1.3;
 
-        .slide-track {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          gap: rem(10px);
-          width: 100%;
-        }
+  @include responsive {
+    font-size: rem(26px);
+  }
+}
 
-        .slide {
-          border: rem(1px) solid var(--accent-primary-700);
-          border-radius: rem(50px);
-          font-size: $font-size-md;
-          color: var(--text-muted);
-          padding: rem(5px) rem(15px);
-        }
-      }
+// ============================================================================
+// BODY
+// ============================================================================
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: rem(20px);
+  padding: rem(20px) rem(24px) !important;
+  overflow-y: auto;
 
-      .info {
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-        justify-content: space-between;
-        gap: rem(20px);
-        width: 100%;
-        padding: 0;
+  @include responsive {
+    gap: rem(24px);
+    padding: rem(24px) rem(32px) !important;
+  }
+}
 
-        ul {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-        }
+// Carousel
+.modal-carousel {
+  width: 100%;
+  flex-shrink: 0; // Prevent carousel from shrinking
+  overflow: visible; // Permitir que los botones de navegación salgan del contenedor
 
-        h4 {
-          color: var(--accent-primary);
-          font-size: $font-size-lg;
-          margin-bottom: rem(10px);
-        }
+  @include responsive {
+    // Padding para que los botones de navegación no se corten
+    padding: 0 rem(24px);
+    margin: 0 rem(-24px);
+    width: calc(100% + rem(48px));
+  }
+}
 
-        .separator {
-          width: 100%;
-          min-width: rem(100px);
-          height: rem(2px);
-          background-color: var(--border-color);
-        }
+// Description
+.modal-description {
+  margin: 0;
+  font-size: rem(15px);
+  font-weight: $font-weight-regular;
+  color: var(--text-secondary);
+  line-height: 1.7;
 
-        .links {
-          display: flex;
-          flex-direction: column;
-          align-items: start;
-          gap: rem(10px);
+  @include responsive {
+    font-size: rem(16px);
+  }
+}
 
-          padding: 0;
+// Section
+.modal-section {
+  width: 100%;
+}
 
-          .upss {
-            width: 100%;
-            text-align: center;
-            color: var(--accent-secondary);
-            font-size: $font-size-sm;
-          }
+// Tech list
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(8px);
+}
 
-          a {
-            display: flex;
-            align-items: center;
-            justify-content: start;
-            gap: rem(10px);
-            min-width: rem(160px);
+// Divider
+.modal-divider {
+  background-color: hsl(var(--accent-primary-hsl) / 0.1);
+  margin: rem(4px) 0;
+}
 
-            font-size: $icon-size-sm;
-            font-weight: $font-weight-bold;
-            color: var(--text-secondary);
-            background-color: transparent;
-            border: rem(1px) solid var(--border-color);
-            border-radius: rem(15px);
+// ============================================================================
+// INFO GRID
+// ============================================================================
+.modal-info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: rem(24px);
+  width: 100%;
 
-            padding: rem(10px) 0;
+  @include responsive {
+    flex-direction: row;
+    gap: rem(40px);
+  }
+}
 
-            transition: $transition ease-in-out;
+.info-column {
+  display: flex;
+  flex-direction: column;
+  gap: rem(16px);
+  flex-shrink: 0;
 
-            /* ---------------- */
+  @include responsive {
+    min-width: rem(180px);
+  }
 
-            &:hover {
-              background-color: rgba(var(--accent-primary-rgb), 0.12);
-              color: var(--text-primary);
-              transition: $transition;
-            }
+  &--achievements {
+    flex: 1;
 
-            &:hover ion-icon {
-              color: var(--accent-primary-500);
-              transition: $transition;
-            }
-
-            ion-icon {
-              color: var(--text-secondary);
-              font-size: $icon-size-md;
-              transition: $transition;
-            }
-          }
-        }
-
-        .author {
-          list-style: none;
-          align-items: start;
-          gap: rem(10px);
-
-          li {
-            font-size: $icon-size-sm;
-            color: var(--text-secondary);
-          }
-        }
-
-        .achievements {
-          align-items: start;
-          gap: rem(10px);
-
-          font-size: $font-size-sm;
-          font-weight: $font-weight-regular;
-          color: var(--text-secondary);
-          max-width: 100%;
-        }
-      }
+    @include responsive {
+      padding-left: rem(40px);
+      border-left: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.1);
     }
   }
 }
 
-@include responsive {
-  .modal_personalized {
-    margin: auto rem(20px);
+// Info items (date, location)
+.info-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(16px);
+}
 
-    .modal_body .text {
-      padding: rem(20px) rem(40px);
-      padding-bottom: rem(40px);
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: rem(8px);
+  font-size: rem(14px);
+  color: var(--text-muted);
 
-      .slider .slide-track {
-        justify-content: center;
-        gap: rem(30px);
-      }
-
-      .info {
-        flex-direction: row;
-
-        .separator {
-          width: 1px;
-          min-width: 1px;
-          min-height: rem(120px);
-          height: 100%;
-        }
-
-        .links a {
-          white-space: nowrap;
-          min-width: auto;
-          width: auto;
-          background-color: transparent;
-          border: 1px solid var(--border-color-light);
-          border-radius: rem(25px);
-          padding: rem(10px) rem(15px);
-          transition: 0.3s ease-in-out;
-        }
-
-        .author li {
-          white-space: nowrap;
-        }
-      }
-    }
+  svg {
+    color: var(--accent-primary);
+    opacity: 0.7;
   }
+}
+
+// Info block (authors)
+.info-block {
+  display: flex;
+  flex-direction: column;
+  gap: rem(10px);
+}
+
+.info-label {
+  display: flex;
+  align-items: center;
+  gap: rem(6px);
+  margin: 0;
+  font-size: rem(12px);
+  font-weight: $font-weight-medium;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: rem(0.8px);
+}
+
+// Authors
+.author-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: rem(8px);
+
+  @include responsive {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+}
+
+.author-card {
+  display: flex;
+  flex-direction: column;
+  gap: rem(2px);
+  padding: rem(8px) rem(14px);
+  background-color: hsl(var(--accent-primary-hsl) / 0.05);
+  border: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.08);
+  border-radius: rem(10px);
+  width: fit-content;
+}
+
+.author-name {
+  font-size: rem(13px);
+  font-weight: $font-weight-medium;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.author-role {
+  font-size: rem(11px);
+  font-weight: $font-weight-regular;
+  color: var(--accent-primary);
+  opacity: 0.85;
+  line-height: 1.3;
+}
+
+// ============================================================================
+// ACHIEVEMENTS
+// ============================================================================
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: rem(12px);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.achievement-item {
+  position: relative;
+  padding-left: rem(16px);
+  font-size: rem(14px);
+  font-weight: $font-weight-regular;
+  color: var(--text-secondary);
+  line-height: 1.6;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: rem(8px);
+    width: rem(5px);
+    height: rem(5px);
+    background-color: var(--accent-primary);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+}
+
+// ============================================================================
+// FOOTER
+// ============================================================================
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: rem(12px);
+  padding: rem(16px) rem(24px);
+  border-top: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.08);
+
+  @include responsive {
+    padding: rem(20px) rem(32px);
+  }
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(10px);
 }

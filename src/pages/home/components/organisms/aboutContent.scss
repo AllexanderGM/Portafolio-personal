@@ -1,136 +1,124 @@
 @use '@styles/autoload.scss' as *;
-@use '../atoms/skillsItem.scss' as *;
-@use '../molecules/codeTerminal.scss' as *;
-@use '../molecules/experienceTimeline.scss' as *;
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: rem(60px);
 
-@mixin aboutContent {
-  .text {
-    display: flex;
-    flex-direction: column;
+  background: transparent;
+  width: 100%;
+
+  padding-bottom: rem(30px);
+}
+
+// Terminal section - arriba, centrada
+.terminal-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: rem(20px) 0;
+}
+
+// Experience + Skills section - abajo
+.experience-skills-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: rem(40px);
+  padding: rem(20px) 0;
+}
+
+.timeline-container,
+.skills-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: rem(20px);
+
+  h3 {
+    font-size: $font-size-xl;
+    color: var(--text-secondary);
+    font-weight: $font-weight-bold;
+    text-align: left;
+    margin: 0;
+  }
+}
+
+.skills-container {
+  .skills_items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: rem(20px);
     align-items: center;
     justify-content: center;
-    gap: rem(60px);
-
-    background: transparent;
     width: 100%;
+    margin-top: rem(20px);
+  }
 
-    padding-bottom: rem(30px);
+  .contact-link {
+    margin-top: rem(30px);
 
-    // Terminal section - arriba, centrada
-    .terminal-section {
-      width: 100%;
+    a {
+      width: rem(250px);
+      color: var(--text-secondary);
+      font-weight: $font-weight-bold;
+      font-size: $font-size-lg;
+      letter-spacing: rem(0.8px);
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: rem(20px) 0;
+      transition: $transition;
 
-      @include CodeTerminal;
-    }
+      &:hover {
+        color: var(--accent-primary);
+        transition: $transition;
 
-    // Experience + Skills section - abajo
-    .experience-skills-section {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: rem(40px);
-      padding: rem(20px) 0;
-
-      @include ExperienceTimeline;
-
-      .timeline-container,
-      .skills-container {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: rem(20px);
-
-        h3 {
-          font-size: $font-size-xl;
-          color: var(--text-secondary);
-          font-weight: $font-weight-bold;
-          text-align: left;
-          margin: 0;
+        img {
+          margin-left: rem(25px);
+          transition: $transition;
         }
       }
 
-      .skills-container {
-        .skills_items {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: rem(20px);
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          margin-top: rem(20px);
-
-          @include skillItem;
-        }
-
-        .contact-link {
-          margin-top: rem(30px);
-
-          a {
-            width: rem(250px);
-            color: var(--text-secondary);
-            font-weight: $font-weight-bold;
-            font-size: $font-size-lg;
-            letter-spacing: rem(0.8px);
-            display: flex;
-            align-items: center;
-            transition: $transition;
-
-            &:hover {
-              color: var(--accent-primary);
-              transition: $transition;
-
-              img {
-                margin-left: rem(25px);
-                transition: $transition;
-              }
-            }
-
-            img {
-              width: rem(26px);
-              margin-left: rem(10px);
-              transition: $transition;
-            }
-          }
-        }
+      img {
+        width: rem(26px);
+        margin-left: rem(10px);
+        transition: $transition;
       }
     }
   }
+}
 
-  @include responsive {
-    .text {
-      gap: rem(80px);
+@include responsive {
+  .text {
+    gap: rem(80px);
 
-      .terminal-section {
-        padding: rem(40px) 0;
+    .terminal-section {
+      padding: rem(40px) 0;
 
-        .code-terminal {
-          max-width: 90%;
-        }
+      .code-terminal {
+        max-width: 90%;
+      }
+    }
+
+    .experience-skills-section {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: rem(60px);
+      padding: rem(40px) 0;
+
+      .timeline-container {
+        flex: 1;
+        max-width: 50%;
       }
 
-      .experience-skills-section {
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: rem(60px);
-        padding: rem(40px) 0;
+      .skills-container {
+        flex: 1;
+        max-width: 45%;
 
-        .timeline-container {
-          flex: 1;
-          max-width: 50%;
-        }
-
-        .skills-container {
-          flex: 1;
-          max-width: 45%;
-
-          .skills_items {
-            grid-template-columns: 1fr 1fr;
-          }
+        .skills_items {
+          grid-template-columns: 1fr 1fr;
         }
       }
     }

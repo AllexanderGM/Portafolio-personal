@@ -1,52 +1,110 @@
 @use '@styles/autoload.scss' as *;
-@use '../icons/socialIcon.scss' as *;
 
+// ============================================================================
+// FOOTER
+// ============================================================================
 .footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
-
+  display: flex;
+  justify-content: center;
+  padding: rem(24px) 0 rem(100px); // Extra bottom padding for mobile nav
   background-color: var(--bg-secondary);
-  -webkit-backdrop-filter: blur(rem(7.6px));
-  backdrop-filter: blur(rem(7.6px));
-  border-top: rem(1px) solid var(--border-color);
+  border-top: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.08);
 
-  padding: rem(10px);
-  padding-bottom: rem(100px);
-  z-index: 2;
-
-  .footer_data {
-    text-align: center;
-    color: var(--text-tertiary);
-    font-size: $icon-size-sm;
-    margin: rem(10px);
-  }
-
-  .footer_links {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .social_icon {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: rem(5px);
-
-      @include socialIcon;
-    }
-  }
-
-  &.theme-white {
-    background-color: var(--bg-secondary);
+  @include responsive {
+    padding: rem(32px) 0;
   }
 }
 
-@include responsive {
-  .footer {
-    padding-bottom: rem(20px);
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem(16px);
+
+  @include responsive {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: rem(24px);
+  }
+}
+
+// ============================================================================
+// NAVIGATION
+// ============================================================================
+.footer-nav {
+  display: flex;
+  align-items: center;
+  gap: rem(24px);
+}
+
+.footer-link {
+  font-size: rem(14px);
+  font-weight: $font-weight-medium;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 200ms ease;
+
+  &:hover {
+    color: var(--accent-primary);
+  }
+}
+
+// ============================================================================
+// DIVIDER
+// ============================================================================
+.footer-divider {
+  width: rem(1px);
+  height: rem(16px);
+  background-color: hsl(var(--accent-primary-hsl) / 0.15);
+  display: none;
+
+  @include responsive {
+    display: block;
+  }
+}
+
+// ============================================================================
+// SOCIAL
+// ============================================================================
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: rem(12px);
+}
+
+.footer-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: rem(36px);
+  height: rem(36px);
+  color: var(--text-muted);
+  background-color: hsl(var(--accent-primary-hsl) / 0.05);
+  border: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.08);
+  border-radius: rem(8px);
+  transition: all 200ms ease;
+
+  &:hover {
+    color: var(--accent-primary);
+    background-color: hsl(var(--accent-primary-hsl) / 0.1);
+    border-color: hsl(var(--accent-primary-hsl) / 0.2);
+    transform: translateY(rem(-2px));
+  }
+}
+
+// ============================================================================
+// COPYRIGHT
+// ============================================================================
+.footer-copyright {
+  margin: 0;
+  font-size: rem(13px);
+  font-weight: $font-weight-regular;
+  color: var(--text-muted);
+  text-align: center;
+
+  @include responsive {
+    text-align: right;
   }
 }

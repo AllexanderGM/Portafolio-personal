@@ -1,10 +1,12 @@
 import { useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import PropTypes from 'prop-types'
 
-import Image from '../../../../library/image/Image.jsx'
-import SocialLink from '../../../../library/utils/SocialLink'
-import getScrollAnimation from '../../../../library/utils/GetScrollAnimation.jsx'
+import Image from '@library/image'
+import { SocialLink } from '@library/social'
+import { getScrollAnimation } from '@library/animation'
+
+import './bannerImage.scss'
 
 const BannerImage = ({ data }) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), [])
@@ -15,7 +17,7 @@ const BannerImage = ({ data }) => {
   })
 
   return (
-    <motion.figure variants={scrollAnimation} className='banner_image'>
+    <m.figure variants={scrollAnimation} className='banner_image'>
       {/* Decoración esquina superior izquierda */}
       <div className='banner_corner banner_corner--top-left' />
 
@@ -33,10 +35,20 @@ const BannerImage = ({ data }) => {
         <span className='banner_dot' />
       </div>
 
-      <Image className='picture' src={data.profile} alt='Fotografia de Jeisson Alexander' />
+      <Image
+        className='picture'
+        src={data.profile}
+        alt='Fotografia de Jeisson Alexander'
+        loading='eager'
+        fetchpriority='high'
+        decoding='async'
+        width={893}
+        height={894}
+        useIntersectionObserver={false}
+      />
 
       <ul className='banner_social'>{socialElements}</ul>
-    </motion.figure>
+    </m.figure>
   )
 }
 

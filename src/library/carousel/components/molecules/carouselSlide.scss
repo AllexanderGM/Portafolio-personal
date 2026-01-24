@@ -1,0 +1,78 @@
+@use '@styles/autoload.scss' as *;
+
+// ============================================================================
+// CAROUSEL SLIDE - Contenedor individual de imagen
+// ============================================================================
+
+.carousel__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: rem(12px);
+  background-color: var(--bg-tertiary);
+  overflow: hidden;
+
+  // Indica que es clickeable para ampliar
+  cursor: zoom-in;
+  transition:
+    background-color 200ms ease,
+    box-shadow 200ms ease;
+
+  &:hover {
+    .carousel__media {
+      transform: scale(1.02);
+    }
+
+    .carousel__zoom-hint {
+      opacity: 1;
+    }
+  }
+
+  &:focus-visible {
+    outline: rem(2px) solid var(--accent-primary);
+    outline-offset: rem(2px);
+  }
+}
+
+.carousel__media {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+  transition: transform 250ms ease;
+}
+
+// Hint visual para indicar zoom
+.carousel__zoom-hint {
+  position: absolute;
+  bottom: rem(12px);
+  right: rem(12px);
+  display: flex;
+  align-items: center;
+  gap: rem(6px);
+  padding: rem(6px) rem(10px);
+  background-color: hsl(0 0% 0% / 0.6);
+  border-radius: rem(6px);
+  color: white;
+  font-size: rem(11px);
+  font-weight: $font-weight-medium;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  pointer-events: none;
+
+  svg {
+    width: rem(14px);
+    height: rem(14px);
+  }
+}
+
+// Soporte para prevenir arrastre en Safari
+@supports (-webkit-user-drag: none) {
+  .carousel__media {
+    -webkit-user-drag: none;
+  }
+}

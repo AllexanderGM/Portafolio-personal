@@ -1,8 +1,26 @@
 import { useState, useEffect, useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import PropTypes from 'prop-types'
 
-import getScrollAnimation from '../../../../library/utils/GetScrollAnimation.jsx'
+import { getScrollAnimation } from '@library/animation'
+
+import './heroText.scss'
+
+// Parsea texto con *palabra* para resaltar con accent-primary
+const parseHighlightedText = text => {
+  if (!text) return null
+  const parts = text.split(/(\*[^*]+\*)/g)
+  return parts.map((part, index) => {
+    if (part.startsWith('*') && part.endsWith('*')) {
+      return (
+        <span key={index} className='hero-text_highlight'>
+          {part.slice(1, -1)}
+        </span>
+      )
+    }
+    return part
+  })
+}
 
 const HeroText = ({ hero }) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), [])
@@ -59,7 +77,7 @@ const HeroText = ({ hero }) => {
   }, [])
 
   return (
-    <motion.div variants={scrollAnimation} custom={{ duration: 2 }} className='hero-text'>
+    <m.div variants={scrollAnimation} custom={{ duration: 2 }} className='hero-text'>
       {/* Eyebrow - Introduce al usuario */}
       {eyebrow && <span className='hero-text_eyebrow'>{eyebrow}</span>}
 
@@ -77,7 +95,7 @@ const HeroText = ({ hero }) => {
 
       {/* Value proposition */}
       <div className='hero-text_value'>
-        {description && <p className='hero-text_description'>{description}</p>}
+        {description && <p className='hero-text_description'>{parseHighlightedText(description)}</p>}
 
         {/* Typing animation */}
         {(prefix || options.length > 0) && (
@@ -87,7 +105,7 @@ const HeroText = ({ hero }) => {
           </p>
         )}
       </div>
-    </motion.div>
+    </m.div>
   )
 }
 

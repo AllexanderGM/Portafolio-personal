@@ -1,189 +1,312 @@
 @use '@styles/autoload.scss' as *;
 
-@use '../../library/title/title.scss' as *;
+// ============================================================================
+// CONTACT PAGE - Siguiendo patrones de About y Projects
+// ============================================================================
 
-.main_contact {
+.contact-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   width: 100%;
   min-height: 100vh;
+  color: var(--text-primary);
+  background-color: var(--bg-secondary);
+}
 
-  /*  * Contact */
+.contact-section {
+  width: 100%;
+}
 
-  .contact {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: calc(100% - rem(20px));
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem(40px);
+}
 
-    padding: rem(10px);
+// ============================================================================
+// HEADER - Igual que About/Projects
+// ============================================================================
 
-    @include projectsTitle;
+.contact-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: rem(12px);
+}
 
-    .title {
-      p {
-        max-width: rem(600px);
-      }
-    }
+.contact-eyebrow {
+  font-size: rem(11px);
+  font-weight: $font-weight-medium;
+  letter-spacing: rem(2px);
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  opacity: 0.85;
+}
 
-    .contact_links_container {
-      min-width: rem(200px);
-      margin-bottom: rem(140px);
+.contact-title {
+  margin: 0;
+  font-size: rem(32px);
+  font-weight: $font-weight-bold;
+  color: var(--text-primary);
+  letter-spacing: rem(-0.5px);
+}
 
-      .contact_links_list {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+.contact-description {
+  margin: 0;
+  max-width: rem(500px);
+  font-size: rem(16px);
+  font-weight: $font-weight-regular;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
 
-        list-style: none;
+.contact-highlight {
+  color: var(--accent-primary);
+  font-weight: $font-weight-medium;
+}
 
-        .contact_links_item {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: rem(80px);
-          height: rem(40px);
+// ============================================================================
+// CONTENT - 2 columnas como About
+// ============================================================================
 
-          a {
-            font-size: $font-size-xxxl;
-            color: var(--text-tertiary);
-            transition: $transition;
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  gap: rem(32px);
+  width: 100%;
+}
 
-            &:hover ion-icon {
-              color: var(--accent-primary);
-              font-size: $icon-size-xl;
-              transition: $transition;
-            }
-          }
-        }
-      }
-    }
+// ============================================================================
+// INFO - Columna izquierda
+// ============================================================================
 
-    /* Contact form  */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: rem(24px);
+}
 
-    .contact_form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+// Card de info - igual que about-personal-info
+.contact-info-card {
+  display: flex;
+  flex-direction: column;
+  gap: rem(12px);
+  padding: rem(16px);
+  background-color: hsl(var(--accent-primary-hsl) / 0.03);
+  border: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.08);
+  border-radius: rem(10px);
+}
 
-      width: 100%;
-      max-width: rem(750px);
-      margin-bottom: rem(40px);
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: rem(10px);
+  color: var(--text-secondary);
+  font-size: rem(14px);
 
-      .form_title {
-        text-align: center;
-        color: var(--text-primary);
-        font-size: $font-size-xxxl;
-        margin-bottom: rem(20px);
-      }
+  svg {
+    flex-shrink: 0;
+    color: var(--accent-primary);
+    opacity: 0.8;
+  }
 
-      .form_text {
-        text-align: center;
-        width: 100%;
-        max-width: rem(500px);
-        color: var(--text-secondary);
-        font-size: $font-size-md;
-        letter-spacing: rem(0.8px);
-        line-height: 1.5;
-        transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-        opacity: 1;
-        transform-style: preserve-3d;
-      }
+  a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 200ms ease;
 
-      .enviarMensaje {
-        width: 100%;
-        max-width: 80%;
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        margin: rem(20px) auto;
-
-        label {
-          margin: rem(10px) 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          width: 100%;
-
-          input {
-            background-color: var(--bg-tertiary);
-            width: 100%;
-            border-radius: rem(20px);
-            border: rem(1px) solid var(--border-color);
-            font-size: $icon-size-sm;
-            padding: rem(10px) rem(20px);
-            color: var(--text-primary);
-          }
-
-          .mensajeTextArea {
-            margin-top: rem(7px);
-            background-color: var(--bg-tertiary);
-            width: 100%;
-            height: 15rem;
-            font-size: $icon-size-sm;
-            border-radius: rem(20px);
-            border: rem(1px) solid var(--border-color);
-            padding: rem(10px);
-            color: var(--text-primary);
-          }
-        }
-      }
-
-      .btn_generic {
-        width: 100%;
-        max-width: rem(400px);
-        margin: rem(20px) auto;
-      }
+    &:hover {
+      color: var(--accent-primary);
     }
   }
 }
 
+// CTA - igual que about-cta
+.contact-cta {
+  align-self: flex-start;
+}
+
+// ============================================================================
+// SOCIAL - Columna derecha
+// ============================================================================
+
+.contact-social {
+  display: flex;
+  flex-direction: column;
+  gap: rem(12px);
+}
+
+// Label - igual que category-label en About
+.social-label {
+  font-size: rem(12px);
+  font-weight: $font-weight-medium;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: rem(1.5px);
+}
+
+.social-list {
+  display: flex;
+  flex-direction: column;
+  gap: rem(10px);
+}
+
+// Items - igual que timeline-item en About
+.social-item {
+  display: flex;
+  align-items: center;
+  gap: rem(12px);
+  padding: rem(10px) rem(12px);
+  border-radius: rem(8px);
+  background-color: hsl(var(--accent-primary-hsl) / 0.03);
+  border: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.08);
+  text-decoration: none;
+  transition: all 200ms ease;
+
+  &:hover {
+    background-color: hsl(var(--accent-primary-hsl) / 0.06);
+    border-color: hsl(var(--accent-primary-hsl) / 0.15);
+
+    .social-icon {
+      background-color: hsl(var(--accent-primary-hsl) / 0.15);
+    }
+
+    .social-name {
+      color: var(--accent-primary);
+    }
+  }
+}
+
+// Icon container - igual que timeline-icon
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: rem(36px);
+  height: rem(36px);
+  border-radius: rem(8px);
+  background-color: hsl(var(--accent-primary-hsl) / 0.1);
+  color: var(--accent-primary);
+  transition: background-color 200ms ease;
+}
+
+.social-name {
+  font-size: rem(14px);
+  font-weight: $font-weight-medium;
+  color: var(--text-primary);
+  transition: color 200ms ease;
+}
+
+// ============================================================================
+// DIVIDER - Igual que Banner
+// ============================================================================
+
+.contact-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(16px);
+  width: 100%;
+  padding: rem(20px) 0;
+}
+
+.divider-dot {
+  width: rem(6px);
+  height: rem(6px);
+  border-radius: 50%;
+  background-color: hsl(var(--accent-primary-hsl) / 0.4);
+}
+
+.divider-line {
+  width: rem(80px);
+  height: rem(1px);
+  background-color: hsl(var(--accent-primary-hsl) / 0.25);
+}
+
+// ============================================================================
+// RESPONSIVE - Desktop (igual que About/Projects)
+// ============================================================================
+
 @include responsive {
-  .main_contact .contact .contact_form .enviarMensaje {
-    text-align: start;
+  .contact-container {
+    gap: rem(60px);
+  }
 
-    label {
-      &:nth-child(1) {
-        position: relative;
-        grid-column: 1;
-        grid-row: 1;
-        justify-self: flex-end;
-      }
+  // Header left-aligned en desktop
+  .contact-header {
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+  }
 
-      &:nth-child(2) {
-        position: relative;
-        grid-column: 1;
-        grid-row: 1;
-        align-items: flex-start;
-      }
+  .contact-eyebrow {
+    font-size: rem(12px);
+    letter-spacing: rem(2.5px);
+  }
 
-      &:nth-child(3) {
-        grid-column: 1/2;
-        grid-row: 2;
-        width: 100%;
-      }
+  .contact-title {
+    font-size: rem(48px);
+    letter-spacing: rem(-1px);
+  }
 
-      &:nth-child(4) {
-        grid-column: 1/2;
-        grid-row: 3;
-      }
+  .contact-description {
+    font-size: rem(17px);
+  }
 
-      &:nth-child(1),
-      &:nth-child(2) {
-        width: 49%;
-      }
-    }
+  // Content 2 columnas
+  .contact-content {
+    flex-direction: row;
+    gap: rem(80px);
+    align-items: flex-start;
+  }
 
-    button {
-      grid-column: 1/2;
-      grid-row: 4;
-    }
+  .contact-info {
+    flex: 1;
+    max-width: 50%;
+    gap: rem(28px);
+  }
+
+  .contact-info-card {
+    padding: rem(20px);
+  }
+
+  .info-item {
+    font-size: rem(15px);
+  }
+
+  .contact-social {
+    flex: 1;
+    max-width: 45%;
+  }
+
+  .social-list {
+    gap: rem(12px);
+  }
+
+  .social-item {
+    padding: rem(16px);
+  }
+
+  .social-icon {
+    width: rem(40px);
+    height: rem(40px);
+  }
+
+  .social-name {
+    font-size: rem(16px);
+  }
+
+  .contact-divider {
+    padding: rem(30px) 0;
+  }
+
+  .divider-line {
+    width: rem(100px);
   }
 }

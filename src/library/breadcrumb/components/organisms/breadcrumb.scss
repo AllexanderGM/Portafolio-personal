@@ -1,0 +1,16 @@
+@use '@styles/autoload.scss' as *;
+
+.breadcrumb {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: rem(14px) 0;
+  color: var(--text-secondary);
+  background-color: var(--bg-secondary);
+  border-bottom: rem(1px) solid var(--border-color-light);
+  z-index: 1;
+
+  @include responsive {
+    padding: rem(18px) 0;
+  }
+}

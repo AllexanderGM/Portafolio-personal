@@ -1,13 +1,13 @@
 import { useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
+import { MapPin, Clock, Mail, Linkedin, Github, MessageCircle, Send } from 'lucide-react'
+import { Button } from '@heroui/button'
 
 import './contact.scss'
 
-import ScrollAnimationWrapper from '../../library/utils/ScrollAnimationWrapper'
-import getScrollAnimation from '../../library/utils/GetScrollAnimation.jsx'
+import { ScrollAnimationWrapper, getScrollAnimation } from '@library/animation'
+import { Container } from '@library/container'
 import { SEO } from '@context/SEOContext'
-
-import ProjectsTitle from '../../library/title/Title.jsx'
 
 import { useGeneral } from '@hooks'
 import data from './data.json'
@@ -21,6 +21,18 @@ const Contact = () => {
     { name: 'Inicio', url: 'https://alexandergm.com/' },
     { name: 'Contacto', url: 'https://alexandergm.com/contact' }
   ]
+
+  const socialLinks = [
+    { icon: Linkedin, label: 'LinkedIn', url: social.linkedin },
+    { icon: Github, label: 'GitHub', url: social.github },
+    {
+      icon: MessageCircle,
+      label: 'WhatsApp',
+      url: `https://api.whatsapp.com/send/?phone=${social.whatsapp}&text=¡Hola+Jeisson!+Quiero+hablar+contigo+sobre+un+proyecto.&type=phone_number`
+    }
+  ]
+
+  const mailtoUrl = `mailto:${social.email}?subject=${encodeURIComponent(data.cta.subject)}`
 
   return (
     <>
@@ -36,32 +48,79 @@ const Contact = () => {
         type='website'
         breadcrumbs={breadcrumbs}
       />
-      <main className='main_contact'>
-        <ScrollAnimationWrapper className='contact' id='contact'>
-          <ProjectsTitle title={data.title} text1={data.text1} textSpan={data.textSpan} text2={data.text2} />
+      <main className='contact-page'>
+        <ScrollAnimationWrapper className='contact-section'>
+          <Container as='article' className='contact-container'>
+            {/* Header - igual que About/Projects */}
+            <m.header className='contact-header' variants={scrollAnimation}>
+              <span className='contact-eyebrow'>{data.eyebrow}</span>
+              <h1 className='contact-title'>{data.title}</h1>
+              <p className='contact-description'>
+                {data.description.split('proyecto')[0]}
+                <span className='contact-highlight'>proyecto</span>
+                {data.description.split('proyecto')[1]}
+              </p>
+            </m.header>
 
-          <figure className='contact_links_container'>
-            <ul className='contact_links_list'>
-              <motion.li className='contact_links_item' variants={scrollAnimation} custom={{ duration: 4 }}>
-                <a href={social.linkedin} target='_blank'>
-                  <ion-icon name='logo-linkedin'></ion-icon>
-                </a>
-              </motion.li>
-              <motion.li className='contact_links_item' variants={scrollAnimation} custom={{ duration: 4.5 }}>
-                <a href={social.github} target='_blank'>
-                  <ion-icon name='logo-github'></ion-icon>
-                </a>
-              </motion.li>
-              <motion.li className='contact_links_item' variants={scrollAnimation} custom={{ duration: 5 }}>
-                <a
-                  href={`https://api.whatsapp.com/send/?phone=${social.whatsapp}&text=¡Hola+Jeisson+Alexander%21+Quiero+hablar+contigo%2C+dime+en+que+momento+puedes+contactarme.&type=phone_number`}
-                  target='_blank'>
-                  <ion-icon name='logo-whatsapp'></ion-icon>
-                </a>
-              </motion.li>
-            </ul>
-          </figure>
+            {/* Content - 2 columnas como About */}
+            <div className='contact-content'>
+              {/* Columna izquierda - Info */}
+              <div className='contact-info'>
+                {/* Info card - estilo About */}
+                <m.div className='contact-info-card' variants={scrollAnimation} custom={{ duration: 1 }}>
+                  <div className='info-item'>
+                    <MapPin size={16} />
+                    <span>{data.info.location}</span>
+                  </div>
+                  <div className='info-item'>
+                    <Clock size={16} />
+                    <span>{data.info.availability}</span>
+                  </div>
+                  <div className='info-item'>
+                    <Mail size={16} />
+                    <a href={mailtoUrl}>{social.email}</a>
+                  </div>
+                </m.div>
+
+                {/* CTA - estilo About */}
+                <m.div variants={scrollAnimation} custom={{ duration: 1.2 }}>
+                  <Button
+                    as='a'
+                    href={mailtoUrl}
+                    variant='solid'
+                    color='primary'
+                    size='md'
+                    startContent={<Send size={20} strokeWidth={2} />}
+                    className='contact-cta'>
+                    {data.cta.text}
+                  </Button>
+                </m.div>
+              </div>
+
+              {/* Columna derecha - Social */}
+              <m.div className='contact-social' variants={scrollAnimation} custom={{ duration: 1.4 }}>
+                <span className='social-label'>{data.socialLabel}</span>
+                <div className='social-list'>
+                  {socialLinks.map((item, index) => (
+                    <a key={index} href={item.url} target='_blank' rel='noopener noreferrer' className='social-item'>
+                      <div className='social-icon'>
+                        <item.icon size={18} />
+                      </div>
+                      <span className='social-name'>{item.label}</span>
+                    </a>
+                  ))}
+                </div>
+              </m.div>
+            </div>
+          </Container>
         </ScrollAnimationWrapper>
+
+        {/* Divider decorativo - igual que Banner */}
+        <div className='contact-divider'>
+          <span className='divider-dot' />
+          <span className='divider-line' />
+          <span className='divider-dot' />
+        </div>
       </main>
     </>
   )

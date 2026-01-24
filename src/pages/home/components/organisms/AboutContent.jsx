@@ -1,15 +1,17 @@
 // Dependences
 import { useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-import getScrollAnimation from '../../../../library/utils/GetScrollAnimation.jsx'
+import { getScrollAnimation } from '@library/animation'
 
 // Components
 import SkillsItem from '../atoms/SkillsItem'
 import CodeTerminal from '../molecules/CodeTerminal'
 import ExperienceTimeline from '../molecules/ExperienceTimeline'
+
+import './aboutContent.scss'
 
 // Principal component
 const AboutContent = ({ ability, arrow, profileData, experiences }) => {
@@ -23,12 +25,12 @@ const AboutContent = ({ ability, arrow, profileData, experiences }) => {
   return (
     <article className='text'>
       {/* Terminal con toda la información técnica */}
-      <motion.div className='terminal-section' variants={scrollAnimation} custom={{ duration: 1 }}>
+      <m.div className='terminal-section' variants={scrollAnimation} custom={{ duration: 1 }}>
         <CodeTerminal profileData={profileData} />
-      </motion.div>
+      </m.div>
 
       {/* Timeline + Soft Skills */}
-      <motion.div className='experience-skills-section' variants={scrollAnimation} custom={{ duration: 1.5 }}>
+      <m.div className='experience-skills-section' variants={scrollAnimation} custom={{ duration: 1.5 }}>
         <div className='timeline-container'>
           <h3>Experiencia Profesional</h3>
           <ExperienceTimeline experiences={experiences} />
@@ -38,13 +40,13 @@ const AboutContent = ({ ability, arrow, profileData, experiences }) => {
           <h3>Habilidades Blandas</h3>
           <article className='skills_items'>{componentSkills}</article>
 
-          <motion.article variants={scrollAnimation} custom={{ duration: 2 }} className='contact-link'>
+          <m.article variants={scrollAnimation} custom={{ duration: 2 }} className='contact-link'>
             <Link to='/contact' className='clickable'>
               Contáctame <img src={arrow} alt='contact img' />
             </Link>
-          </motion.article>
+          </m.article>
         </div>
-      </motion.div>
+      </m.div>
     </article>
   )
 }

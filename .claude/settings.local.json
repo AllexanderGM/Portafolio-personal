@@ -16,7 +16,11 @@
       "Bash(npm run build:*)",
       "Bash(npm uninstall:*)",
       "Bash(node scripts/generate-scss-tokens.mjs:*)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(xargs -I {} sh -c 'echo \"\"File: {}\"\"; head -15 {}')",
+      "Bash(for comp in AccordionTechnologies CodeTerminal ExperienceTimeline Title)",
+      "Bash(do echo \"=== $comp ===\")",
+      "Bash(done)"
     ]
   }
 }

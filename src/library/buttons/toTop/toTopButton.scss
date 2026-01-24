@@ -1,0 +1,49 @@
+@use '@styles/autoload.scss' as *;
+
+.to-top-button {
+  display: flex;
+  position: fixed;
+  // Mobile: alineado con la barra de navegación
+  right: rem(16px);
+  bottom: calc(#{rem(12px)} + env(safe-area-inset-bottom, 0px));
+  z-index: 898; // Debajo de la nav (899)
+  cursor: pointer;
+
+  border: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.12);
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  box-shadow: var(--shadow-control);
+
+  padding: rem(12px);
+  color: var(--accent-primary);
+
+  transition:
+    opacity 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 280ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    border-color: hsl(var(--accent-primary-hsl) / 0.35);
+    box-shadow: var(--shadow-control-active);
+  }
+
+  &:not(.is-visible) {
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(rem(16px));
+  }
+
+  svg {
+    stroke-width: 2.5px;
+    stroke: currentColor;
+    fill: none;
+    width: rem(22px);
+    height: rem(22px);
+  }
+
+  @include responsive {
+    right: rem(40px);
+    bottom: rem(40px);
+  }
+}

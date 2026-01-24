@@ -53,16 +53,20 @@ const usePosition = () => {
   const ref = useRef()
   const [position, setPosition] = useState({})
 
-  const handleResize = () => {
-    setPosition(ref.current.getBoundingClientRect())
+  const updatePosition = () => {
+    if (ref.current) {
+      setPosition(ref.current.getBoundingClientRect())
+    }
   }
 
   useLayoutEffect(() => {
-    handleResize()
-    window.addEventListener('resize', handleResize)
+    updatePosition()
+    window.addEventListener('resize', updatePosition)
+    window.addEventListener('scroll', updatePosition, true)
 
     return () => {
-      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('resize', updatePosition)
+      window.removeEventListener('scroll', updatePosition, true)
     }
   }, [])
 

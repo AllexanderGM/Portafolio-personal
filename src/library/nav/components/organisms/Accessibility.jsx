@@ -1,8 +1,13 @@
-import { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
-import { Button, Switch, Card, CardBody, Chip, Divider, Modal, ModalContent, ModalBody, Tooltip } from '@heroui/react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { Button } from '@heroui/button'
+import { Card, CardBody } from '@heroui/card'
+import { Chip } from '@heroui/chip'
+import { Divider } from '@heroui/divider'
+import { Modal, ModalBody, ModalContent } from '@heroui/modal'
+import { Switch } from '@heroui/switch'
+import { Tooltip } from '@heroui/tooltip'
 import {
-  Accessibility,
+  Accessibility as AccessibilityIcon,
   RotateCcw,
   Type,
   Minus,
@@ -16,34 +21,13 @@ import {
 } from 'lucide-react'
 import { useGeneral } from '@hooks'
 import ThemeToggle from '@library/nav/components/atoms/ThemeToggle'
+import AccessibilityOption from '@library/nav/components/molecules/AccessibilityOption'
 
 import './accessibility.scss'
 
 const FONT_SCALE_STEPS = [0.9, 1, 1.1, 1.2]
 
-// Componente reutilizable para opciones de configuración
-const AccessibilityOption = ({ icon: Icon, label, color, children }) => (
-  <Card className='accessibility_option' shadow='none'>
-    <CardBody className='accessibility_option_body'>
-      <div className='accessibility_option_label'>
-        <div className={`accessibility_option_icon accessibility_option_icon--${color}`}>
-          <Icon size={16} strokeWidth={2.2} />
-        </div>
-        <span className='accessibility_option_text'>{label}</span>
-      </div>
-      <div className='accessibility_option_control'>{children}</div>
-    </CardBody>
-  </Card>
-)
-
-AccessibilityOption.propTypes = {
-  icon: PropTypes.elementType.isRequired,
-  label: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired
-}
-
-const AccessibilityBar = () => {
+const Accessibility = () => {
   const {
     fontScale,
     increaseFontScale,
@@ -61,6 +45,43 @@ const AccessibilityBar = () => {
     const saved = localStorage.getItem('portfolio-a11y-open')
     return saved === null ? false : saved === 'true'
   })
+  const scrollLockRef = useRef(null)
+
+  useLayoutEffect(() => {
+    if (!isOpen) {
+      if (!scrollLockRef.current) return
+      const { scrollY } = scrollLockRef.current
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.paddingRight = ''
+      window.scrollTo(0, scrollY)
+      scrollLockRef.current = null
+      return
+    }
+
+    const scrollY = window.scrollY || document.documentElement.scrollTop
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+
+    scrollLockRef.current = { scrollY }
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${scrollY}px`
+    document.body.style.width = '100%'
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`
+    }
+
+    return () => {
+      if (!scrollLockRef.current) return
+      const { scrollY: storedScrollY } = scrollLockRef.current
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.paddingRight = ''
+      window.scrollTo(0, storedScrollY)
+      scrollLockRef.current = null
+    }
+  }, [isOpen])
   useEffect(() => {
     localStorage.setItem('portfolio-a11y-open', String(isOpen))
   }, [isOpen])
@@ -70,7 +91,7 @@ const AccessibilityBar = () => {
   const fontPercent = Math.round(fontScale * 100)
 
   return (
-    <aside className={`nav_accessibility ${isOpen ? 'is-open' : ''}`} aria-label='Barra de accesibilidad'>
+    <aside className={`nav-accessibility ${isOpen ? 'is-open' : ''}`} aria-label='Barra de accesibilidad'>
       <Tooltip
         content='Ajustes de accesibilidad'
         placement='right'
@@ -104,7 +125,7 @@ const AccessibilityBar = () => {
         placement='bottom-center'
         backdrop='blur'
         scrollBehavior='inside'
-        shouldBlockScroll
+        shouldBlockScroll={false}
         hideCloseButton
         classNames={{
           wrapper: 'accessibility_modal_wrapper',
@@ -118,7 +139,7 @@ const AccessibilityBar = () => {
               <div className='accessibility_panel_header'>
                 <div className='accessibility_panel_title'>
                   <Chip
-                    startContent={<Accessibility size={14} strokeWidth={2.5} />}
+                    startContent={<AccessibilityIcon size={14} strokeWidth={2.5} />}
                     variant='flat'
                     color='primary'
                     size='sm'
@@ -260,4 +281,4 @@ const AccessibilityBar = () => {
   )
 }
 
-export default AccessibilityBar
+export default Accessibility

@@ -1,14 +1,15 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
-import image from '@rollup/plugin-image'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 import * as sass from 'sass'
 
+const shouldGenerateSourceMap = (mode) => mode === 'analyze' || process.env.VITE_SOURCEMAP === 'true'
+
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react(), tailwindcss(), image(), VitePWA()],
+export default defineConfig(({ mode }) => ({
+  plugins: [react(), tailwindcss(), VitePWA()],
   css: {
     preprocessorOptions: {
       scss: {
@@ -32,6 +33,18 @@ export default defineConfig({
   },
   base: './',
   build: {
-    sourcemap: true
+    sourcemap: shouldGenerateSourceMap(mode),
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (!id.includes('node_modules')) return
+          if (id.includes('framer-motion')) return 'motion'
+          if (id.includes('swiper')) return 'swiper'
+          if (id.includes('@heroui')) return 'heroui'
+          if (id.includes('react')) return 'react-vendor'
+          return 'vendor'
+        }
+      }
+    }
   }
-})
+}))

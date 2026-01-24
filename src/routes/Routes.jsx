@@ -8,7 +8,7 @@ const Projects = lazy(() => import('../pages/projects/Projects.jsx'))
 const Contact = lazy(() => import('../pages/contact/Contact.jsx'))
 const NotFound = lazy(() => import('../pages/not_found/NotFound.jsx'))
 
-import LoadingPage from '../library/loadingPage/LoadingPage.jsx'
+import LoadingPage from '@library/loadingPage'
 import AppLayout from '../layouts/AppLayout.jsx'
 
 const Routes = ({ route }) => {

@@ -1,20 +1,53 @@
 @use '@styles/autoload.scss' as *;
-@use '../molecules/navList.scss' as *;
 
-@mixin headerNavbar() {
-  .header_navbar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+.nav-shell__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(auto - rem(20px));
+  max-width: rem(340px);
+  border: rem(1px) solid hsl(var(--accent-primary-hsl) / 0.12);
+  border-radius: rem(40px);
+  background: var(--bg-secondary);
+  box-shadow: var(--shadow-nav);
+  transition:
+    transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
-    @include navList;
-  }
+  // Optimizacion GPU
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 
   @include responsive {
-    .header_navbar {
-      overflow: visible;
-      width: auto;
-    }
+    width: auto;
+    overflow: visible;
+  }
+}
+
+.nav-shell__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: auto;
+  max-width: rem(1200px);
+  padding: 0;
+  transition: $transition ease-in-out;
+
+  @include responsive {
+    overflow: visible;
+  }
+}
+
+.nav-shell__bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  @include responsive {
+    overflow: visible;
+    width: auto;
   }
 }

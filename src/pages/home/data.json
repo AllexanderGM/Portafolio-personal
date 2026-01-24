@@ -45,51 +45,74 @@
     "office": "office.svg"
   },
   "about": {
-    "abilities": ["COMUNICACIÓN", "AUTONOMÍA", "ORGANIZACIÓN", "ADAPTABILIDAD"],
-    "profile": {
-      "name": "Jeisson Alexander Gavilán Murcia",
-      "role": "Full Stack Developer",
-      "experience": "3+ años",
-      "current": "Pontificia Universidad Javeriana",
-      "education": "Lic. Diseño Tecnológico - UPN",
-      "location": "Bogotá, Colombia",
-      "technologies": {
-        "backend": ["Spring Boot", "Nest.js", "Express.js", "Node.js"],
-        "frontend": ["React", "Next.js", "Redux", "Tailwind CSS"],
-        "databases": ["PostgreSQL", "MySQL", "MongoDB", "DynamoDB"],
-        "devops": ["Docker", "AWS", "Terraform", "CI/CD", "GitHub Actions"],
-        "tools": ["Git", "Postman", "Figma", "Jira", "Liferay", "Moodle"]
-      },
-      "languages": ["JavaScript", "TypeScript", "Java", "Python", "PHP"],
-      "methodologies": ["Scrum", "Kanban", "TDD", "SOLID"]
+    "eyebrow": "Un poco sobre mí",
+    "title": "Más allá del código",
+    "narrative": {
+      "paragraphs": [
+        "Soy un desarrollador que cree que la *tecnología* debe servir a las *personas*, no al revés.",
+        "Con más de 3 años de experiencia, he trabajado en entornos educativos y empresariales donde aprendí que el mejor código es el que *resuelve problemas reales* y es fácil de mantener."
+      ]
     },
-    "experiences": [
+    "personalInfo": {
+      "location": "Bogotá, Colombia",
+      "education": [
+        {
+          "degree": "Professional Developer",
+          "institution": "Digital House",
+          "period": "2022 - 2025"
+        },
+        {
+          "degree": "Lic. Diseño Tecnológico",
+          "institution": "Universidad Pedagógica Nacional",
+          "period": "2016 - 2021"
+        }
+      ]
+    },
+    "softSkills": ["Comunicación", "Autonomía", "Organización", "Adaptabilidad"],
+    "stats": [
+      { "value": "3+", "label": "Años de experiencia" },
+      { "value": "10+", "label": "Proyectos entregados" },
+      { "value": "4", "label": "Freelance" }
+    ],
+    "fullTimeExperiences": [
       {
-        "period": "Abr 2024 - Actualidad",
+        "period": "2024 - Actualidad",
         "company": "Pontificia Universidad Javeriana",
         "role": "Desarrollador Frontend",
-        "technologies": ["Spring Boot", "Nest.js", "React", "Docker", "Liferay"],
+        "type": "university",
+        "technologies": ["Spring Boot", "Next.js", "React", "Vue", "PostgreSQL"]
+      },
+      {
+        "period": "2022 - 2023",
+        "company": "Universidad Pedagógica Nacional",
+        "role": "Desarrollador FullStack",
+        "type": "university",
+        "technologies": ["React", "Node.js", "Express.js", "MySQL"]
+      }
+    ],
+    "freelanceExperiences": [
+      {
+        "period": "2025",
+        "company": "Universidad Nacional de Colombia",
+        "role": "Desarrollador Fullstack",
         "type": "university"
       },
       {
-        "period": "Ago 2024 - Nov 2024",
+        "period": "2024",
         "company": "Organización Key",
-        "role": "Docente Desarrollo Web",
-        "technologies": ["Nest.js", "React", "Redux", "Next.js"],
+        "role": "Docente Frontend · Mujeres Digitales",
         "type": "teaching"
       },
       {
-        "period": "Nov 2022 - Dic 2023",
-        "company": "Universidad Pedagógica Nacional",
-        "role": "Desarrollador FullStack",
-        "technologies": ["Express.js", "React", "Moodle"],
-        "type": "university"
+        "period": "2024",
+        "company": "Feeling",
+        "role": "Desarrollador Fullstack",
+        "type": "company"
       },
       {
-        "period": "Sep 2022 - Mar 2023",
+        "period": "2022 - 2023",
         "company": "Calzado Romeliny",
         "role": "Desarrollador Web",
-        "technologies": ["React", "Express.js", "API Mercado Libre"],
         "type": "ecommerce"
       }
     ]

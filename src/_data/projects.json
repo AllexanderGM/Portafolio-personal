@@ -1,19 +1,165 @@
 {
   "title": "Proyectos",
-  "text1": "Cada proyecto ha sido una oportunidad para",
-  "textSpan": " crecer profesionalmente ",
-  "text2": "y explorar diferentes tecnologías. Si deseas obtener más detalles sobre alguno de estos proyectos o conocer otros ejemplos de mi trabajo, no dudes en contactarme.",
-  "categoryText": "Tipos de proyectos",
-  "categories": ["Todos", "Diseño", "Web", "Académico"],
+  "stackFilters": ["Todos", "Frontend", "Backend", "Fullstack", "Diseño"],
   "projects": [
     {
       "id": 0,
+      "img": "",
+      "title": "Sistema de Gestión de Proveedores (SGP)",
+      "stack": "Fullstack",
+      "technologies": ["Spring Boot", "React", "OAuth", "QUIPU", "ALFRESCO", "Figma"],
+      "date": "2025",
+      "context": "Laboral",
+      "text": "Modernización del sistema de proveedores de la Universidad Nacional, reemplazando la plataforma legacy en PHP por una arquitectura desacoplada con Spring Boot y React para mejorar rendimiento, seguridad y escalabilidad.",
+      "author": [
+        { "name": "Jeisson Gavilán", "role": "Desarrollador Fullstack" }
+      ],
+      "location": "Universidad Nacional de Colombia",
+      "link": "",
+      "repo": "",
+      "isUnderConstruction": false,
+      "modal": {
+        "images": [],
+        "technologies": ["Spring Boot", "React", "OAuth", "QUIPU", "ALFRESCO", "Figma"],
+        "achievements": [
+          "Gestión centralizada de proveedores, contratos, usuarios, roles y permisos.",
+          "Integración con QUIPU (financiero) y ALFRESCO (gestión documental) para interoperabilidad institucional.",
+          "Autenticación alineada con OAuth institucional y propuesta UI/UX completa en Figma."
+        ]
+      }
+    },
+    {
+      "id": 1,
+      "img": "pikachu.webp",
+      "title": "Reestructuración de programas académicos Javeriana",
+      "stack": "Fullstack",
+      "technologies": ["Next.js", "CRM", "PeopleSoft", "Lideray"],
+      "date": "2025",
+      "context": "Laboral",
+      "text": "Reestructuración gráfica y funcional de la gestión de páginas de carreras, maestrías, especializaciones, doctorados, EMBA y eclesiásticos. Integración entre dependencias para automatizar datos financieros y PeopleSoft con CRM y un flujo completo de leads.",
+      "author": [
+        { "name": "Jeisson Gavilán", "role": "Desarrollador Frontend" }
+      ],
+      "location": "Pontificia Universidad Javeriana",
+      "link": "",
+      "repo": "",
+      "isUnderConstruction": false,
+      "modal": {
+        "images": [
+          "pikachu_1.webp",
+          "pikachu_2.webp",
+          "pikachu_3.webp",
+          "pikachu_4.webp",
+          "pikachu_5.webp",
+          "pikachu_6.webp",
+          "pikachu_7.webp",
+          "pikachu_8.webp",
+          "pikachu_9.webp",
+          "pikachu_10.webp"
+        ],
+        "technologies": ["Next.js", "CRM", "PeopleSoft", "Lideray"],
+        "achievements": [
+          "Biblioteca de componentes en Next.js con compilación en tiempo real para entregar código vanilla al CMS final (Lideray).",
+          "Reestructuración de alrededor de 250 páginas, alineando dependencias y automatizando datos financieros y académicos."
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "img": "feeling.webp",
+      "title": "Feeling",
+      "stack": "Fullstack",
+      "technologies": ["Spring Boot", "MySQL", "Docker", "AWS", "Terraform", "MinIO", "WordPress", "React", "Vite", "TailwindCSS"],
+      "date": "2025",
+      "context": "Laboral",
+      "text": "Plataforma web enfocada en reducir la soledad con un sistema de matching por intereses, valores y estilos de vida. El backend en Spring Boot centraliza autenticación, pagos, eventos y administración, con una infraestructura automatizada en AWS mediante Terraform, almacenamiento S3/MinIO y base de datos MySQL.",
+      "author": [
+        { "name": "Jeisson Gavilán", "role": "Desarrollador Fullstack" },
+        { "name": "José Moreno", "role": "Desarrollador Frontend" }
+      ],
+      "location": "Colombia",
+      "link": "https://app.feelingmatch.com/",
+      "repo": "",
+      "isUnderConstruction": false,
+      "modal": {
+        "images": [
+          "feeling_1.webp",
+          "feeling_2.webp",
+          "feeling_3.webp",
+          "feeling_4.webp",
+          "feeling_5.webp",
+          "feeling_6.webp",
+          "feeling_7.webp",
+          "feeling_8.webp",
+          "feeling_9.webp",
+          "feeling_10.webp",
+          "feeling_11.webp",
+          "feeling_12.webp"
+        ],
+        "technologies": ["Spring Boot", "MySQL", "Docker", "AWS", "Terraform", "MinIO", "WordPress", "React", "Vite", "TailwindCSS"],
+        "achievements": [
+          "Infraestructura y despliegue automatizado: Se integró la app en un entorno WordPress y se orquestó el despliegue en AWS con Terraform.",
+          "Levantamiento de requerimientos: Se trabajó con el cliente para definir funcionalidades, flujos y prioridades del roadmap.",
+          "Pagos y matching: Se integró pasarela de pagos y se diseñó el algoritmo de matching con flujos de aprobación de usuarios."
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "img": "",
+      "title": "Sitio Relacionamiento Javeriana",
+      "stack": "Fullstack",
+      "technologies": ["Frontend", "Backend"],
+      "date": "2024",
+      "context": "Laboral",
+      "text": "Plataforma web diseñada para la gestión de actividades con instituciones y personas interesadas en la Pontificia Universidad Javeriana.",
+      "author": [
+        { "name": "Jeisson Gavilán", "role": "Desarrollador Fullstack" }
+      ],
+      "location": "Bogotá - Colombia",
+      "link": "",
+      "repo": "",
+      "isUnderConstruction": false,
+      "modal": {
+        "images": [],
+        "technologies": ["Frontend", "Backend"],
+        "achievements": []
+      }
+    },
+    {
+      "id": 4,
+      "img": "campusupn.webp",
+      "title": "Campus Virtual de la UPN",
+      "stack": "Fullstack",
+      "technologies": ["JavaScript", "Express", "MySQL"],
+      "date": "2022",
+      "context": "Laboral",
+      "text": "Desarrollo web del Campus virtual de la Universidad Pedagógica Nacional. Identificamos los principales espacios que los aspirantes, estudiantes, profesores y funcionarios necesitan de manera digital.",
+      "author": [
+        { "name": "Jeisson Gavilán", "role": "Desarrollador Fullstack" }
+      ],
+      "location": "CINNDET UPN",
+      "link": "https://campusvirtual.upn.edu.co/",
+      "repo": "",
+      "modal": {
+        "images": ["sifa_1.webp", "sifa_2.webp", "sifa_3.webp"],
+        "technologies": ["HTML", "CSS", "JavaScript", "Express", "MySQL"],
+        "achievements": []
+      }
+    },
+    {
+      "id": 5,
       "img": "etitc.webp",
       "title": "Plataforma virtual para ETICT",
-      "category": ["WEB", "FRONT END"],
-      "date": "2023/ Bogotá - Colombia",
+      "stack": "Frontend",
+      "technologies": ["JavaScript", "HTML", "CSS", "Bootstrap"],
+      "date": "2023",
+      "context": "Laboral",
       "text": "Desarrollo de una plataforma web integral para capacitar a 220 docentes de la Escuela Tecnológica Instituto Técnico Central (ETITC). Se superaron desafíos al implementar soluciones a medida utilizando JavaScript.",
-      "author": ["Jeisson Gavilán", "Cinndet UPN"],
+      "author": [
+        { "name": "Jeisson Gavilán", "role": "Desarrollador Frontend" },
+        { "name": "Cinndet UPN", "role": "Organización" }
+      ],
       "location": "CINNDET UPN",
       "link": "https://etitc.netlify.app/m1_modelacion/_0_inicio",
       "repo": "",
@@ -23,7 +169,7 @@
           ["etitc_3.webp", "etitc_4.webp"],
           ["etitc_5.webp", "etitc_6.webp"]
         ],
-        "technologies": ["HTML", "CSS", "JavaScript", "Boostrap", "CSS Pico"],
+        "technologies": ["HTML", "CSS", "JavaScript", "Bootstrap", "CSS Pico"],
         "achievements": [
           "Se implementaron componentes modulares y reutilizables con Js Vanilla en el desarrollo de la plataforma, lo que permitió agilizar el proceso de creación de contenido y facilitó la escalabilidad del sistema.",
           "Se desarrollaron layouts tipo plantilla para la virtualización del contenido, lo que garantizó una estructura coherente y consistente en todas las páginas del curso."
@@ -31,14 +177,19 @@
       }
     },
     {
-      "id": 1,
+      "id": 6,
       "img": "romeliny.webp",
       "title": "Sitio web de Romeliny",
-      "category": ["WEB", "BACK END", "DISEÑO"],
-      "date": "2023/ Bogotá - Colombia",
+      "stack": "Fullstack",
+      "technologies": ["React", "Node.js", "MongoDB", "Express"],
+      "date": "2023",
+      "context": "Freelance",
       "text": "Sitio web de comercio electrónico para Romeliny, una empresa colombiana dedicada a la fabricación de calzado. El objetivo del sitio es brindar una experiencia de compra online elegante y cómoda.",
-      "author": ["Jeisson Gavilán", "Liliana Camargo"],
-      "location": "FREELANCER",
+      "author": [
+        { "name": "Jeisson Gavilán", "role": "Desarrollador Fullstack" },
+        { "name": "Liliana Camargo", "role": "Diseño UX/UI" }
+      ],
+      "location": "Freelance",
       "link": "https://www.romeliny.com/",
       "repo": "https://github.com/Alexander206/Romeliny-web",
       "modal": {
@@ -47,7 +198,7 @@
           ["romeliny_3.webp", "romeliny_4.webp"],
           ["romeliny_5.webp", "romeliny_6.webp"]
         ],
-        "technologies": ["React Js", "Sass", "Bootstrap", "Node Js", "Express Js", "MongoDB"],
+        "technologies": ["React", "Sass", "Bootstrap", "Node.js", "Express", "MongoDB"],
         "achievements": [
           "Integración de tecnologías: Se logró integrar React, SASS y Bootstrap de manera armoniosa, aprovechando las ventajas de cada tecnología para lograr un diseño atractivo y una interfaz de usuario fluida.",
           "Implementación de la API RESTful: Se utilizó el módulo Express de Node.js para construir una API RESTful que permite realizar operaciones CRUD de productos en la plataforma de comercio electrónico."
@@ -55,13 +206,18 @@
       }
     },
     {
-      "id": 2,
+      "id": 7,
       "img": "sifa.webp",
       "title": "Buscador de seminarios electivos SIFA",
-      "category": ["WEB", "DISEÑO"],
-      "date": "2023/ Bogotá - Colombia",
-      "text": "Aplicación web en Vainilla Js y Express JS con una base de datos en MySQL. Esta app permite a los estudiantes de posgrado buscar electivas de manera rápida y sencilla. ",
-      "author": ["Jeisson Gavilán", "Cinndet UPN"],
+      "stack": "Fullstack",
+      "technologies": ["JavaScript", "Express", "MySQL"],
+      "date": "2023",
+      "context": "Laboral",
+      "text": "Aplicación web en Vanilla JS y Express JS con una base de datos en MySQL. Esta app permite a los estudiantes de posgrado buscar electivas de manera rápida y sencilla.",
+      "author": [
+        { "name": "Jeisson Gavilán", "role": "Desarrollador Fullstack" },
+        { "name": "Cinndet UPN", "role": "Organización" }
+      ],
       "location": "CINNDET UPN",
       "link": "http://sifa.upn.edu.co/",
       "repo": "",
@@ -70,7 +226,7 @@
           ["sifa_1.webp", "sifa_2.webp"],
           ["sifa_3.webp", "sifa_4.webp"]
         ],
-        "technologies": ["HTML", "CSS", "JavaScript", "ExpressJS", "MySQL", "Boostrap"],
+        "technologies": ["HTML", "CSS", "JavaScript", "Express", "MySQL", "Bootstrap"],
         "achievements": [
           "Adaptación al proyecto sin documentación: Esto implicó analizar y comprender el código existente, tanto en el frontend como en el backend, y realizar los ajustes necesarios para garantizar su funcionamiento correcto.",
           "Desarrollo del MVP en tiempo récord: Se logró completar el MVP en un tiempo aproximado de dos semana. Esto implicó una planificación detallada, y una gestión efectiva del tiempo para alcanzar los objetivos establecidos."
@@ -78,75 +234,18 @@
       }
     },
     {
-      "id": 3,
-      "img": "campusupn.webp",
-      "title": "Campus Virtual de la UPN",
-      "category": ["WEB", "FULL STACK"],
-      "date": "2022/ Bogotá - Colombia",
-      "text": "Desarrollo web del Campus virtual de la Universidad Pedagógica Nacional. Identificamos los principales espacios que los aspirantes, estudiantes, profesores y funcionaros necesitan de manera digital.",
-      "author": ["Jeisson Gavilán"],
-      "location": "CINNDET UPN",
-      "link": "",
-      "repo": "",
-      "modal": {
-        "images": ["sifa_1.webp", "sifa_2.webp", "sifa_3.webp"],
-        "technologies": ["HTML", "CSS", "JavaScript", "ExpressJS", "MySQL", ""],
-        "achievements": ["", ""]
-      }
-    },
-    {
-      "id": 4,
-      "img": "foodiesapp.webp",
-      "title": "Foodies App",
-      "category": ["WEB", "FRONT END", "DISEÑO"],
-      "date": "2023/ Bogotá - Colombia",
-      "text": "Proyecto del BootCamp - BIT, buscando fortalecer las habilidades técnicas en la construcción de páginas web con React Js, haciendo una lista de productos con la posibilidad de agregar y eliminar productos.",
-      "author": ["Jeisson Gavilán", "Adriana Moreno", "Wendy Carlos"],
-      "location": "BIT",
-      "link": "https://voluble-pudding-23916d.netlify.app/",
-      "repo": "https://github.com/Alexander206/bit10team",
-      "modal": {
-        "images": [
-          ["foodiesapp_1.webp", "foodiesapp_2.webp"],
-          ["foodiesapp_3.webp", "foodiesapp_4.webp"],
-          ["foodiesapp_5.webp", "foodiesapp_6.webp"]
-        ],
-        "technologies": ["React Js", "Vite", "Sass", "Git", "Boostrap"],
-        "achievements": ["", ""]
-      }
-    },
-    {
-      "id": 5,
-      "img": "yachay.webp",
-      "title": "Yachay Urqu - Buscador de Bioindicadores",
-      "category": ["WEB", "FRONT END", "DISEÑO"],
-      "date": "2023/ Bogotá - Colombia",
-      "text": "Plataforma web dedicada a brindar información relevante sobre el parque ecológico Cerro Seco. Este sitio web es un apoyo a un trabajo de grado para un grupo de estudiantes de la UPN.",
-      "author": ["Jeisson Gavilán", "Cristian Goméz", "Cinndet UPN"],
-      "location": "CINNDET UPN",
-      "link": "https://trjcerro.github.io/Yachay-Urqu/",
-      "repo": "https://github.com/Trjcerro/Yachay-Urqu",
-      "modal": {
-        "images": [
-          ["yachay_1.webp", "yachay_2.webp"],
-          ["yachay_3.webp", "yachay_4.webp"],
-          ["yachay_5.webp", "yachay_6.webp"]
-        ],
-        "technologies": ["React Js", "Sass", "JSON Data", "Boostrap"],
-        "achievements": [
-          "Desarrollo en tiempo récord: Nos comprometimos a entregar este proyecto en un plazo ajustado y desafiante. Para lograrlo, implementamos una metodología ágil de desarrollo y establecimos hitos y entregas parciales para mantenernos en el camino correcto.",
-          "Centralización de información en formato JSON: Para simular una base de datos y gestionar la información de manera eficiente, utilizamos un archivo JSON como fuente centralizada de datos."
-        ]
-      }
-    },
-    {
-      "id": 6,
+      "id": 8,
       "img": "dmed.webp",
       "title": "Propuesta para orientar docentes",
-      "category": ["ACADÉMICO"],
-      "date": "2021/ Bogotá - Colombia",
+      "stack": "Diseño",
+      "technologies": ["Moodle", "Illustrator", "Premiere"],
+      "date": "2021",
+      "context": "Académico",
       "text": "Diseño de una propuesta para orientar a docentes en formación de la Licenciatura en Diseño Tecnológico, para el desarrollo de sus materiales educativos digitales.",
-      "author": ["Jeisson Gavilán", "José Moreno"],
+      "author": [
+        { "name": "Jeisson Gavilán", "role": "Diseñador Instruccional" },
+        { "name": "José Moreno", "role": "Co-autor" }
+      ],
       "location": "UPN",
       "link": "http://repositorio.pedagogica.edu.co/handle/20.500.12209/16511",
       "repo": "http://repositorio.pedagogica.edu.co/bitstream/handle/20.500.12209/16511/Diseno_propuesta_orientar_docentes_en_formacion_desde_las_TIC.pdf?sequence=1&isAllowed=y",
@@ -160,46 +259,24 @@
       }
     },
     {
-      "id": 7,
+      "id": 9,
       "img": "zombiestore.webp",
       "title": "Zombie STORE",
-      "category": ["WEB"],
-      "date": "2023/ Bogotá - Colombia",
+      "stack": "Frontend",
+      "technologies": ["React", "JavaScript"],
+      "date": "2023",
+      "context": "Académico",
       "text": "Proyecto del BootCamp - BIT, buscando fortalecer las habilidades técnicas en la construcción de páginas web con React Js, haciendo una lista de productos con la posibilidad de agregar y eliminar productos.",
-      "author": ["Jeisson Gavilán"],
+      "author": [
+        { "name": "Jeisson Gavilán", "role": "Desarrollador Frontend" }
+      ],
       "location": "BIT",
       "link": "",
       "repo": "",
       "modal": {
         "images": ["sifa_1.webp", "sifa_2.webp", "sifa_3.webp"],
-        "technologies": ["HTML", "CSS", "JavaScript", "ExpressJS", "MySQL", ""],
-        "achievements": [
-          "https://alexander206.github.io/bit08react/",
-          "Proyecto del BootCamp - BIT, buscando fortalecer las habilidades técnicas en la construcción de páginas web con React Js,"
-        ]
-      }
-    },
-    {
-      "id": 8,
-      "img": "directorio.webp",
-      "title": "Directorio Telefonico",
-      "category": ["WEB"],
-      "date": "2023/ Bogotá - Colombia",
-      "text": "El proyecto del Directorio Telefónico es una aplicación web que consume una API pública para proporcionar información de contacto y empresas. Diseñado para facilitar la búsqueda de negocios y servicios, esta plataforma centraliza toda la información necesaria en un solo lugar.",
-      "author": ["Jeisson Gavilán"],
-      "location": "BIT",
-      "link": "https://alexander206.github.io/Directorio-telefonico/index.html",
-      "repo": "https://github.com/Alexander206/Directorio-telefonico",
-      "modal": {
-        "images": [
-          ["directorio_1.webp", "directorio_2.webp"],
-          ["directorio_3.webp", "directorio_4.webp"]
-        ],
-        "technologies": ["HTML", "CSS", "JavaScript"],
-        "achievements": [
-          "Superé el reto del tiempo de desarrollo y entrega establecidos, cumpliendo con los plazos establecidos para entregar un producto funcional y de calidad.",
-          "Implementé componentes reutilizables en HTML y JavaScript puro (vanilla), optimizando la estructura del código y facilitando su mantenimiento a largo plazo"
-        ]
+        "technologies": ["React", "JavaScript", "CSS"],
+        "achievements": []
       }
     }
   ]

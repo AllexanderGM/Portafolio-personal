@@ -1,9 +1,11 @@
 import { useState, useEffect, useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { Terminal } from 'lucide-react'
 import PropTypes from 'prop-types'
 
-import getScrollAnimation from '../../../../library/utils/GetScrollAnimation.jsx'
+import { getScrollAnimation } from '@library/animation'
+
+import './codeTerminal.scss'
 
 const CodeTerminal = ({ profileData }) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), [])
@@ -64,7 +66,7 @@ $ _`
   }, [fullText])
 
   return (
-    <motion.div className='code-terminal' variants={scrollAnimation} custom={{ duration: 1 }}>
+    <m.div className='code-terminal' variants={scrollAnimation} custom={{ duration: 1 }}>
       <div className='terminal-header'>
         <div className='terminal-buttons'>
           <span className='btn-close'></span>
@@ -80,7 +82,7 @@ $ _`
         <pre dangerouslySetInnerHTML={{ __html: highlightSyntax(displayedText) }} />
         {!isTypingComplete && <span className='cursor'>█</span>}
       </div>
-    </motion.div>
+    </m.div>
   )
 }
 

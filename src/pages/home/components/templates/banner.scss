@@ -1,152 +1,117 @@
 @use '@styles/autoload.scss' as *;
 
-// Components
-@use '../organisms/bannerImage.scss' as *;
-@use '../organisms/technology.scss' as *;
-@use '../molecules/heroText.scss' as *;
-@use '../molecules/buttons.scss' as *;
+.banner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-@mixin banner {
-  .banner {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  background-image: var(--gradient-dark);
+  background-repeat: no-repeat;
+  background-position: right top;
+}
 
+.banner-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  gap: rem(24px);
+  align-items: start;
+  z-index: 2;
+
+  // ======================================================================
+  // GRID MOBILE: 1 columna
+  // Fila 1: HeroText
+  // Fila 2: Image
+  // Fila 3: Buttons
+  // ======================================================================
+
+  .hero-text {
+    grid-column: 1;
+    grid-row: 1;
     width: 100%;
-    height: 100%;
-    color: var(--text-primary);
-    background-color: var(--bg-primary);
-    background-image: var(--gradient-dark);
-    background-repeat: no-repeat;
-    background-position: right top;
+  }
 
-    padding: rem(30px) rem(0px);
+  .banner_image {
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+  }
 
-    .container {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      grid-template-rows: auto auto auto auto;
-      gap: rem(24px) rem(16px);
-      align-items: start;
+  .buttons {
+    grid-column: 1;
+    grid-row: 3;
+    width: 100%;
+  }
+}
 
-      max-width: rem(1510px);
-      width: 100%;
-      height: 100%;
+// Divider decorativo entre Banner y About
+.banner-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(16px);
+  width: 100%;
+  padding: rem(20px) 0;
+  z-index: 2;
+}
 
-      padding: 0 rem(20px);
-      z-index: 2;
+.divider-dot {
+  width: rem(6px);
+  height: rem(6px);
+  border-radius: 50%;
+  background-color: hsl(var(--accent-primary-hsl) / 0.4);
+}
 
-      // ======================================================================
-      // GRID MOBILE: 1 columna
-      // Fila 1: Logo
-      // Fila 2: HeroText
-      // Fila 3: Image
-      // Fila 4: Buttons
-      // ======================================================================
+.divider-line {
+  width: rem(80px);
+  height: rem(1px);
+  background-color: hsl(var(--accent-primary-hsl) / 0.25);
+}
 
-      & > a {
-        grid-column: 1 / -1;
-        grid-row: 1;
-        align-self: start;
-        justify-self: start;
+@include responsive {
+  .banner {
+    .banner-container {
+      // Grid de 2 columnas en desktop
+      grid-template-columns: 1fr auto;
+      column-gap: rem(80px);
+      row-gap: rem(50px);
 
-        .banner_logo {
-          width: rem(36px);
-          height: rem(36px);
-          border-radius: 50%;
-          border: rem(1px) solid var(--accent-primary);
-        }
-      }
+      // ====================================================================
+      // GRID DESKTOP: 2 columnas
+      // Columna 1 (izquierda): HeroText → Buttons
+      // Columna 2 (derecha): Image (ocupa las 3 filas)
+      // ====================================================================
 
       .hero-text {
-        grid-column: 1 / -1;
-        grid-row: 2;
-        width: 100%;
-      }
-
-      .banner_image {
-        grid-column: 1 / -1;
-        grid-row: 3;
+        grid-column: 1;
+        grid-row: 1 / 3;
         width: 100%;
       }
 
       .buttons {
-        grid-column: 1 / -1;
-        grid-row: 4;
+        grid-column: 1;
+        grid-row: 3;
         width: 100%;
       }
 
-      // Incluir estilos de componentes
-      @include bannerImage;
-      @include heroText;
-      @include buttons;
+      .banner_image {
+        grid-column: 2;
+        grid-row: 1 / 4;
+        width: auto;
+      }
     }
 
-    @include technology;
-  }
+    .banner-divider {
+      padding: rem(30px) 0;
+    }
 
-  @include responsive {
-    .banner {
-      padding: rem(50px) rem(0px);
-
-      .container {
-        // Grid de 2 columnas en desktop
-        display: grid;
-        grid-template-columns: 1fr auto;
-        grid-template-rows: auto auto auto;
-        column-gap: rem(100px);
-        row-gap: rem(50px);
-        align-items: start;
-        padding: rem(50px);
-        padding-left: rem(90px);
-
-        // ====================================================================
-        // GRID DESKTOP: 2 columnas
-        // Columna 1 (izquierda): Title → Greeting → Buttons
-        // Columna 2 (derecha): Image (ocupa las 3 filas)
-        // Logo: position absolute
-        // ====================================================================
-
-        & > a {
-          position: absolute;
-          top: rem(20px);
-          left: rem(20px);
-
-          .banner_logo {
-            width: rem(40px);
-            height: rem(40px);
-            border: rem(1px) solid var(--accent-primary);
-          }
-        }
-
-        .title {
-          grid-column: 1;
-          grid-row: 1;
-          width: 100%;
-        }
-
-        .greeting {
-          grid-column: 1;
-          grid-row: 2;
-          width: 100%;
-          text-align: left;
-        }
-
-        .buttons {
-          grid-column: 1;
-          grid-row: 3;
-          width: 100%;
-        }
-
-        // Columna derecha (imagen) - ocupa las 3 filas
-        .banner_image {
-          grid-column: 2;
-          grid-row: 1 / 4;
-          width: auto;
-        }
-      }
+    .divider-line {
+      width: rem(100px);
     }
   }
 }

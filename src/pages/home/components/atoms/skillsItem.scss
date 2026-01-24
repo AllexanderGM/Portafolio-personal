@@ -1,41 +1,39 @@
 @use '@styles/autoload.scss' as *;
-@mixin skillItem {
-  .skills_item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
+.skills_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
 
+  ion-icon,
+  svg {
+    font-size: rem(40px);
+    font-weight: 100;
+    color: var(--text-secondary);
+    transition: $transition;
+    margin-bottom: rem(20px);
+  }
+
+  span {
+    text-align: center;
+    font-size: $font-size-sm;
+    transition: $transition;
+    color: var(--text-secondary);
+    font-weight: $font-weight-bold;
+  }
+
+  &:hover {
     ion-icon,
     svg {
-      font-size: rem(40px);
-      font-weight: 100;
-      color: var(--text-secondary);
+      color: var(--accent-primary);
       transition: $transition;
-      margin-bottom: rem(20px);
     }
 
     span {
-      text-align: center;
-      font-size: $font-size-sm;
+      color: var(--accent-primary);
       transition: $transition;
-      color: var(--text-secondary);
-      font-weight: $font-weight-bold;
-    }
-
-    &:hover {
-      ion-icon,
-      svg {
-        color: var(--accent-primary);
-        transition: $transition;
-      }
-
-      span {
-        color: var(--accent-primary);
-        transition: $transition;
-      }
     }
   }
 }

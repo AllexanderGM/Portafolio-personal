@@ -7,9 +7,8 @@ import { GeneralContext } from '../../context/GeneralContext'
  * Proporciona acceso a:
  * - Información social (links, email, etc.)
  * - Rutas de navegación
- * - Estado del cursor (cursorActive, activeCursor, inactiveCursor)
  * - Tema (theme, toggleTheme, setThemeMode, isDark, isLight)
- * - Accesibilidad (fontScale, contrastMode, grayscaleMode, underlineLinks, reduceMotion)
+ * - Accesibilidad (fontScale, contrastMode, grayscaleMode, underlineLinks)
  * - Estado de primera carga (firstLoad, finishFirstLoad)
  *
  * @returns {Object} Estado y métodos generales de la aplicación

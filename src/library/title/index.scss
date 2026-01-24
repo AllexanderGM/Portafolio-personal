@@ -1,0 +1,5 @@
+@use './components/organisms/title.scss' as *;
+
+.section-title {
+  @include sectionTitle;
+}

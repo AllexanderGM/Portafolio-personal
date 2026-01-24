@@ -1,16 +1,9 @@
 @use '@styles/autoload.scss' as *;
 
-// Components
-@use './components/templates/banner.scss' as *;
-@use './components/templates/aboutSection.scss' as *;
-
 .main_home {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 100%;
-
-  @include banner;
-  @include aboutSection;
 }

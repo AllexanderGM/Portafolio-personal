@@ -1,0 +1,154 @@
+@use '@styles/autoload.scss' as *;
+
+// ============================================================================
+// CAROUSEL - Sistema de visualización de imágenes
+// ============================================================================
+
+.carousel {
+  position: relative;
+  width: 100%;
+}
+
+// Contenedor para posicionar botones sobre las imágenes
+.carousel__wrapper {
+  position: relative;
+}
+
+.carousel__viewport {
+  width: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+  touch-action: pan-y;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  .swiper-wrapper {
+    align-items: stretch;
+  }
+
+  .swiper-slide {
+    height: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  // ---------------------------------------------------------------------------
+  // SLIDES - Border radius unificado
+  // ---------------------------------------------------------------------------
+
+  @include responsive {
+    .swiper-slide-active .carousel__item {
+      border-radius: rem(12px) 0 0 rem(12px);
+    }
+
+    .swiper-slide-next .carousel__item {
+      border-radius: 0 rem(12px) rem(12px) 0;
+    }
+
+    .swiper-slide:only-child .carousel__item {
+      border-radius: rem(12px);
+    }
+  }
+}
+
+// =============================================================================
+// BOTONES PREV/NEXT - Sobre las imágenes
+// =============================================================================
+
+.carousel__nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: rem(40px);
+  height: rem(40px);
+  padding: 0;
+  border: none;
+  border-radius: rem(12px);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    background-color 220ms ease,
+    color 220ms ease,
+    transform 220ms ease,
+    opacity 220ms ease;
+
+  &:hover:not(:disabled):not(.swiper-button-disabled) {
+    background: var(--accent-primary);
+    color: var(--text-on-accent);
+  }
+
+  &:active:not(:disabled):not(.swiper-button-disabled) {
+    transform: translateY(-50%) scale(0.95);
+  }
+
+  &:focus-visible {
+    outline: rem(2px) solid var(--accent-primary);
+    outline-offset: rem(2px);
+  }
+
+  &:disabled,
+  &.swiper-button-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &--prev {
+    left: rem(12px);
+  }
+
+  &--next {
+    right: rem(12px);
+  }
+}
+
+// =============================================================================
+// PAGINACIÓN INFERIOR - Números
+// =============================================================================
+
+.carousel__pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: rem(16px);
+}
+
+.carousel__pagination {
+  display: flex;
+  align-items: center;
+  gap: rem(6px);
+}
+
+// Bullets de paginación (círculos)
+.swiper-pagination-bullet {
+  width: rem(8px);
+  height: rem(8px);
+  border-radius: 50%;
+  background: var(--border-color-light);
+  opacity: 1;
+  cursor: pointer;
+  transition:
+    background-color 220ms ease,
+    transform 220ms ease;
+
+  &:hover:not(&-active) {
+    background: hsl(var(--accent-primary-hsl) / 0.4);
+    transform: scale(1.2);
+  }
+
+  &:focus-visible {
+    outline: rem(2px) solid var(--accent-primary);
+    outline-offset: rem(2px);
+  }
+
+  &-active {
+    background: var(--accent-primary);
+    transform: scale(1.25);
+  }
+}

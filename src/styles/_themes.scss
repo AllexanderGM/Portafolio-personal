@@ -33,25 +33,25 @@ html.dark {
 
   // Colores de texto
   --text-primary: hsl(var(--heroui-foreground));
-  --text-secondary: #{$contrast-color-100};
-  --text-tertiary: #{$contrast-color-400};
-  --text-muted: #{$contrast-color-800};
+  --text-secondary: hsl(var(--heroui-foreground-100));
+  --text-tertiary: hsl(var(--heroui-foreground-400));
+  --text-muted: hsl(var(--heroui-foreground-800));
 
   // Colores de acento
-  --accent-primary: #{$primary-color};
-  --accent-primary-rgb: 213, 205, 192;
-  --accent-primary-300: #{$primary-color-300};
-  --accent-primary-400: #{$primary-color-400};
-  --accent-primary-500: #{$primary-color-500};
-  --accent-primary-600: #{$primary-color-600};
-  --accent-primary-700: #{$primary-color-700};
-  --accent-secondary: #{$secondary-color};
-  --accent-secondary-300: #{$secondary-color-300};
-  --accent-secondary-700: #{$secondary-color-700};
+  --accent-primary: hsl(var(--heroui-primary-200));
+  --accent-primary-hsl: var(--heroui-primary-200);
+  --accent-primary-300: hsl(var(--heroui-primary-300));
+  --accent-primary-400: hsl(var(--heroui-primary-400));
+  --accent-primary-500: hsl(var(--heroui-primary-500));
+  --accent-primary-600: hsl(var(--heroui-primary-600));
+  --accent-primary-700: hsl(var(--heroui-primary-700));
+  --accent-secondary: hsl(var(--heroui-secondary));
+  --accent-secondary-300: hsl(var(--heroui-secondary-300));
+  --accent-secondary-700: hsl(var(--heroui-secondary-700));
 
   // Bordes y divisores
-  --border-color: #{$dark-color-700};
-  --border-color-light: #{$dark-color-600};
+  --border-color: hsl(var(--heroui-divider));
+  --border-color-light: hsl(var(--heroui-divider-light));
 
   // Gradientes
   --gradient-dark: linear-gradient(135deg, #{$dark-color-900} 0%, #{$dark-color-950} 50%, #{$dark-color-900} 100%);
@@ -63,7 +63,7 @@ html.dark {
   --shadow-lg: 0 #{rem(8px)} #{rem(24px)} rgba(34, 37, 42, 0.5);
 
   // Overlays y scrollbars
-  --overlay-backdrop: rgba(34, 37, 42, 0.5);
+  --overlay-backdrop: hsl(var(--heroui-overlay) / 0.5);
   --scrollbar-track: #{$dark-color-900};
   --scrollbar-thumb: #{$primary-color-600};
 
@@ -76,19 +76,19 @@ html.dark {
   // Sombras específicas
   --shadow-nav: 0 #{rem(2px)} #{rem(8px)} rgba(34, 37, 42, 0.3),
     0 #{rem(1px)} #{rem(3px)} rgba(34, 37, 42, 0.2),
-    0 0 #{rem(1px)} rgba(var(--accent-primary-rgb), 0.1);
+    0 0 #{rem(1px)} hsl(var(--accent-primary-hsl) / 0.1);
   --shadow-panel: 0 #{rem(10px)} #{rem(30px)} rgba(34, 37, 42, 0.5),
     0 #{rem(2px)} #{rem(10px)} rgba(34, 37, 42, 0.25);
   --shadow-control: 0 #{rem(2px)} #{rem(8px)} rgba(34, 37, 42, 0.35),
-    0 0 #{rem(1px)} rgba(var(--accent-primary-rgb), 0.2);
+    0 0 #{rem(1px)} hsl(var(--accent-primary-hsl) / 0.2);
   --shadow-control-active: 0 #{rem(6px)} #{rem(20px)} rgba(34, 37, 42, 0.45),
-    0 0 #{rem(12px)} rgba(var(--accent-primary-rgb), 0.15);
+    0 0 #{rem(12px)} hsl(var(--accent-primary-hsl) / 0.15);
   --shadow-popover: 0 #{rem(3px)} #{rem(10px)} rgba(34, 37, 42, 0.4),
     0 #{rem(1px)} #{rem(4px)} rgba(34, 37, 42, 0.3),
-    0 0 #{rem(1px)} rgba(var(--accent-primary-rgb), 0.08);
+    0 0 #{rem(1px)} hsl(var(--accent-primary-hsl) / 0.08);
 
   // Texto sobre acento
-  --text-on-accent: #{$dark-color};
+  --text-on-accent: hsl(var(--heroui-text-on-accent));
 
   // Filtros de imágenes
   --img-tech-filter: brightness(0.9) contrast(1.1);
@@ -106,25 +106,25 @@ html:not(.dark) {
 
   // Colores de texto
   --text-primary: hsl(var(--heroui-foreground));
-  --text-secondary: #{$dark-color-800};
-  --text-tertiary: #{$dark-color-600};
-  --text-muted: #{$dark-color-400};
+  --text-secondary: hsl(var(--heroui-foreground-800));
+  --text-tertiary: hsl(var(--heroui-foreground-600));
+  --text-muted: hsl(var(--heroui-foreground-400));
 
   // Colores de acento
-  --accent-primary: #{$primary-color-700};
-  --accent-primary-rgb: 122, 98, 84;
-  --accent-primary-300: #{$primary-color-300};
-  --accent-primary-400: #{$primary-color-400};
-  --accent-primary-500: #{$primary-color-500};
-  --accent-primary-600: #{$primary-color-600};
-  --accent-primary-700: #{$primary-color-700};
-  --accent-secondary: #{$secondary-color};
-  --accent-secondary-300: #{$secondary-color-300};
-  --accent-secondary-700: #{$secondary-color-700};
+  --accent-primary: hsl(var(--heroui-primary-700));
+  --accent-primary-hsl: var(--heroui-primary-700);
+  --accent-primary-300: hsl(var(--heroui-primary-300));
+  --accent-primary-400: hsl(var(--heroui-primary-400));
+  --accent-primary-500: hsl(var(--heroui-primary-500));
+  --accent-primary-600: hsl(var(--heroui-primary-600));
+  --accent-primary-700: hsl(var(--heroui-primary-700));
+  --accent-secondary: hsl(var(--heroui-secondary));
+  --accent-secondary-300: hsl(var(--heroui-secondary-300));
+  --accent-secondary-700: hsl(var(--heroui-secondary-700));
 
   // Bordes y divisores
-  --border-color: #{$light-color-300};
-  --border-color-light: #{$light-color-200};
+  --border-color: hsl(var(--heroui-divider));
+  --border-color-light: hsl(var(--heroui-divider-light));
 
   // Gradientes
   --gradient-dark: linear-gradient(135deg, #{$light-color-50} 0%, #{$light-color-100} 50%, #{$light-color-50} 100%);
@@ -136,7 +136,7 @@ html:not(.dark) {
   --shadow-lg: 0 #{rem(8px)} #{rem(24px)} rgba(0, 0, 0, 0.16);
 
   // Overlays y scrollbars
-  --overlay-backdrop: rgba(47, 50, 56, 0.25);
+  --overlay-backdrop: hsl(var(--heroui-overlay) / 0.25);
   --scrollbar-track: #{$light-color-200};
   --scrollbar-thumb: #{$primary-color-700};
 
@@ -149,19 +149,19 @@ html:not(.dark) {
   // Sombras específicas
   --shadow-nav: 0 #{rem(2px)} #{rem(8px)} rgba(0, 0, 0, 0.12),
     0 #{rem(1px)} #{rem(3px)} rgba(0, 0, 0, 0.08),
-    0 0 #{rem(1px)} rgba(var(--accent-primary-rgb), 0.16);
+    0 0 #{rem(1px)} hsl(var(--accent-primary-hsl) / 0.16);
   --shadow-panel: 0 #{rem(10px)} #{rem(30px)} rgba(0, 0, 0, 0.18),
     0 #{rem(2px)} #{rem(10px)} rgba(0, 0, 0, 0.12);
   --shadow-control: 0 #{rem(2px)} #{rem(8px)} rgba(0, 0, 0, 0.16),
-    0 0 #{rem(1px)} rgba(var(--accent-primary-rgb), 0.2);
+    0 0 #{rem(1px)} hsl(var(--accent-primary-hsl) / 0.2);
   --shadow-control-active: 0 #{rem(6px)} #{rem(20px)} rgba(0, 0, 0, 0.2),
-    0 0 #{rem(12px)} rgba(var(--accent-primary-rgb), 0.18);
+    0 0 #{rem(12px)} hsl(var(--accent-primary-hsl) / 0.18);
   --shadow-popover: 0 #{rem(3px)} #{rem(10px)} rgba(0, 0, 0, 0.16),
     0 #{rem(1px)} #{rem(4px)} rgba(0, 0, 0, 0.12),
-    0 0 #{rem(1px)} rgba(var(--accent-primary-rgb), 0.12);
+    0 0 #{rem(1px)} hsl(var(--accent-primary-hsl) / 0.12);
 
   // Texto sobre acento
-  --text-on-accent: #{$light-color};
+  --text-on-accent: hsl(var(--heroui-text-on-accent));
 
   // Filtros de imágenes
   --img-tech-filter: brightness(0.7) contrast(1.2) saturate(0.9);

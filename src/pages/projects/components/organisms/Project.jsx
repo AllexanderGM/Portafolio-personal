@@ -1,100 +1,216 @@
-import { useState } from 'react'
+import { useState, useEffect, lazy, Suspense, useMemo, useCallback, useRef, memo } from 'react'
 import PropTypes from 'prop-types'
+import { Globe, Github, Eye } from 'lucide-react'
+import { Button } from '@heroui/button'
+import { Chip } from '@heroui/chip'
 
 import GrabZone from '../atoms/GrabZone'
-import ModalProject from '../../../../library/modalProject/ModalProject'
 
-import { useProjects } from '@hooks'
+// Lazy load modal - solo se carga cuando se abre
+const ModalProject = lazy(() => import('../../../../library/modalProject/ModalProject'))
 
-const Project = ({ id }) => {
-  const [cursorGrabbed, setCursorGrabbed] = useState(false)
+const Project = memo(({ projectData }) => {
   const [modalShow, setModalShow] = useState(false)
+  const [cursorGrabbed, setCursorGrabbed] = useState(false)
+  const resetCursorTimeoutRef = useRef(null)
   const gameOver = false
 
-  const { getProjectById } = useProjects()
-  const projectData = getProjectById(id)
+  const hasImage = Boolean(projectData.img)
+  const img = useMemo(() => {
+    if (!hasImage) return null
+    return new URL(`../../../../assets/proyects/${projectData.img}`, import.meta.url).href
+  }, [hasImage, projectData.img])
 
-  const screenStyle = cursorGrabbed ? { cursor: 'none' } : {}
-  const img = new URL(`../../../../assets/proyects/${projectData.img}`, import.meta.url).href
+  // Mostrar máximo 4 tecnologías en la tarjeta
+  const technologies = useMemo(() => projectData.modal?.technologies?.slice(0, 4) || [], [projectData.modal?.technologies])
+  const hasMoreTech = useMemo(() => (projectData.modal?.technologies?.length || 0) > 4, [projectData.modal?.technologies])
 
-  const formattedCategories = projectData.category.map((item, index) => {
-    return index === projectData.category.length - 1 ? item : `${item} - `
-  })
+  // Verificar si el proyecto está en construcción (sin link)
+  const linkMissing = useMemo(() => !projectData.link || projectData.link.length < 1, [projectData.link])
+  const isUnderConstruction = useMemo(() => projectData.isUnderConstruction ?? linkMissing, [projectData.isUnderConstruction, linkMissing])
 
-  const handleCursorGrabbed = () => {
+  const handleCursorGrabbed = useCallback(() => {
     setCursorGrabbed(true)
-    setTimeout(() => {
+    if (resetCursorTimeoutRef.current) {
+      clearTimeout(resetCursorTimeoutRef.current)
+    }
+    resetCursorTimeoutRef.current = setTimeout(() => {
       setCursorGrabbed(false)
-    }, 1500)
-  }
+      resetCursorTimeoutRef.current = null
+    }, 3000)
+  }, [])
+
+  useEffect(() => {
+    return () => {
+      if (resetCursorTimeoutRef.current) {
+        clearTimeout(resetCursorTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  // Ocultar cursor globalmente cuando es atrapado
+  useEffect(() => {
+    if (cursorGrabbed) {
+      document.body.style.cursor = 'none'
+    } else {
+      document.body.style.cursor = ''
+    }
+    return () => {
+      document.body.style.cursor = ''
+    }
+  }, [cursorGrabbed])
 
   return (
-    <article className='projects_link' style={screenStyle} id={`id_${id}`}>
-      {projectData.link.length < 1 ? (
-        <div className='container_game'>
-          <figure className='projects_img'>
-            <img src={img} alt={projectData.title || 'Project preview'} />
-          </figure>
+    <>
+      <article className='project-card'>
+        {/* Imagen */}
+        {hasImage &&
+          (isUnderConstruction ? (
+            // Contenedor con GrabZone para proyectos en construcción
+            <div className='project-game-container'>
+              <figure className='project-image'>
+                <img src={img} alt={projectData.title} loading='lazy' />
+              </figure>
+              <div className='grab-zone-wrapper'>
+                <GrabZone
+                  onCursorGrabbed={handleCursorGrabbed}
+                  cursorGrabbed={cursorGrabbed}
+                  gameOver={gameOver}
+                />
+              </div>
+            </div>
+          ) : (
+            // Imagen normal con overlay
+            <figure className='project-image'>
+              <img src={img} alt={projectData.title} loading='lazy' />
+              <div className='project-image-overlay'>
+                <Button
+                  className='overlay-btn'
+                  variant='flat'
+                  size='sm'
+                  onPress={() => setModalShow(true)}
+                >
+                  <Eye size={18} />
+                  Ver detalles
+                </Button>
+              </div>
+            </figure>
+          ))}
 
-          <div className='grab-zone-wrapper'>
-            <GrabZone onCursorGrabbed={handleCursorGrabbed} cursorGrabbed={cursorGrabbed} gameOver={gameOver} />
+        {/* Contenido */}
+        <div className='project-content'>
+          {/* Header: Stack + Fecha */}
+          <div className='project-header'>
+            <Chip size='sm' variant='flat' color='primary' radius='sm'>
+              {projectData.stack}
+            </Chip>
+            <span className='project-date'>{projectData.date}</span>
+          </div>
+
+          {/* Título */}
+          <h3 className='project-title'>{projectData.title}</h3>
+
+          {/* Descripción */}
+          <p className='project-description'>{projectData.text}</p>
+
+          {/* Tecnologías */}
+          {technologies.length > 0 && (
+            <div className='project-technologies'>
+              {technologies.map((tech, idx) => (
+                <Chip key={idx} size='sm' variant='bordered' radius='sm'>
+                  {tech}
+                </Chip>
+              ))}
+              {hasMoreTech && (
+                <Chip size='sm' variant='flat' color='primary' radius='sm'>
+                  +{projectData.modal.technologies.length - 4}
+                </Chip>
+              )}
+            </div>
+          )}
+
+          {/* Acciones */}
+          <div className='project-actions'>
+            <div className='project-links'>
+              {projectData.link && (
+                <a
+                  href={projectData.link}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='action-btn'
+                  title='Ver sitio web'
+                >
+                  <Globe size={16} />
+                </a>
+              )}
+              {projectData.repo && (
+                <a
+                  href={projectData.repo}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='action-btn'
+                  title='Ver repositorio'
+                >
+                  <Github size={16} />
+                </a>
+              )}
+            </div>
+
+            {isUnderConstruction ? (
+              <Chip size='sm' variant='dot' color='warning'>
+                En construcción
+              </Chip>
+            ) : (
+              <Button
+                className='action-btn-main'
+                variant='bordered'
+                size='sm'
+                onPress={() => setModalShow(true)}
+              >
+                Ver detalles
+              </Button>
+            )}
           </div>
         </div>
-      ) : (
-        <figure className='projects_img'>
-          <img src={img} alt={projectData.title || 'Project preview'} />
-        </figure>
+      </article>
+
+      {/* Modal - Solo se renderiza cuando está abierto */}
+      {modalShow && (
+        <Suspense fallback={null}>
+          <ModalProject
+            modalShow={modalShow}
+            setModalShow={setModalShow}
+            id={projectData.id}
+          />
+        </Suspense>
       )}
-
-      <article className='projects_data'>
-        <article>
-          {formattedCategories.map((item, index) => {
-            return (
-              <span key={index} className='projects_category'>
-                {item}
-              </span>
-            )
-          })}
-        </article>
-
-        {projectData.link ? (
-          <a href={projectData.link} className='projects_title' target='_blank'>
-            {projectData.title}
-          </a>
-        ) : (
-          <span className='projects_title'>{projectData.title}</span>
-        )}
-
-        <span className='projects_date'> {projectData.date} </span>
-        <p className='projects_text'>{projectData.text}</p>
-        <p className='projects_location'>{projectData.location}</p>
-      </article>
-
-      <article className='container_btns'>
-        {projectData.link ? (
-          <a href={projectData.link} target='_blank'>
-            <ion-icon name='earth'></ion-icon>
-          </a>
-        ) : (
-          <span className='upss'>Aún está en construcción</span>
-        )}
-
-        {projectData.repo ? (
-          <a href={projectData.repo} target='_blank'>
-            <ion-icon name='logo-github'></ion-icon>
-          </a>
-        ) : (
-          false
-        )}
-      </article>
-
-      <ModalProject modalShow={modalShow} id={id} />
-    </article>
+    </>
   )
-}
+})
+
+Project.displayName = 'Project'
 
 Project.propTypes = {
-  id: PropTypes.number.isRequired
+  projectData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    img: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    stack: PropTypes.string.isRequired,
+    technologies: PropTypes.arrayOf(PropTypes.string),
+    context: PropTypes.string,
+    date: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    author: PropTypes.arrayOf(PropTypes.string),
+    location: PropTypes.string,
+    link: PropTypes.string,
+    isUnderConstruction: PropTypes.bool,
+    repo: PropTypes.string,
+    modal: PropTypes.shape({
+      images: PropTypes.array,
+      technologies: PropTypes.arrayOf(PropTypes.string),
+      achievements: PropTypes.arrayOf(PropTypes.string)
+    })
+  }).isRequired,
 }
 
 export default Project

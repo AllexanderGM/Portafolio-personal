@@ -1,5 +1,5 @@
 import { createContext, useState, useMemo, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import PropTypes from 'prop-types'
 
 export const LoadingContext = createContext(null)
@@ -9,20 +9,20 @@ export const LoadingContext = createContext(null)
  */
 const LoadingSpinner = ({ message }) => {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className='fixed inset-0 z-9999 flex items-center justify-center bg-black/60 backdrop-blur-sm'
       style={{ margin: 0 }}>
-      <motion.div
+      <m.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.8, opacity: 0 }}
         transition={{ type: 'spring', damping: 15 }}
         className='flex flex-col items-center gap-4 rounded-2xl bg-white px-8 py-6 shadow-2xl dark:bg-gray-800'>
         {/* Spinner animado */}
-        <motion.div
+        <m.div
           className='h-16 w-16 rounded-full border-4 border-gray-200 border-t-blue-500'
           animate={{ rotate: 360 }}
           transition={{
@@ -34,16 +34,16 @@ const LoadingSpinner = ({ message }) => {
 
         {/* Mensaje de carga */}
         {message && (
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             className='text-center text-lg font-medium text-gray-700 dark:text-gray-200'>
             {message}
-          </motion.p>
+          </m.p>
         )}
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   )
 }
 

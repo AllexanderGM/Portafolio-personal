@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 
 import BreadcrumbItem from '../atoms/BreadcrumbItem'
 
+import './breadcrumbList.scss'
+
 const BreadcrumbList = ({ items }) => {
   return (
     <ol className='breadcrumb_list'>

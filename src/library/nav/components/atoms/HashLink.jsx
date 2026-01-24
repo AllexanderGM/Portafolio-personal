@@ -2,10 +2,16 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { HashLink as RouterHashLink } from 'react-router-hash-link'
 
+import './hashLink.scss'
+
 const COLLAPSE_DELAY = 100
 const CSS_CLASSES = {
-  ACTIVE: 'active',
-  EXPANDED: 'expanded',
+  ITEM: 'nav-shell__item',
+  LINK: 'nav-shell__link',
+  ICON: 'nav-shell__icon',
+  TEXT: 'nav-shell__text',
+  ACTIVE: 'is-active',
+  EXPANDED: 'is-expanded',
   CLICKABLE: 'clickable'
 }
 
@@ -47,20 +53,23 @@ const HashLink = ({ Icon, text, route, setActiveLink, activeLink }) => {
     setActiveLink(route)
   }, [setActiveLink, route])
 
-  const className = [isActive && CSS_CLASSES.ACTIVE, isExpanded && CSS_CLASSES.EXPANDED, CSS_CLASSES.CLICKABLE].filter(Boolean).join(' ')
+  const className = [CSS_CLASSES.ITEM, isActive && CSS_CLASSES.ACTIVE, isExpanded && CSS_CLASSES.EXPANDED]
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <li className={className}>
       <RouterHashLink
         to={route}
         smooth
+        className={`${CSS_CLASSES.LINK} ${CSS_CLASSES.CLICKABLE}`}
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onFocus={handleMouseEnter}
         onBlur={handleMouseLeave}>
-        <Icon className='nav-icon' aria-hidden='true' />
-        <span className='nav-text'>{text}</span>
+        <Icon className={CSS_CLASSES.ICON} aria-hidden='true' />
+        <span className={CSS_CLASSES.TEXT}>{text}</span>
       </RouterHashLink>
     </li>
   )
