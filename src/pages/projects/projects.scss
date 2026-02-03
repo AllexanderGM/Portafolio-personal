@@ -116,12 +116,6 @@
   flex-wrap: wrap;
   align-items: center;
   gap: rem(8px);
-  width: 100%;
-}
-
-.active-filters-label {
-  font-size: rem(12px);
-  color: var(--text-muted);
 }
 
 // ============================================================================
@@ -218,10 +212,6 @@
 
   .filter-select {
     min-width: rem(180px);
-  }
-
-  .active-filters {
-    margin-top: rem(-16px);
   }
 
   .projects-grid {

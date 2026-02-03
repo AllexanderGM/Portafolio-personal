@@ -127,7 +127,7 @@ html:not(.dark) {
   --border-color-light: hsl(var(--heroui-divider-light));
 
   // Gradientes
-  --gradient-dark: linear-gradient(135deg, #{$light-color-50} 0%, #{$light-color-100} 50%, #{$light-color-50} 100%);
+  --gradient-dark: linear-gradient(135deg, #{$light-color-50} 0%, #{$primary-color-50} 50%, #{$light-color-50} 100%);
   --gradient-primary: #{$primary-gradient};
 
   // Sombras

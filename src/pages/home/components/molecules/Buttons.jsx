@@ -13,7 +13,7 @@ const Buttons = ({ btns }) => {
   const listButtons = btns.map((item, index) => {
     const isFirst = index === 0
 
-    const buttonConfig = isFirst ? { variant: 'solid', color: 'primary' } : { variant: 'ghost', color: 'primary' }
+    const buttonConfig = isFirst ? { variant: 'solid', color: 'primary' } : { variant: 'bordered' }
 
     return <PrimaryButton key={index} text={item.text} route={item.url} Icon={item.Icon} size='md' {...buttonConfig} />
   })

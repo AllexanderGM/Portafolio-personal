@@ -62,6 +62,7 @@ const Carousel = ({ images = [], circular = false }) => {
             breakpoints={{
               768: {
                 slidesPerView: 2,
+                slidesPerGroup: 2,
                 spaceBetween: 0
               }
             }}

@@ -49,8 +49,8 @@
     "title": "Más allá del código",
     "narrative": {
       "paragraphs": [
-        "Soy un desarrollador que cree que la *tecnología* debe servir a las *personas*, no al revés.",
-        "Con más de 3 años de experiencia, he trabajado en entornos educativos y empresariales donde aprendí que el mejor código es el que *resuelve problemas reales* y es fácil de mantener."
+        "Soy desarrollador de software con más de 3 años de experiencia construyendo *aplicaciones web* en entornos educativos, institucionales y empresariales.",
+        "He participado en la modernización de sistemas legacy, creación de APIs, integraciones institucionales y desarrollo de interfaces con *React* y *Spring Boot*. Mi enfoque es entender el problema, proponer una solución clara y construir código *mantenible* que pueda escalar con el tiempo."
       ]
     },
     "personalInfo": {
@@ -68,46 +68,45 @@
         }
       ]
     },
-    "softSkills": ["Comunicación", "Autonomía", "Organización", "Adaptabilidad"],
     "stats": [
       { "value": "3+", "label": "Años de experiencia" },
       { "value": "10+", "label": "Proyectos entregados" },
-      { "value": "4", "label": "Freelance" }
+      { "value": "5+", "label": "Empresas e instituciones" }
     ],
     "fullTimeExperiences": [
       {
         "period": "2024 - Actualidad",
         "company": "Pontificia Universidad Javeriana",
-        "role": "Desarrollador Frontend",
+        "role": "Desarrollador de Software – Frontend",
         "type": "university",
-        "technologies": ["Spring Boot", "Next.js", "React", "Vue", "PostgreSQL"]
+        "technologies": ["React", "Spring Boot", "NestJS", "Next.js", "Docker", "Liferay"]
       },
       {
         "period": "2022 - 2023",
         "company": "Universidad Pedagógica Nacional",
-        "role": "Desarrollador FullStack",
+        "role": "Desarrollador Web – Full Stack",
         "type": "university",
-        "technologies": ["React", "Node.js", "Express.js", "MySQL"]
+        "technologies": ["React", "Express.js", "Node.js", "MySQL"]
       }
     ],
     "freelanceExperiences": [
       {
-        "period": "2025",
+        "period": "2024 - 2025",
         "company": "Universidad Nacional de Colombia",
-        "role": "Desarrollador Fullstack",
+        "role": "Desarrollador Full Stack",
         "type": "university"
       },
       {
-        "period": "2024",
-        "company": "Organización Key",
-        "role": "Docente Frontend · Mujeres Digitales",
-        "type": "teaching"
-      },
-      {
-        "period": "2024",
+        "period": "2025",
         "company": "Feeling",
         "role": "Desarrollador Fullstack",
         "type": "company"
+      },
+      {
+        "period": "2023",
+        "company": "ETITC",
+        "role": "Desarrollador Web y LMS",
+        "type": "university"
       },
       {
         "period": "2022 - 2023",

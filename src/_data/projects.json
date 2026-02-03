@@ -4,7 +4,7 @@
   "projects": [
     {
       "id": 0,
-      "img": "",
+      "img": "sgp.webp",
       "title": "Sistema de Gestión de Proveedores (SGP)",
       "stack": "Fullstack",
       "technologies": ["Spring Boot", "React", "OAuth", "QUIPU", "ALFRESCO", "Figma"],
@@ -19,7 +19,7 @@
       "repo": "",
       "isUnderConstruction": false,
       "modal": {
-        "images": [],
+        "images": ["sgp_1.webp", "sgp_2.webp", "sgp_3.webp", "sgp_4.webp"],
         "technologies": ["Spring Boot", "React", "OAuth", "QUIPU", "ALFRESCO", "Figma"],
         "achievements": [
           "Gestión centralizada de proveedores, contratos, usuarios, roles y permisos.",

@@ -6,7 +6,7 @@ import { Button } from '@heroui/button'
 
 import { getScrollAnimation } from '@library/animation'
 
-const PrimaryButton = ({ route, url, className, variant = 'solid', Icon, text, color = 'primary', size = 'md' }) => {
+const PrimaryButton = ({ route, url, className, variant = 'solid', Icon, text, color = 'default', size = 'md' }) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), [])
 
   // Configuración del botón de HeroUI

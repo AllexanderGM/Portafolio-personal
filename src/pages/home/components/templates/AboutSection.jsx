@@ -39,133 +39,135 @@ const getExperienceIcon = type => {
 
 const AboutSection = ({ aboutData, cvUrl }) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), [])
-  const { eyebrow, title, narrative, personalInfo, softSkills, stats, fullTimeExperiences, freelanceExperiences } = aboutData
+  const { eyebrow, title, narrative, personalInfo, stats, fullTimeExperiences, freelanceExperiences } = aboutData
 
   return (
-    <ScrollAnimationWrapper className='about-section' id='about'>
+    <section className='about-section' id='about'>
       <Container as='article' className='about-container'>
         {/* Header */}
-        <m.header className='about-header' variants={scrollAnimation}>
-          <span className='about-eyebrow'>{eyebrow}</span>
-          <h2 className='about-title'>{title}</h2>
-        </m.header>
+        <ScrollAnimationWrapper className='about-header-wrapper'>
+          <m.header className='about-header' variants={scrollAnimation}>
+            <span className='about-eyebrow'>{eyebrow}</span>
+            <h2 className='about-title'>{title}</h2>
+          </m.header>
+        </ScrollAnimationWrapper>
 
         {/* Main content - 2 columns */}
         <div className='about-content'>
           {/* Left column - Narrative */}
           <div className='about-narrative'>
             {/* Narrative text */}
-            <m.div className='narrative-text' variants={scrollAnimation} custom={{ duration: 1 }}>
-              {narrative.paragraphs.map((paragraph, index) => (
-                <p key={index}>{parseHighlightedText(paragraph)}</p>
-              ))}
-            </m.div>
+            <ScrollAnimationWrapper>
+              <m.div className='narrative-text' variants={scrollAnimation}>
+                {narrative.paragraphs.map((paragraph, index) => (
+                  <p key={index}>{parseHighlightedText(paragraph)}</p>
+                ))}
+              </m.div>
+            </ScrollAnimationWrapper>
 
             {/* Personal Info */}
-            <m.div className='about-personal-info' variants={scrollAnimation} custom={{ duration: 1.2 }}>
-              <div className='info-item'>
-                <MapPin size={16} />
-                <span>{personalInfo.location}</span>
-              </div>
-              <div className='info-section'>
-                <span className='info-section-label'>Formación</span>
-                {personalInfo.education.map((edu, index) => (
-                  <div key={index} className='info-item info-item--education'>
-                    <GraduationCap size={16} />
-                    <div className='info-education'>
-                      <span className='edu-degree'>{edu.degree}</span>
-                      <span className='edu-institution'>{edu.institution}</span>
-                      <span className='edu-period'>{edu.period}</span>
+            <ScrollAnimationWrapper>
+              <m.div className='about-personal-info' variants={scrollAnimation}>
+                <div className='info-item'>
+                  <MapPin size={16} />
+                  <span>{personalInfo.location}</span>
+                </div>
+                <div className='info-section'>
+                  <span className='info-section-label'>Formación</span>
+                  {personalInfo.education.map((edu, index) => (
+                    <div key={index} className='info-item info-item--education'>
+                      <GraduationCap size={16} />
+                      <div className='info-education'>
+                        <span className='edu-degree'>{edu.degree}</span>
+                        <span className='edu-institution'>{edu.institution}</span>
+                        <span className='edu-period'>{edu.period}</span>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </m.div>
-
-            {/* Soft Skills */}
-            <m.div className='about-soft-skills' variants={scrollAnimation} custom={{ duration: 1.4 }}>
-              <span className='skills-label'>Cómo trabajo</span>
-              <div className='skills-list'>
-                {softSkills.map((skill, index) => (
-                  <span key={index} className='skill-item'>
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </m.div>
+                  ))}
+                </div>
+              </m.div>
+            </ScrollAnimationWrapper>
 
             {/* Stats */}
-            <m.div className='about-stats' variants={scrollAnimation} custom={{ duration: 1.6 }}>
-              {stats.map((stat, index) => (
-                <div key={index} className='stat-item'>
-                  <span className='stat-value'>{stat.value}</span>
-                  <span className='stat-label'>{stat.label}</span>
-                </div>
-              ))}
-            </m.div>
+            <ScrollAnimationWrapper>
+              <m.div className='about-stats' variants={scrollAnimation}>
+                {stats.map((stat, index) => (
+                  <div key={index} className='stat-item'>
+                    <span className='stat-value'>{stat.value}</span>
+                    <span className='stat-label'>{stat.label}</span>
+                  </div>
+                ))}
+              </m.div>
+            </ScrollAnimationWrapper>
 
             {/* CTA */}
-            <m.div variants={scrollAnimation} custom={{ duration: 1.8 }}>
-              <Button
-                as='a'
-                href={cvUrl}
-                target='_blank'
-                rel='noopener noreferrer'
-                variant='bordered'
-                className='about-cta'>
-                Descargar CV
-              </Button>
-            </m.div>
+            <ScrollAnimationWrapper>
+              <m.div variants={scrollAnimation}>
+                <Button
+                  as='a'
+                  href={cvUrl}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  variant='bordered'
+                  className='about-cta'>
+                  Descargar CV
+                </Button>
+              </m.div>
+            </ScrollAnimationWrapper>
           </div>
 
           {/* Right column - Experience */}
           <div className='about-experience'>
             {/* Tiempo completo */}
-            <m.div className='experience-category' variants={scrollAnimation} custom={{ duration: 1.2 }}>
-              <span className='category-label'>Tiempo completo</span>
-              <div className='experience-timeline'>
-                {fullTimeExperiences.map((exp, index) => (
-                  <div key={index} className='timeline-item'>
-                    <div className='timeline-icon'>{getExperienceIcon(exp.type)}</div>
-                    <div className='timeline-content'>
-                      <span className='timeline-period'>{exp.period}</span>
-                      <h4 className='timeline-company'>{exp.company}</h4>
-                      <p className='timeline-role'>{exp.role}</p>
-                      {exp.technologies && (
-                        <div className='timeline-tech'>
-                          {exp.technologies.map((tech, techIndex) => (
-                            <span key={techIndex} className='tech-badge'>
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      )}
+            <ScrollAnimationWrapper>
+              <m.div className='experience-category' variants={scrollAnimation}>
+                <span className='category-label'>Tiempo completo</span>
+                <div className='experience-timeline'>
+                  {fullTimeExperiences.map((exp, index) => (
+                    <div key={index} className='timeline-item'>
+                      <div className='timeline-icon'>{getExperienceIcon(exp.type)}</div>
+                      <div className='timeline-content'>
+                        <span className='timeline-period'>{exp.period}</span>
+                        <h4 className='timeline-company'>{exp.company}</h4>
+                        <p className='timeline-role'>{exp.role}</p>
+                        {exp.technologies && (
+                          <div className='timeline-tech'>
+                            {exp.technologies.map((tech, techIndex) => (
+                              <span key={techIndex} className='tech-badge'>
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </m.div>
+                  ))}
+                </div>
+              </m.div>
+            </ScrollAnimationWrapper>
 
             {/* Freelance */}
-            <m.div className='experience-category' variants={scrollAnimation} custom={{ duration: 1.6 }}>
-              <span className='category-label'>Proyectos & Freelance</span>
-              <div className='experience-timeline'>
-                {freelanceExperiences.map((exp, index) => (
-                  <div key={index} className='timeline-item timeline-item--freelance'>
-                    <div className='timeline-icon'>{getExperienceIcon(exp.type)}</div>
-                    <div className='timeline-content'>
-                      <span className='timeline-period'>{exp.period}</span>
-                      <h4 className='timeline-company'>{exp.company}</h4>
-                      <p className='timeline-role'>{exp.role}</p>
+            <ScrollAnimationWrapper>
+              <m.div className='experience-category' variants={scrollAnimation}>
+                <span className='category-label'>Proyectos & Freelance</span>
+                <div className='experience-timeline'>
+                  {freelanceExperiences.map((exp, index) => (
+                    <div key={index} className='timeline-item timeline-item--freelance'>
+                      <div className='timeline-icon'>{getExperienceIcon(exp.type)}</div>
+                      <div className='timeline-content'>
+                        <span className='timeline-period'>{exp.period}</span>
+                        <h4 className='timeline-company'>{exp.company}</h4>
+                        <p className='timeline-role'>{exp.role}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </m.div>
+                  ))}
+                </div>
+              </m.div>
+            </ScrollAnimationWrapper>
           </div>
         </div>
       </Container>
-    </ScrollAnimationWrapper>
+    </section>
   )
 }
 
@@ -194,7 +196,6 @@ AboutSection.propTypes = {
         })
       ).isRequired
     }).isRequired,
-    softSkills: PropTypes.arrayOf(PropTypes.string).isRequired,
     stats: PropTypes.arrayOf(
       PropTypes.shape({
         value: PropTypes.string.isRequired,

@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense, useMemo, useCallback, useRef, memo } from 'react'
+import { useState, useEffect, useMemo, useCallback, useRef, memo } from 'react'
 import PropTypes from 'prop-types'
 import { Globe, Github, Eye } from 'lucide-react'
 import { Button } from '@heroui/button'
@@ -6,8 +6,7 @@ import { Chip } from '@heroui/chip'
 
 import GrabZone from '../atoms/GrabZone'
 
-// Lazy load modal - solo se carga cuando se abre
-const ModalProject = lazy(() => import('../../../../library/modalProject/ModalProject'))
+import ModalProject from '../../../../library/modalProject/ModalProject'
 
 const Project = memo(({ projectData }) => {
   const [modalShow, setModalShow] = useState(false)
@@ -176,13 +175,11 @@ const Project = memo(({ projectData }) => {
 
       {/* Modal - Solo se renderiza cuando está abierto */}
       {modalShow && (
-        <Suspense fallback={null}>
-          <ModalProject
-            modalShow={modalShow}
-            setModalShow={setModalShow}
-            id={projectData.id}
-          />
-        </Suspense>
+        <ModalProject
+          modalShow={modalShow}
+          setModalShow={setModalShow}
+          id={projectData.id}
+        />
       )}
     </>
   )
@@ -200,7 +197,10 @@ Project.propTypes = {
     context: PropTypes.string,
     date: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
-    author: PropTypes.arrayOf(PropTypes.string),
+    author: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string,
+      role: PropTypes.string
+    })),
     location: PropTypes.string,
     link: PropTypes.string,
     isUnderConstruction: PropTypes.bool,

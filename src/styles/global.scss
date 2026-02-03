@@ -78,6 +78,9 @@ html {
       border-radius: rem(10px);
 
       div[data-overlay-container] {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
         width: 100%;
       }
     }

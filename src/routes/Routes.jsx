@@ -3,7 +3,8 @@ import { useEffect, useState, lazy, Suspense } from 'react'
 import { Routes as RoutesReact, Route, useLocation, Navigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-const Home = lazy(() => import('../pages/home/Home.jsx'))
+import Home from '../pages/home/Home.jsx'
+
 const Projects = lazy(() => import('../pages/projects/Projects.jsx'))
 const Contact = lazy(() => import('../pages/contact/Contact.jsx'))
 const NotFound = lazy(() => import('../pages/not_found/NotFound.jsx'))
